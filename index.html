@@ -332,7 +332,7 @@ function render(){
   let pills=`<span class="src-pill src-primary">${srcMap[q.source]||q.source}</span>`;
   if(q.also_in&&q.also_in.length) pills+=q.also_in.map(s=>`<span class="src-pill src-also">${srcMap[s]||s}</span>`).join('');
   srcEl.innerHTML=pills;
-  document.getElementById('qText').textContent=q.question;
+  document.getElementById('qText').innerHTML=q.question;
   document.getElementById('qHint').textContent=q.type==='multiple-select'?'Chọn nhiều đáp án':'';
   document.getElementById('fb').className='fb';
   document.getElementById('fb').innerHTML='';
