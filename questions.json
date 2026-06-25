@@ -1,0 +1,1088 @@
+{
+  "meta": {
+    "exam": "AB-730 — Microsoft Certified: AI Business Professional",
+    "total": 58,
+    "last_updated": "2026-06-25",
+    "sources": {
+      "itexams": "https://www.itexams.com/exam/AB-730",
+      "pass4success": "https://www.pass4success.com/microsoft/ab-730/dumps",
+      "marks4sure": "https://www.marks4sure.com/ab-730-ai-business-professional-beta-questions.html",
+      "dumpsbase": "https://www.dumpsbase.com/freedumps/microsoft-ab-730-dumps-v9-02-the-most-updated-study-materials-to-help-you-prepare-for-ab-730-ai-business-professional-certification-exam.html",
+      "edusum": "https://www.edusum.com/microsoft/microsoft-ai-business-professional-ab-730-certification-sample-questions",
+      "examtopics": "https://www.examtopics.com/exams/microsoft/ab-730/"
+    }
+  },
+  "questions": [
+    {
+      "id": 1,
+      "source": "examtopics",
+      "topic": "Copilot in M365 Apps",
+      "type": "multiple-select",
+      "question": "Which two tasks can you achieve by using Copilot in Excel?",
+      "options": [
+        "Customize conditional formatting rules",
+        "Insert custom charts with specific formatting",
+        "Generate summaries of key insights from data",
+        "Build pivot tables based on data"
+      ],
+      "correct": [
+        2,
+        3
+      ],
+      "note": "Copilot in Excel supports generating insights and building pivot tables, not custom formatting/charts.",
+      "also_in": [
+        "itexams"
+      ]
+    },
+    {
+      "id": 2,
+      "source": "examtopics",
+      "topic": "Copilot in M365 Apps",
+      "type": "multiple-select",
+      "question": "Which two tasks can you achieve by using Copilot in Word?",
+      "options": [
+        "Insert table of contents based on headings",
+        "Customize page margins for company standards",
+        "Generate summaries of key points",
+        "Insert custom watermarks with specific text"
+      ],
+      "correct": [
+        0,
+        2
+      ],
+      "note": "Copilot in Word can insert TOC and summarize content, not customize margins/watermarks.",
+      "also_in": [
+        "itexams"
+      ]
+    },
+    {
+      "id": 3,
+      "source": "examtopics",
+      "topic": "Copilot in M365 Apps",
+      "type": "multiple-select",
+      "question": "Which two tasks can you achieve by using Copilot in Outlook?",
+      "options": [
+        "Insert custom HTML signatures",
+        "Generate draft responses to emails",
+        "Create summaries of unread emails",
+        "Customize folder structure"
+      ],
+      "correct": [
+        1,
+        2
+      ],
+      "note": "Copilot in Outlook drafts replies and summarizes emails, not signatures or folder structure.",
+      "also_in": [
+        "itexams"
+      ]
+    },
+    {
+      "id": 4,
+      "source": "examtopics",
+      "topic": "Copilot in M365 Apps",
+      "type": "multiple-select",
+      "question": "Which two tasks can you achieve by using Copilot in PowerPoint?",
+      "options": [
+        "Insert custom animations for specific objects",
+        "Create slide layouts based on presentation content",
+        "Customize design themes to match branding",
+        "Produce summary slides based on key points"
+      ],
+      "correct": [
+        1,
+        3
+      ],
+      "note": "Copilot in PowerPoint creates layouts and summary slides, not custom animations or themes.",
+      "also_in": [
+        "itexams"
+      ]
+    },
+    {
+      "id": 5,
+      "source": "examtopics",
+      "topic": "Copilot in M365 Apps",
+      "type": "multiple-select",
+      "question": "Which two tasks can you achieve by using Copilot in Teams?",
+      "options": [
+        "Mute/unmute participants based on location",
+        "Create custom backgrounds for video calls",
+        "Create meeting summaries with decisions and action items",
+        "Draft responses to channel messages"
+      ],
+      "correct": [
+        2,
+        3
+      ],
+      "note": "Copilot in Teams summarizes meetings and drafts messages, not meeting controls or backgrounds.",
+      "also_in": [
+        "itexams"
+      ]
+    },
+    {
+      "id": 6,
+      "source": "examtopics",
+      "topic": "Prompt Errors & Troubleshooting",
+      "type": "single-select",
+      "question": "A colleague from another company shares a link to a prompt. When you select the link, you receive: 'Prompt not found. Sorry, it looks like the prompt is no longer available.' What is the most likely cause?",
+      "options": [
+        "The prompt is outdated",
+        "The prompt is outside of your organization",
+        "The prompt contains a reference to a file you do not have access to",
+        "The prompt is a scheduled prompt",
+        "The prompt contains a file that has a sensitivity label applied"
+      ],
+      "correct": [
+        1
+      ],
+      "note": "Prompts from another organization's tenant are not accessible cross-tenant. ⚠️ Conflict: ITExams = B (outside org), EDUSUM = e (file no access). Context 'colleague from another company' supports 'outside org' as correct.",
+      "also_in": [
+        "itexams"
+      ]
+    },
+    {
+      "id": 7,
+      "source": "examtopics",
+      "topic": "Prompt Errors & Troubleshooting",
+      "type": "single-select",
+      "question": "You run a saved prompt and receive: 'You asked for a summary of File.docx. However, the file appears to be either empty, corrupted, or in a format that I cannot process.' What is a possible cause?",
+      "options": [
+        "You did not schedule the prompt to run",
+        "You ran the prompt from a web app instead of a desktop app",
+        "You used the wrong agent to run the prompt",
+        "You do NOT have access to the file"
+      ],
+      "correct": [
+        3
+      ],
+      "note": "Inaccessible files appear as empty/corrupted to Copilot.",
+      "also_in": [
+        "itexams"
+      ]
+    },
+    {
+      "id": 8,
+      "source": "examtopics",
+      "topic": "Responsible AI",
+      "type": "single-select",
+      "question": "You receive several images from a colleague and suspect they were generated by Microsoft 365 Copilot. What can you use to verify whether the images were AI-generated?",
+      "options": [
+        "File names",
+        "Watermarks",
+        "Content credentials",
+        "File descriptions"
+      ],
+      "correct": [
+        2
+      ],
+      "note": "Content credentials (C2PA standard) are embedded metadata that identify AI-generated content.",
+      "also_in": [
+        "itexams"
+      ]
+    },
+    {
+      "id": 9,
+      "source": "examtopics",
+      "topic": "Responsible AI",
+      "type": "single-select",
+      "question": "You are a merchandiser planning for the upcoming season. You prompt Copilot to suggest which products to stock based on historical data. Without reviewing the suggestions or checking current market trends, you place a large order based solely on Copilot's output. What is this an example of?",
+      "options": [
+        "Verification",
+        "Overreliance",
+        "Fabrication",
+        "Prompt injection"
+      ],
+      "correct": [
+        1
+      ],
+      "note": "Overreliance = accepting AI output without human verification.",
+      "also_in": [
+        "itexams"
+      ]
+    },
+    {
+      "id": 10,
+      "source": "examtopics",
+      "topic": "M365 Copilot Versions",
+      "type": "single-select",
+      "question": "You are comparing Microsoft 365 Copilot and Microsoft 365 Copilot Chat. What is available in both versions?",
+      "options": [
+        "The Researcher agent",
+        "Copilot Pages",
+        "Copilot Notebooks"
+      ],
+      "correct": [
+        1
+      ],
+      "note": "Copilot Pages is available in both. Researcher agent and Notebooks require a full M365 Copilot license.",
+      "also_in": [
+        "itexams"
+      ]
+    },
+    {
+      "id": 11,
+      "source": "examtopics",
+      "topic": "Notebook & Pages",
+      "type": "single-select",
+      "question": "You plan to use a notebook in Microsoft 365 Copilot. What is the purpose of a notebook?",
+      "options": [
+        "To create a transcript of a conversation that you can easily email to other users",
+        "To provide a private location that can be used to organize reference materials across related conversations",
+        "To generate a summary of all the interactions you had with Copilot during a specific conversation"
+      ],
+      "correct": [
+        1
+      ],
+      "note": "Notebooks organize reference materials (files, notes, links) across multiple related conversations.",
+      "also_in": [
+        "pass4success"
+      ]
+    },
+    {
+      "id": 12,
+      "source": "examtopics",
+      "topic": "Prompt Gallery & Management",
+      "type": "single-select",
+      "question": "You create a prompt in Microsoft 365 Copilot to help you create a draft project report. You need the prompt to be available in the Copilot Prompt Gallery. What should you do first?",
+      "options": [
+        "Create a notebook",
+        "Add an agent",
+        "Create a page",
+        "Run the prompt"
+      ],
+      "correct": [
+        3
+      ],
+      "note": "You must run the prompt first so Copilot can capture it as a reusable prompt before saving to the gallery.",
+      "also_in": [
+        "pass4success"
+      ]
+    },
+    {
+      "id": 13,
+      "source": "examtopics",
+      "topic": "Conversation & Activity Management",
+      "type": "single-select",
+      "question": "You use Microsoft 365 Copilot. You need to delete all your conversations by using the least amount of effort. What is the best approach to achieve the goal?",
+      "options": [
+        "The Microsoft 365 Copilot web app",
+        "The My Account portal in Microsoft 365",
+        "The Microsoft 365 Copilot desktop app",
+        "The Settings app in Windows 11"
+      ],
+      "correct": [
+        1
+      ],
+      "note": "The My Account portal offers bulk/centralized activity management — least effort for deleting all conversations.",
+      "also_in": [
+        "pass4success"
+      ]
+    },
+    {
+      "id": 14,
+      "source": "examtopics",
+      "topic": "Prompt Grounding",
+      "type": "single-select",
+      "question": "You need to improve prompt-grounding during a Microsoft 365 Copilot conversation. What is the best approach to achieve the goal?",
+      "options": [
+        "Use shorter prompts",
+        "Provide the desired output format",
+        "Avoid technical jargon",
+        "Reference specific files"
+      ],
+      "correct": [
+        3
+      ],
+      "note": "Referencing specific files anchors Copilot responses to authoritative source material, reducing hallucinations.",
+      "also_in": [
+        "pass4success"
+      ]
+    },
+    {
+      "id": 15,
+      "source": "examtopics",
+      "topic": "Responsible AI",
+      "type": "single-select",
+      "question": "You ask Microsoft 365 Copilot to create a report based on information from the web. You verify the response and discover that some information is fictional. What is this an example of?",
+      "options": [
+        "Deepfake",
+        "Fabrication",
+        "Overreliance",
+        "Prompt injection",
+        "Bias"
+      ],
+      "correct": [
+        1
+      ],
+      "note": "Fabrication (hallucination) = AI generates plausible-sounding but factually incorrect content.",
+      "also_in": [
+        "pass4success"
+      ]
+    },
+    {
+      "id": 16,
+      "source": "pass4success",
+      "topic": "Copilot in M365 Apps",
+      "type": "single-select",
+      "question": "You create a Microsoft Teams meeting that will only allow the use of Copilot during the meeting. The meeting will NOT be transcribed. Which statement accurately describes how Copilot can be used during the meeting?",
+      "options": [
+        "Copilot must first be manually activated. Copilot can only provide summaries of what was said by the user who activated Copilot.",
+        "Copilot will activate automatically when the meeting starts. A complete recap will be saved at the conclusion.",
+        "Copilot must first be manually activated. Once activated, Copilot can provide summaries of what was said from that point forward.",
+        "Copilot will activate automatically when the meeting starts. Copilot can provide summaries from the start."
+      ],
+      "correct": [
+        2
+      ],
+      "note": "Without transcription, Copilot requires manual activation and only summarizes from that point onward."
+    },
+    {
+      "id": 17,
+      "source": "examtopics",
+      "topic": "Agents & Licensing",
+      "type": "single-select",
+      "question": "You sign in to the Microsoft 365 Copilot app using your work account. A colleague has access to the Researcher agent. You do not. You need access to the Researcher agent. What should you do?",
+      "options": [
+        "From Microsoft Edge, sign in to https://copilot.microsoft.com using your work account",
+        "Select Explore agents and then search for Researcher",
+        "Sign in to the Copilot app using a personal account",
+        "Request a Microsoft 365 Copilot license from an administrator"
+      ],
+      "correct": [
+        1
+      ],
+      "note": "The Researcher agent can be found via Explore agents — it is available without a full M365 Copilot license.",
+      "also_in": [
+        "pass4success"
+      ]
+    },
+    {
+      "id": 18,
+      "source": "examtopics",
+      "topic": "Prompt Errors & Troubleshooting",
+      "type": "single-select",
+      "question": "You receive the following response to a prompt: 'Sorry, it looks like I can't respond to this. Let's try a different topic.' What is a possible cause of the response?",
+      "options": [
+        "The prompt is too vague to elicit a response",
+        "The prompt contains language that violates safety guidelines",
+        "The prompt contains more than five requests",
+        "The prompt is larger than the allowed context window"
+      ],
+      "correct": [
+        1
+      ],
+      "note": "This error message indicates the prompt triggered Copilot's safety/content policy filters.",
+      "also_in": [
+        "pass4success"
+      ]
+    },
+    {
+      "id": 19,
+      "source": "examtopics",
+      "topic": "Copilot Features & Tools",
+      "type": "single-select",
+      "question": "You use Microsoft 365 Copilot to generate a training plan. You need to check if there are any existing training plans in your organization that are similar. What should you use in Copilot?",
+      "options": [
+        "Search",
+        "Designer",
+        "Apps",
+        "Pages"
+      ],
+      "correct": [
+        0
+      ],
+      "note": "Search is used to find existing organizational content within M365 Copilot.",
+      "also_in": [
+        "pass4success"
+      ]
+    },
+    {
+      "id": 20,
+      "source": "examtopics",
+      "topic": "Conversation & Activity Management",
+      "type": "single-select",
+      "question": "You discover a conversation that used a knowledge source containing confidential information. You need to delete that conversation without requiring administrative approval, while retaining your other conversations. What should you use?",
+      "options": [
+        "The Microsoft 365 Copilot app",
+        "The Microsoft 365 admin center",
+        "The Microsoft Purview compliance portal",
+        "The My Account portal in Microsoft 365 Copilot"
+      ],
+      "correct": [
+        0
+      ],
+      "note": "The M365 Copilot app allows deleting a specific individual conversation while retaining others. My Account portal is for bulk/date-range deletion of all activity. ✅ Confirmed by ExamTopics (T2Q14).",
+      "also_in": [
+        "pass4success"
+      ]
+    },
+    {
+      "id": 21,
+      "source": "examtopics",
+      "topic": "Agents & Licensing",
+      "type": "single-select",
+      "question": "You are a marketing assistant preparing for a budget meeting. You need to evaluate key spending and performance trends from the last year to understand which marketing channels deliver the best ROI. What should you use in Microsoft 365 Copilot?",
+      "options": [
+        "The Analyst agent",
+        "Chat",
+        "The Researcher agent",
+        "A notebook"
+      ],
+      "correct": [
+        0
+      ],
+      "note": "The Analyst agent is purpose-built for quantitative analysis, data interpretation, and ROI calculations.",
+      "also_in": [
+        "pass4success"
+      ]
+    },
+    {
+      "id": 22,
+      "source": "examtopics",
+      "topic": "Copilot Settings & Customization",
+      "type": "single-select",
+      "question": "You are a medical researcher. You need to ensure that Microsoft 365 Copilot responds to you in a professional manner appropriate to your field. What is the best approach to achieve the goal?",
+      "options": [
+        "Add role-specific instructions to each prompt manually",
+        "From Settings, configure Custom instructions",
+        "From Settings, configure Copilot Memory",
+        "Create a custom agent"
+      ],
+      "correct": [
+        1
+      ],
+      "note": "Custom instructions persist across conversations and let you define tone, style, and domain preferences.",
+      "also_in": [
+        "marks4sure"
+      ]
+    },
+    {
+      "id": 23,
+      "source": "examtopics",
+      "topic": "Notebook & Pages",
+      "type": "single-select",
+      "question": "You need to organize multiple Copilot conversations while keeping them all aligned to the same shared reference materials. What is the best solution?",
+      "options": [
+        "Use a notebook",
+        "Use Copilot Pages",
+        "Use the Researcher agent",
+        "Create a custom agent"
+      ],
+      "correct": [
+        0
+      ],
+      "note": "Notebooks consolidate multiple conversations with a shared set of reference files and notes.",
+      "also_in": [
+        "marks4sure"
+      ]
+    },
+    {
+      "id": 24,
+      "source": "marks4sure",
+      "topic": "Agents — Creation & Configuration",
+      "type": "fill-in",
+      "question": "When configuring an agent in Microsoft 365 Copilot, what element defines how the agent communicates — including its tone and personality?",
+      "options": [],
+      "correct": [
+        "Instructions"
+      ],
+      "note": "The Instructions field controls the agent's behavior, tone, and response style."
+    },
+    {
+      "id": 25,
+      "source": "marks4sure",
+      "topic": "Agents — Creation & Configuration",
+      "type": "fill-in",
+      "question": "What is the term for the predefined examples that are shown to users to guide them on how to interact with a custom agent?",
+      "options": [],
+      "correct": [
+        "Suggested prompts"
+      ],
+      "note": "Suggested prompts appear in the agent's interface to help users start conversations."
+    },
+    {
+      "id": 26,
+      "source": "marks4sure",
+      "topic": "Agents — Creation & Configuration",
+      "type": "fill-in",
+      "question": "What tab in the agent creation interface allows you to build a custom agent by describing it in natural language (AI generates the agent configuration for you)?",
+      "options": [],
+      "correct": [
+        "Describe tab"
+      ],
+      "note": "The Describe tab uses generative AI to auto-configure the agent from a natural language description."
+    },
+    {
+      "id": 27,
+      "source": "examtopics",
+      "topic": "Copilot Features & Tools",
+      "type": "multiple-select",
+      "question": "You frequently reference the same files in Microsoft 365 Copilot. You need to simplify the process of reusing those files across conversations. Which two approaches should you use?",
+      "options": [
+        "Pin files to the Copilot home screen",
+        "Create notebooks that reference those files",
+        "Save files to your Desktop",
+        "Create agents with those files as knowledge sources"
+      ],
+      "correct": [
+        1,
+        3
+      ],
+      "note": "Notebooks and custom agents with knowledge sources both allow persistent file references.",
+      "also_in": [
+        "marks4sure"
+      ]
+    },
+    {
+      "id": 28,
+      "source": "examtopics",
+      "topic": "M365 Copilot Versions",
+      "type": "multiple-select",
+      "question": "You do NOT have a Microsoft 365 Copilot license and are using Copilot Chat. Which THREE sources can Copilot Chat use to generate responses?",
+      "options": [
+        "SharePoint documents in your organization",
+        "OneDrive files",
+        "Prompt context (what you type in the conversation)",
+        "Organization emails",
+        "Internet search data",
+        "Conversation history"
+      ],
+      "correct": [
+        2,
+        4,
+        5
+      ],
+      "note": "Without M365 Copilot license, Copilot Chat uses: prompt context, internet data, and conversation history only — NOT organizational M365 data.",
+      "also_in": [
+        "marks4sure"
+      ]
+    },
+    {
+      "id": 29,
+      "source": "marks4sure",
+      "topic": "Data Privacy & Compliance",
+      "type": "fill-in",
+      "question": "What Microsoft capability ensures that your organization's data in Microsoft 365 Copilot is NOT used to train the underlying AI models?",
+      "options": [],
+      "correct": [
+        "Enterprise data protection (EDP)"
+      ],
+      "note": "EDP guarantees tenant data stays within the compliance boundary and is not used for model training."
+    },
+    {
+      "id": 30,
+      "source": "marks4sure",
+      "topic": "Conversation & Activity Management",
+      "type": "yes-no",
+      "question": "For each statement about activity history management in Microsoft 365 Copilot, select Yes or No.",
+      "options": [
+        "Users can view their own Copilot activity history",
+        "Admins can delete individual user conversations without user approval",
+        "Users can delete their own activity data"
+      ],
+      "correct": [
+        "Yes",
+        "No",
+        "Yes"
+      ],
+      "note": "Users control their own activity data. Admins manage at org level but not individual conversation deletion without user consent."
+    },
+    {
+      "id": 31,
+      "source": "examtopics",
+      "topic": "Notebook & Pages",
+      "type": "multiple-select",
+      "question": "You create a report using Copilot Pages. You need to collaborate with colleagues on the page. Which TWO approaches should you use?",
+      "options": [
+        "@mention colleagues directly on the page",
+        "Export to Word and share via email",
+        "Download as PDF and send",
+        "Share the page link with colleagues"
+      ],
+      "correct": [
+        0,
+        3
+      ],
+      "note": "Copilot Pages supports @mentions and link sharing for real-time collaboration.",
+      "also_in": [
+        "marks4sure"
+      ]
+    },
+    {
+      "id": 32,
+      "source": "examtopics",
+      "topic": "Copilot Features & Tools",
+      "type": "single-select",
+      "question": "What is the URL used to access Microsoft 365 Copilot from a web browser?",
+      "options": [
+        "https://m365.cloud.microsoft",
+        "https://copilot.microsoft.com",
+        "https://office.com/copilot",
+        "https://microsoft365.com"
+      ],
+      "correct": [
+        0
+      ],
+      "note": "The correct web entry point for M365 Copilot is m365.cloud.microsoft.",
+      "also_in": [
+        "marks4sure"
+      ]
+    },
+    {
+      "id": 33,
+      "source": "examtopics",
+      "topic": "Notebook & Pages",
+      "type": "single-select",
+      "question": "You create a Microsoft 365 Copilot notebook and add a SharePoint file as a reference. The file is later updated in SharePoint. Which version of the file will the notebook use?",
+      "options": [
+        "The original version at the time it was added",
+        "The most recent version from SharePoint",
+        "It will prompt you to choose a version"
+      ],
+      "correct": [
+        1
+      ],
+      "note": "SharePoint files in notebooks are referenced dynamically — always the latest version.",
+      "also_in": [
+        "marks4sure"
+      ]
+    },
+    {
+      "id": 34,
+      "source": "examtopics",
+      "topic": "Notebook & Pages",
+      "type": "single-select",
+      "question": "You create a Microsoft 365 Copilot notebook and add a file from a local folder. You later update that file in the local folder. Which version of the file will the notebook use?",
+      "options": [
+        "The updated version from the local folder",
+        "The most recent version from OneDrive",
+        "Only the original version at the time it was added"
+      ],
+      "correct": [
+        2
+      ],
+      "note": "Local files are snapshotted at the time of addition — updates to the local file are NOT reflected.",
+      "also_in": [
+        "marks4sure"
+      ]
+    },
+    {
+      "id": 35,
+      "source": "marks4sure",
+      "topic": "Conversation & Activity Management",
+      "type": "fill-in",
+      "question": "From the Microsoft 365 Copilot activity history, what is the granularity of data that users can delete?",
+      "options": [],
+      "correct": [
+        "A specific date range of activity"
+      ],
+      "note": "Users can delete activity for a specific date range, not just individual conversations."
+    },
+    {
+      "id": 36,
+      "source": "examtopics",
+      "topic": "Data Privacy & Compliance",
+      "type": "single-select",
+      "question": "You are discussing Microsoft 365 Copilot with a colleague. They ask which data Copilot uses when operating in the Work scope. Which statement is correct?",
+      "options": [
+        "Copilot provides responses based only on the general knowledge it was trained on",
+        "Copilot provides responses based on all data in your organization's Microsoft 365 environment and general knowledge",
+        "Copilot provides responses based only on data that the user can access and the general knowledge it was trained on",
+        "Copilot provides responses based only on data that the user can access"
+      ],
+      "correct": [
+        2
+      ],
+      "note": "Work scope = user's accessible M365 data + Copilot's general training knowledge. Permission trimming ensures users only see data they're authorized to access.",
+      "also_in": [
+        "dumpsbase"
+      ]
+    },
+    {
+      "id": 37,
+      "source": "dumpsbase",
+      "topic": "Agents — Creation & Configuration",
+      "type": "yes-no",
+      "question": "For each statement about Microsoft 365 Copilot agents, select Yes or No.",
+      "options": [
+        "An agent can be shared with users outside your organization",
+        "You can configure an agent to use specific SharePoint files as its knowledge source",
+        "An agent created from a template cannot be customized after creation"
+      ],
+      "correct": [
+        "No",
+        "Yes",
+        "No"
+      ],
+      "note": "Agents are tenant-scoped (not shareable externally). SharePoint files can be knowledge sources. Templates are fully customizable."
+    },
+    {
+      "id": 38,
+      "source": "dumpsbase",
+      "topic": "Agents — Creation & Configuration",
+      "type": "yes-no",
+      "question": "For each statement about knowledge sources in Microsoft 365 Copilot agents, select Yes or No.",
+      "options": [
+        "An agent can use Microsoft Excel files stored in SharePoint as a knowledge source",
+        "An agent can use public internet websites as a knowledge source",
+        "An agent can use files from a user's local drive as a knowledge source"
+      ],
+      "correct": [
+        "Yes",
+        "No",
+        "No"
+      ],
+      "note": "Agents support SharePoint/OneDrive files as knowledge sources, not internet URLs or local files."
+    },
+    {
+      "id": 39,
+      "source": "marks4sure",
+      "topic": "Agents & Licensing",
+      "type": "matching",
+      "question": "Match each task to the most appropriate Microsoft 365 Copilot feature.",
+      "options": [
+        "Analyze last quarter's sales data and identify trends",
+        "Research the latest industry reports from the web",
+        "Draft a quick reply to a colleague's question"
+      ],
+      "correct": [
+        "Analyst agent",
+        "Researcher agent",
+        "Chat"
+      ],
+      "note": "Analyst = quantitative/data tasks. Researcher = web research. Chat = general conversation and quick tasks."
+    },
+    {
+      "id": 40,
+      "source": "marks4sure",
+      "topic": "Copilot Features & Tools",
+      "type": "single-select",
+      "question": "A conversation in Microsoft 365 Copilot shows a status indicator. What does it indicate when a response has been verified?",
+      "options": [
+        "A green checkmark icon next to the message",
+        "A verified badge shown on the conversation",
+        "A thumbs up icon displayed below the response"
+      ],
+      "correct": [
+        1
+      ],
+      "note": "Verified responses display a verified badge indicator in the Copilot conversation UI."
+    },
+    {
+      "id": 41,
+      "source": "examtopics",
+      "topic": "Agents — Creation & Configuration",
+      "type": "single-select",
+      "question": "You are creating a custom agent in the Microsoft 365 Copilot app for the marketing team at your company. The agent will be used to produce marketing collateral, including copy, logos, and artwork. What should you add to the agent?",
+      "options": [
+        "A template",
+        "A suggested prompt",
+        "Image generator",
+        "Code interpreter"
+      ],
+      "correct": [
+        2
+      ],
+      "note": "Image generator capability enables the agent to create visual assets (logos, artwork). This is a specific capability that must be explicitly added.",
+      "also_in": [
+        "edusum"
+      ]
+    },
+    {
+      "id": 42,
+      "source": "examtopics",
+      "topic": "Agents — Creation & Configuration",
+      "type": "single-select",
+      "question": "You use the Researcher agent in Microsoft 365 Copilot to generate a report. What can you use to verify whether the report was generated by using valid sources?",
+      "options": [
+        "Citations",
+        "Instructions",
+        "Memory",
+        "Capabilities"
+      ],
+      "correct": [
+        0
+      ],
+      "note": "The Researcher agent includes citations in its output, allowing users to verify the sources behind the generated content.",
+      "also_in": [
+        "edusum"
+      ]
+    },
+    {
+      "id": 43,
+      "source": "edusum",
+      "topic": "AI Fundamentals",
+      "type": "single-select",
+      "question": "Which AI technique is most commonly used for detecting patterns and trends in large datasets?",
+      "options": [
+        "Supervised learning",
+        "Regression",
+        "Classification",
+        "Unsupervised learning"
+      ],
+      "correct": [
+        3
+      ],
+      "note": "Unsupervised learning (e.g., clustering, dimensionality reduction) discovers hidden patterns in unlabeled data without predefined categories."
+    },
+    {
+      "id": 44,
+      "source": "edusum",
+      "topic": "AI Fundamentals",
+      "type": "single-select",
+      "question": "Which of the following is a typical use case for AI in marketing?",
+      "options": [
+        "Personalizing advertisements based on customer behavior",
+        "Automating the management of human resources",
+        "Generating financial forecasts",
+        "Optimizing the physical supply chain"
+      ],
+      "correct": [
+        0
+      ],
+      "note": "Personalized advertising based on behavioral data is a core AI use case in marketing (e.g., recommendation engines, targeted ads)."
+    },
+    {
+      "id": 45,
+      "source": "examtopics",
+      "topic": "Copilot Features & Tools",
+      "type": "single-select",
+      "question": "You open Microsoft 365 Copilot and view a conversation named 'Standings'. What can you infer about the Standings conversation based on its indicator icon? (Image-based question — exhibit shows a share icon on the conversation)",
+      "options": [
+        "The conversation contains only anonymous data",
+        "The conversation contains a verified response",
+        "The conversation was added to a notebook",
+        "The conversation contains a scheduled prompt",
+        "The conversation was shared"
+      ],
+      "correct": [
+        4
+      ],
+      "note": "A share icon on a conversation in M365 Copilot indicates it was shared. ⚠️ This question references an exhibit (screenshot) — the share icon is the key visual cue."
+    },
+    {
+      "id": 46,
+      "source": "examtopics",
+      "topic": "Copilot Settings & Customization",
+      "type": "single-select",
+      "question": "You are using Microsoft 365 Copilot to plan a trip and have asked Copilot to remember several details about the trip. You cancel the trip plans. You need to ensure that Copilot forgets the details. What should you do?",
+      "options": [
+        "From the My Account portal, delete the Copilot activity history",
+        "From Copilot, delete memories",
+        "From Copilot, delete custom instructions",
+        "From Copilot, delete all the conversations about the trip"
+      ],
+      "correct": [
+        1
+      ],
+      "note": "Copilot Memory stores facts across sessions. To remove specific remembered details, delete the relevant memory entries directly from Copilot's memory settings."
+    },
+    {
+      "id": 47,
+      "source": "examtopics",
+      "topic": "Agents — Creation & Configuration",
+      "type": "single-select",
+      "question": "You are creating a custom analytics agent in the Microsoft 365 Copilot app. The agent will use Microsoft Excel files containing sales data as knowledge. You need to ensure that the agent can create visualizations, perform mathematical operations, create aggregations, and analyze the data. What should you add to the agent?",
+      "options": [
+        "A suggested prompt",
+        "Code interpreter",
+        "Image generator",
+        "A template"
+      ],
+      "correct": [
+        1
+      ],
+      "note": "Code interpreter enables an agent to execute code for data analysis, math operations, aggregations, and chart creation — required for working with structured Excel data."
+    },
+    {
+      "id": 48,
+      "source": "examtopics",
+      "topic": "Prompt Grounding",
+      "type": "single-select",
+      "question": "You have a Microsoft Excel workbook with a table containing OrderDate, OrderNumber, and Amount columns. You plan to use Copilot in Excel to generate a monthly summary of the sales data. What should you include in the prompt to generate an effective summary?",
+      "options": [
+        "The desired format of the response",
+        "A specific cell range from the worksheet",
+        "The file name of the workbook",
+        "The clear goal of the summary",
+        "A formula to calculate monthly totals"
+      ],
+      "correct": [
+        3
+      ],
+      "note": "The most critical prompt element is a clear, specific goal. Without a defined goal, Copilot cannot generate a targeted summary."
+    },
+    {
+      "id": 49,
+      "source": "examtopics",
+      "topic": "Prompt Grounding",
+      "type": "single-select",
+      "question": "You are creating a prompt in Microsoft 365 Copilot to get information about a proposal. You need to ensure that the response is grounded in the proposal's information. What is the best approach?",
+      "options": [
+        "Add context about the intended audience",
+        "Instruct Copilot to rely on its training data to infer proposal details",
+        "Reference the proposal content in the prompt",
+        "Add a specific goal that you want Copilot to accomplish"
+      ],
+      "correct": [
+        2
+      ],
+      "note": "Grounding = anchoring the response to a specific source. Referencing the proposal document directly ensures Copilot uses it as the authoritative source rather than general training data."
+    },
+    {
+      "id": 50,
+      "source": "examtopics",
+      "topic": "Copilot Features & Tools",
+      "type": "single-select",
+      "question": "You have an open Microsoft 365 Copilot conversation. You need to chat with an agent named Agent1 during the conversation. What should you enter to call Agent1?",
+      "options": [
+        "[Agent1]",
+        "#Agent1",
+        "/Agent1",
+        "@Agent1"
+      ],
+      "correct": [
+        3
+      ],
+      "note": "Use @AgentName to invoke an agent within a Copilot conversation, similar to @mentioning a person."
+    },
+    {
+      "id": 51,
+      "source": "examtopics",
+      "topic": "Agents & Licensing",
+      "type": "single-select",
+      "question": "You are a project coordinator who created an agent to monitor project milestones, follow up on client emails, and generate weekly summary reports. With whom can you share the agent?",
+      "options": [
+        "Only the people in your organization",
+        "The people in your organization and people that have personal Microsoft accounts",
+        "Only Microsoft Teams channel members",
+        "Any person who has a valid email address"
+      ],
+      "correct": [
+        0
+      ],
+      "note": "Custom agents created in the M365 Copilot app are tenant-scoped — they can only be shared with users within your organization."
+    },
+    {
+      "id": 52,
+      "source": "examtopics",
+      "topic": "Prompt Gallery & Management",
+      "type": "single-select",
+      "question": "You create a prompt and add several files from your Microsoft OneDrive. You share the prompt to a user by using email. What occurs when the user uses the prompt?",
+      "options": [
+        "The user is granted access to the files automatically and can run the prompt",
+        "The files are removed from the shared prompt, and the user must add the files manually before they can run the prompt",
+        "The user is prompted to request access to the files when they attempt to run the prompt",
+        "The user can run the prompt successfully only if they have access to the files in your OneDrive"
+      ],
+      "correct": [
+        3
+      ],
+      "note": "Sharing a prompt does NOT grant access to the referenced OneDrive files. The prompt runs successfully only for users who already have permission to access those files."
+    },
+    {
+      "id": 53,
+      "source": "examtopics",
+      "topic": "Prompt Gallery & Management",
+      "type": "multiple-select",
+      "question": "In Microsoft 365 Copilot, you save a prompt. Which two actions can you perform for the saved prompt?",
+      "options": [
+        "Modify the saved prompt text",
+        "Remove the saved prompt from the Copilot Prompt Gallery",
+        "Update the title of the saved prompt",
+        "Schedule the saved prompt to run daily",
+        "Share the saved prompt to a Microsoft Teams team"
+      ],
+      "correct": [
+        1,
+        4
+      ],
+      "note": "Saved prompts can be removed from the gallery (B) and shared to a Teams team (E). You cannot modify the prompt text, update its title, or schedule it to run automatically."
+    },
+    {
+      "id": 54,
+      "source": "examtopics",
+      "topic": "Prompt Grounding",
+      "type": "multiple-select",
+      "question": "You plan to summarize a proposal for a partnership between your company and another company using Microsoft 365 Copilot — as a bulleted list of 3–5 concise key points for a project kickoff meeting. Which two details should you include in the prompt?",
+      "options": [
+        "A list of contact details for key stakeholders of the partnership",
+        "Profiles of both companies generated by using the Researcher agent",
+        "A specific knowledge source to ground the response",
+        "Concise instructions for what to do with the proposal"
+      ],
+      "correct": [
+        2,
+        3
+      ],
+      "note": "An effective prompt needs: (C) a knowledge source reference to ground the response in the actual proposal, and (D) clear instructions specifying the format and purpose (bulleted list, 3–5 points, kickoff context)."
+    },
+    {
+      "id": 55,
+      "source": "examtopics",
+      "topic": "Copilot in M365 Apps",
+      "type": "single-select",
+      "question": "You attend many Microsoft Teams meetings. You want to ensure that you can catch up on key points and next steps after each meeting. Which Microsoft 365 Copilot feature should you use after the meetings?",
+      "options": [
+        "Recap",
+        "Meeting Whiteboard",
+        "Meeting info",
+        "Thread summaries"
+      ],
+      "correct": [
+        0
+      ],
+      "note": "The Recap feature in Copilot for Teams generates a post-meeting summary including key points, action items, and decisions."
+    },
+    {
+      "id": 56,
+      "source": "examtopics",
+      "topic": "Responsible AI",
+      "type": "single-select",
+      "question": "You use Microsoft 365 Copilot to create a proposal in Microsoft Word based on a document in a Microsoft SharePoint library. You need to ensure that the information cited in the proposal is accurate. What is the best approach?",
+      "options": [
+        "Manually verify the citations in the generated content",
+        "Use Copilot in Word to verify the citations",
+        "Create an agent that contains your organization's editorial standards and use the agent to verify the citations",
+        "Create a notebook that contains all the reference material and use the notebook to verify the citations"
+      ],
+      "correct": [
+        0
+      ],
+      "note": "Human review remains the definitive step for verifying AI-generated citations. Copilot can assist but is not a substitute for manual fact-checking — especially for official proposals."
+    },
+    {
+      "id": 57,
+      "source": "examtopics",
+      "topic": "Copilot in M365 Apps",
+      "type": "single-select",
+      "question": "You join an internal Microsoft Teams meeting late and want to catch up on what you missed. The meeting is being recorded. You need to summarize the portion of the meeting you missed as soon as possible. What is the best approach?",
+      "options": [
+        "From the Teams app, ask Copilot in Teams to summarize what you missed so far",
+        "From the meeting, read the transcript",
+        "From the Microsoft 365 Copilot app, ask Copilot to tell you what you missed",
+        "From the Teams app, view the intelligent recap"
+      ],
+      "correct": [
+        0
+      ],
+      "note": "Copilot in Teams (within the live meeting) can generate a real-time summary of what happened so far — the fastest option while the meeting is still ongoing. Intelligent recap is only available after the meeting ends."
+    },
+    {
+      "id": 58,
+      "source": "examtopics",
+      "topic": "Data Privacy & Compliance",
+      "type": "single-select",
+      "question": "You have an open Microsoft Word document that has a sensitivity label named 'Highly Confidential' applied. From Microsoft PowerPoint, you plan to use Microsoft 365 Copilot to generate a presentation of the Word document. What will be the result?",
+      "options": [
+        "Copilot will be unable to generate the presentation",
+        "Copilot will generate the presentation and will prompt you for a label",
+        "Copilot will generate the presentation and apply the Highly Confidential label",
+        "Copilot will generate the presentation and will NOT apply a label"
+      ],
+      "correct": [
+        2
+      ],
+      "note": "Microsoft 365 Copilot automatically inherits and applies the highest sensitivity label from source documents to any generated content — ensuring data protection policies are enforced."
+    }
+  ]
+}
