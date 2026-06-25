@@ -72,7 +72,15 @@ body {
 .progress-fill { height: 100%; background: var(--y); border-radius: 2px; transition: width .4s ease; }
 
 /* ── Question ── */
-.q-topic { font-size: 0.72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 12px; }
+.q-meta-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.q-topic { font-size: 0.72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.q-source { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
+.src-pill {
+  font-size: 0.68rem; font-weight: 600; padding: 2px 8px;
+  border-radius: 99px; white-space: nowrap;
+}
+.src-primary { background: var(--y-light); color: var(--y-text); }
+.src-also    { background: #f3f4f6; color: var(--muted); }
 .q-text  { font-size: 1.1rem; font-weight: 600; line-height: 1.6; margin-bottom: 24px; }
 .q-hint  { font-size: 0.78rem; color: var(--muted); margin-bottom: 12px; }
 
@@ -224,7 +232,10 @@ button.btn:active { transform: scale(.97); }
   </div>
   <div class="progress-bar"><div class="progress-fill" id="progFill" style="width:0%"></div></div>
 
-  <div class="q-topic" id="qTopic"></div>
+  <div class="q-meta-row">
+    <div class="q-topic" id="qTopic"></div>
+    <div class="q-source" id="qSource"></div>
+  </div>
   <div class="q-text"  id="qText"></div>
   <div class="q-hint"  id="qHint"></div>
   <div id="qBody"></div>
@@ -268,8 +279,7 @@ function refresh(){
   const nW=Object.keys(p.wrong).length, nS=Object.keys(p.seen).length;
   const nUnseen=Math.max(Q.length-nS,0);
   const hint=document.getElementById('statsHint');
-  if(nS>0) hint.textContent=`Đã làm: ${nS}/${Q.length} · Chưa làm: ${nUnseen} · Câu sai: ${nW}`;
-  else hint.textContent='';
+  hint.textContent=`Đã làm: ${nS}/${Q.length} · Chưa làm: ${nUnseen} · Câu sai: ${nW}`;
   const bw=document.getElementById('btnWrong');
   if(bw){ bw.disabled=(nW===0); bw.style.opacity=nW===0?.35:1; bw.style.cursor=nW===0?'not-allowed':'pointer'; }
   const bu=document.getElementById('btnUnseen');
@@ -317,6 +327,11 @@ function render(){
   document.getElementById('qNum').textContent=`${cur+1} / ${queue.length}`;
   document.getElementById('qScore').textContent=`✓ ${ok}`;
   document.getElementById('qTopic').textContent=q.topic;
+  const srcMap={examtopics:'ExamTopics',marks4sure:'Marks4Sure',pass4success:'Pass4Success',dumpsbase:'DumpsBase',edusum:'Edusum'};
+  const srcEl=document.getElementById('qSource');
+  let pills=`<span class="src-pill src-primary">${srcMap[q.source]||q.source}</span>`;
+  if(q.also_in&&q.also_in.length) pills+=q.also_in.map(s=>`<span class="src-pill src-also">${srcMap[s]||s}</span>`).join('');
+  srcEl.innerHTML=pills;
   document.getElementById('qText').textContent=q.question;
   document.getElementById('qHint').textContent=q.type==='multiple-select'?'Chọn nhiều đáp án':'';
   document.getElementById('fb').className='fb';
