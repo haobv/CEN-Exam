@@ -148,6 +148,19 @@ body {
 /* ── Matching ── */
 .match-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 0.875rem; }
 .match-stmt { flex: 1; }
+
+/* ── HOTSPOT Complex ── */
+.blank { display: inline-block; background: var(--y-light); color: var(--y-text); border: 1.5px dashed var(--y); border-radius: 4px; padding: 1px 8px; font-weight: 700; font-style: normal; margin: 0 3px; letter-spacing: 1px; }
+.hc-stmt { padding: 8px 10px; margin-bottom: 4px; border-radius: 6px; font-size: 0.875rem; line-height: 1.5; background: #f9fafb; border: 1px solid #e5e7eb; }
+.hc-stmt.correct { background: #dcfce7; border-color: #16a34a; color: #166534; font-weight: 600; }
+.hc-match-row { padding: 10px; margin-bottom: 8px; border-radius: 8px; border: 1px solid #e5e7eb; background: #f9fafb; }
+.hc-match-row.correct { border-color: #16a34a; background: #dcfce7; }
+.hc-match-row.wrong   { border-color: #dc2626; background: #fef2f2; }
+.hc-prompt { font-size: 0.85rem; line-height: 1.5; margin-bottom: 8px; color: #374151; }
+.hc-opts { display: flex; flex-wrap: wrap; gap: 8px; }
+.hc-opt { display: flex; align-items: center; gap: 5px; font-size: 0.82rem; cursor: pointer; padding: 4px 10px; border-radius: 99px; border: 1px solid #d1d5db; background: #fff; }
+.hc-opt:hover { border-color: var(--y); }
+.hc-opt.correct { border-color: #16a34a; background: #dcfce7; color: #166534; font-weight: 600; }
 .match-sel {
   padding: 7px 10px; border: 1.5px solid var(--border);
   border-radius: 8px; font-size: 0.82rem; outline: none;
@@ -202,7 +215,7 @@ button.btn:active { transform: scale(.97); }
 <!-- Home -->
 <div class="card" id="home">
   <div class="home-title">AB-730 Study</div>
-  <div class="home-sub" id="homeSub">Microsoft AI Business Professional · 58 câu</div>
+  <div class="home-sub" id="homeSub">Microsoft AI Business Professional · 96 câu</div>
   <div class="stats-hint" id="statsHint"></div>
 
   <div style="margin-bottom:16px"></div>
@@ -332,8 +345,10 @@ function render(){
   let pills=`<span class="src-pill src-primary">${srcMap[q.source]||q.source}</span>`;
   if(q.also_in&&q.also_in.length) pills+=q.also_in.map(s=>`<span class="src-pill src-also">${srcMap[s]||s}</span>`).join('');
   srcEl.innerHTML=pills;
-  document.getElementById('qText').innerHTML=q.question;
-  document.getElementById('qHint').textContent=q.type==='multiple-select'?'Chọn nhiều đáp án':'';
+  document.getElementById('qText').innerHTML=q.question.replace(/\[BLANK\d?\]/g,'<span class="blank">[.....]</span>');
+  const hintMap={'multiple-select':'Chọn nhiều đáp án','hotspot-yesno':'Chọn Yes / No cho từng câu','hotspot-complex':'Đọc và xem đáp án'};
+  document.getElementById('qHint').textContent=hintMap[q.type]||'';
+  document.getElementById('btnCheck').textContent=(q.type==='hotspot-complex'&&q.subtype!=='match')?'Xem đáp án':'Kiểm tra';
   document.getElementById('fb').className='fb';
   document.getElementById('fb').innerHTML='';
   document.getElementById('btnCheck').style.display='';
@@ -365,6 +380,26 @@ function renderBody(q){
          ${q.correct.map(a=>`<option value="${a}">${a}</option>`).join('')}
        </select></div>`
     ).join('');
+  }else if(q.type==='hotspot-yesno'){
+    body.innerHTML=q.statements.map((s,i)=>
+      `<div class="yn-row"><div class="yn-stmt">${s}</div><div class="yn-btns">
+        <button class="yn-btn" data-r="${i}" data-v="true"  onclick="selYN(this)">Yes</button>
+        <button class="yn-btn" data-r="${i}" data-v="false" onclick="selYN(this)">No</button>
+       </div></div>`
+    ).join('');
+  }else if(q.type==='hotspot-complex'){
+    if(q.subtype==='match'){
+      body.innerHTML=q.prompts.map((p,i)=>
+        `<div class="hc-match-row" data-i="${i}">
+           <div class="hc-prompt">${p}</div>
+           <div class="hc-opts">${q.options.map((o,j)=>
+             `<label class="hc-opt"><input type="radio" name="hcm${i}" data-r="${i}" data-v="${j}"> ${o}</label>`
+           ).join('')}</div>
+         </div>`
+      ).join('');
+    }else{
+      body.innerHTML=q.statements.map((s,i)=>`<div class="hc-stmt" data-i="${i}">${s}</div>`).join('');
+    }
   }
 }
 
@@ -416,6 +451,32 @@ function check(){
     const sels=document.querySelectorAll('.match-sel');let fill=true,all=true;
     sels.forEach((s,i)=>{if(!s.value){fill=false;return;}const ok2=s.value===q.correct[i];s.classList.add(ok2?'correct':'wrong');s.disabled=true;if(!ok2)all=false;});
     if(!fill)return;isOk=all;
+  }else if(q.type==='hotspot-yesno'){
+    let all=true;
+    for(let i=0;i<q.statements.length;i++){
+      const s=document.querySelector(`.yn-btn[data-r="${i}"].selected`);if(!s)return;
+      const userBool=(s.dataset.v==='true');
+      const ok2=(userBool===q.correct[i]);
+      s.classList.add(ok2?'correct':'wrong');
+      if(!ok2){all=false;document.querySelectorAll(`.yn-btn[data-r="${i}"]`).forEach(b=>{if((b.dataset.v==='true')===q.correct[i])b.classList.add('correct');});}
+    }
+    isOk=all;
+  }else if(q.type==='hotspot-complex'){
+    if(q.subtype==='match'){
+      let all=true;
+      for(let i=0;i<q.prompts.length;i++){
+        const sel=document.querySelector(`input[name="hcm${i}"]:checked`);if(!sel)return;
+        const ok2=parseInt(sel.dataset.v)===q.correct[i];
+        const row=document.querySelector(`.hc-match-row[data-i="${i}"]`);
+        row.classList.add(ok2?'correct':'wrong');
+        if(!ok2){all=false;row.querySelector(`input[data-v="${q.correct[i]}"]`).closest('label').classList.add('correct');}
+        row.querySelectorAll('input').forEach(r=>r.disabled=true);
+      }
+      isOk=all;
+    }else{
+      q.correct.forEach(ci=>document.querySelector(`.hc-stmt[data-i="${ci}"]`)?.classList.add('correct'));
+      isOk=true;
+    }
   }
   answered=true;
   showFb(q,isOk);
@@ -426,6 +487,11 @@ function check(){
 
 function showFb(q,isOk){
   const fb=document.getElementById('fb');
+  if(q.type==='hotspot-complex'&&q.subtype!=='match'){
+    fb.className='fb ok';fb.innerHTML='📋 Đáp án đã hiển thị (các mục được tô xanh)';
+    if(q.note)fb.innerHTML+=`<div class="note">${q.note}</div>`;
+    return;
+  }
   if(isOk){
     fb.className='fb ok';fb.innerHTML='✅ Chính xác!';
   }else{
@@ -434,6 +500,7 @@ function showFb(q,isOk){
     else if(q.type==='fill-in')ans=q.correct.join(' / ');
     else if(q.type==='yes-no')ans=q.options.map((s,i)=>`${s}: <b>${q.correct[i]}</b>`).join(' · ');
     else if(q.type==='matching')ans=q.options.map((s,i)=>`${s} → <b>${q.correct[i]}</b>`).join(' · ');
+    else if(q.type==='hotspot-yesno')ans=q.statements.map((s,i)=>`${s.slice(0,60)}…: <b>${q.correct[i]?'Yes':'No'}</b>`).join('<br>');
     fb.className='fb bad';fb.innerHTML=`❌ Sai. Đáp án: ${ans}`;
   }
   if(q.note)fb.innerHTML+=`<div class="note">${q.note}</div>`;

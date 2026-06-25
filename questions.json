@@ -1,7 +1,7 @@
 {
   "meta": {
     "exam": "AB-730 — Microsoft Certified: AI Business Professional",
-    "total": 58,
+    "total": 96,
     "last_updated": "2026-06-25",
     "sources": {
       "itexams": "https://www.itexams.com/exam/AB-730",
@@ -1084,6 +1084,733 @@
         2
       ],
       "note": "Microsoft 365 Copilot automatically inherits and applies the highest sensitivity label from source documents to any generated content — ensuring data protection policies are enforced."
+    },
+    {
+      "id": 59,
+      "source": "examtopics",
+      "topic": "Copilot in M365 Apps",
+      "type": "hotspot-yesno",
+      "question": "For each of the following statements, select Yes if the statement is true. Otherwise, select No.",
+      "statements": [
+        "Microsoft 365 Copilot can surface data from Microsoft Teams chats.",
+        "Microsoft 365 Copilot can schedule, draft, and send emails based on certain conditions.",
+        "Microsoft 365 Copilot can summarize, draft, and answer questions about content from Microsoft Teams meetings."
+      ],
+      "correct": [
+        true,
+        false,
+        true
+      ],
+      "note": "",
+      "also_in": []
+    },
+    {
+      "id": 60,
+      "source": "examtopics",
+      "topic": "Copilot Features & Tools",
+      "type": "hotspot-yesno",
+      "question": "For each of the following statements, select Yes if the statement is true. Otherwise, select No.",
+      "statements": [
+        "Microsoft 365 Copilot is trained on your organization's business data.",
+        "Microsoft 365 Copilot can summarize emails in mailboxes that were shared with you.",
+        "Microsoft 365 Copilot leverages the security framework defined in Microsoft 365 to provide you with access to emails, documents, and other enterprise data."
+      ],
+      "correct": [
+        false,
+        true,
+        true
+      ],
+      "note": "",
+      "also_in": []
+    },
+    {
+      "id": 61,
+      "source": "examtopics",
+      "topic": "Copilot Features & Tools",
+      "type": "hotspot-yesno",
+      "question": "You use Microsoft 365 Copilot. For each of the following statements, select Yes if the statement is true. Otherwise, select No.",
+      "statements": [
+        "You can delete your conversation history only if your administrator allows you to do so.",
+        "When you delete a conversation, the associated files stored in Microsoft SharePoint are also deleted.",
+        "When you uninstall a Copilot agent, all the conversations associated with the agent are retained."
+      ],
+      "correct": [
+        false,
+        false,
+        true
+      ],
+      "note": "",
+      "also_in": []
+    },
+    {
+      "id": 62,
+      "source": "examtopics",
+      "topic": "Copilot Features & Tools",
+      "type": "hotspot-yesno",
+      "question": "For each of the following statements, select Yes if the statement is true. Otherwise, select No.",
+      "statements": [
+        "Microsoft 365 Copilot uses your business data to train underlying AI models.",
+        "Microsoft 365 Copilot automatically assigns permissions to resources, so that users can find information more easily.",
+        "Microsoft 365 Copilot uses the same underlying data access controls as other Microsoft 365 services to ensure that users are presented with only information to which they have access."
+      ],
+      "correct": [
+        false,
+        false,
+        true
+      ],
+      "note": "",
+      "also_in": []
+    },
+    {
+      "id": 63,
+      "source": "examtopics",
+      "topic": "Copilot Features & Tools",
+      "type": "hotspot-yesno",
+      "question": "For each of the following statements, select Yes if the statement is true. Otherwise, select No.",
+      "statements": [
+        "Prompt injection can cause data exposure and unintended system behavior.",
+        "Prompt injection can be used to embed malicious or harmful instructions.",
+        "Prompt injection is a security vulnerability unique to generative AI systems that interpret and respond to natural language inputs."
+      ],
+      "correct": [
+        true,
+        true,
+        true
+      ],
+      "note": "",
+      "also_in": []
+    },
+    {
+      "id": 64,
+      "source": "examtopics",
+      "topic": "Copilot Features & Tools",
+      "type": "hotspot-yesno",
+      "question": "You have a Microsoft 365 subscription. You do NOT have a Microsoft 365 Copilot license. For each of the following statements about Microsoft 365 Copilot Chat, select Yes if the statement is true. Otherwise, select No.",
+      "statements": [
+        "Microsoft 365 Copilot Chat lets you upload documents from your local computer.",
+        "Microsoft 365 Copilot Chat is included with Microsoft 365 Business Standard.",
+        "Microsoft 365 Copilot Chat lets you create and use agents that can access Microsoft SharePoint folders."
+      ],
+      "correct": [
+        true,
+        true,
+        true
+      ],
+      "note": "",
+      "also_in": []
+    },
+    {
+      "id": 65,
+      "source": "examtopics",
+      "topic": "Copilot Features & Tools",
+      "type": "single-select",
+      "question": "[BLANK] in Microsoft 365 Copilot ensures that business data stays within a Microsoft 365 tenant and is NOT used to train AI models.",
+      "options": [
+        "The Common Data Model",
+        "Enterprise data protection (EDP)",
+        "Sensitivity labels",
+        "Zero Trust"
+      ],
+      "correct": [
+        1
+      ],
+      "note": "",
+      "also_in": []
+    },
+    {
+      "id": 66,
+      "source": "examtopics",
+      "topic": "Conversation & Activity Management",
+      "type": "single-select",
+      "question": "From the Microsoft 365 My Account portal, if you select Delete history for the Copilot activity history, you can delete [BLANK]",
+      "options": [
+        "a specific conversation.",
+        "a specific date range of activity.",
+        "all the Microsoft 365 Copilot activity.",
+        "all conversations with a specific agent."
+      ],
+      "correct": [
+        2
+      ],
+      "note": "",
+      "also_in": []
+    },
+    {
+      "id": 67,
+      "source": "examtopics",
+      "topic": "Responsible AI",
+      "type": "single-select",
+      "question": "Overreliance is a common risk associated with generative AI, where [BLANK]",
+      "options": [
+        "users exploit vulnerabilities to elicit unauthorized behavior.",
+        "the model is tricked into exposing confidential information.",
+        "the model generates misleading, inaccurate, or irrelevant content.",
+        "users accept the AI-generated output without verifying its accuracy."
+      ],
+      "correct": [
+        3
+      ],
+      "note": "",
+      "also_in": []
+    },
+    {
+      "id": 68,
+      "source": "examtopics",
+      "topic": "Agents & Licensing",
+      "type": "hotspot-yesno",
+      "question": "For each of the following statements, select Yes if the statement is true. Otherwise, select No.",
+      "statements": [
+        "Agents that you create in the Microsoft 365 Copilot app are shared automatically with users in your organization.",
+        "If you create an agent in the Microsoft 365 Copilot app, you can interact with the agent by using Microsoft Teams.",
+        "If you create an agent in the Microsoft 365 Copilot app and share the agent with a user, the user can modify the agent instructions."
+      ],
+      "correct": [
+        false,
+        true,
+        false
+      ],
+      "note": "",
+      "also_in": []
+    },
+    {
+      "id": 69,
+      "source": "examtopics",
+      "topic": "Prompt Gallery & Management",
+      "type": "single-select",
+      "question": "If you start a temporary chat in Microsoft 365 Copilot, and then start a new chat, all the prompts and responses from the temporary chat will be [BLANK]",
+      "options": [
+        "deleted immediately.",
+        "deleted after one hour.",
+        "moved to a private notebook.",
+        "moved to your Microsoft OneDrive."
+      ],
+      "correct": [
+        0
+      ],
+      "note": "",
+      "also_in": []
+    },
+    {
+      "id": 70,
+      "source": "examtopics",
+      "topic": "Agents & Licensing",
+      "type": "hotspot-yesno",
+      "question": "For each of the following statements, select Yes if the statement is true. Otherwise, select No.",
+      "statements": [
+        "The instructions will apply to new chat conversations.",
+        "The instructions will apply to new conversations with the Researcher agent and the Analyst agent.",
+        "The instructions will apply to previous responses in existing conversation."
+      ],
+      "correct": [
+        true,
+        false,
+        false
+      ],
+      "note": "",
+      "also_in": []
+    },
+    {
+      "id": 71,
+      "source": "examtopics",
+      "topic": "Agents & Licensing",
+      "type": "hotspot-yesno",
+      "question": "You create an agent in the Microsoft 365 Copilot app by using a template. For each of the following statements, select Yes if the statement is true. Otherwise, select No.",
+      "statements": [
+        "You can share the agent with external users.",
+        "You can choose which knowledge sources the agent can use.",
+        "You can share the agent with users in your organization."
+      ],
+      "correct": [
+        false,
+        true,
+        true
+      ],
+      "note": "",
+      "also_in": []
+    },
+    {
+      "id": 72,
+      "source": "examtopics",
+      "topic": "Notebook & Pages",
+      "type": "hotspot-yesno",
+      "question": "For each of the following statements, select Yes if the statement is true. Otherwise, select No.",
+      "statements": [
+        "You can review the Microsoft 365 Copilot activity history from the My Account portal.",
+        "When you delete the Microsoft 365 Copilot activity history, you also immediately delete all the associated notebooks and pages.",
+        "Users can delete their entire Microsoft 365 Copilot activity history, including their prompts and the responses Copilot returns."
+      ],
+      "correct": [
+        true,
+        false,
+        true
+      ],
+      "note": "",
+      "also_in": []
+    },
+    {
+      "id": 73,
+      "source": "examtopics",
+      "topic": "Prompt Gallery & Management",
+      "type": "hotspot-yesno",
+      "question": "For each of the following statements, select Yes if the statement is true. Otherwise, select No.",
+      "statements": [
+        "When you submit the same prompt to Microsoft 365 Copilot multiple times, and you are grounded in the web, the response will always be identical.",
+        "When you submit the same prompt to Microsoft 365 Copilot multiple times, and you are grounded in your own data, the response will always be identical.",
+        "When you submit the same prompt to Microsoft 365 Copilot multiple times, and you are grounded only in the model's knowledge, the response will always be identical."
+      ],
+      "correct": [
+        false,
+        false,
+        false
+      ],
+      "note": "",
+      "also_in": []
+    },
+    {
+      "id": 74,
+      "source": "examtopics",
+      "topic": "Copilot Features & Tools",
+      "type": "hotspot-yesno",
+      "question": "For each of the following statements, select Yes if the statement is true. Otherwise, select No.",
+      "statements": [
+        "Microsoft 365 Copilot uses contextual information from your organization to suggest prompts.",
+        "Microsoft 365 Copilot can use contextual information from your organization to train the large language model. (LLM).",
+        "Microsoft 365 Copilot uses contextual information from your organization to augment a prompt, before sending the prompt to the large language model (LLM)."
+      ],
+      "correct": [
+        true,
+        false,
+        true
+      ],
+      "note": "",
+      "also_in": []
+    },
+    {
+      "id": 75,
+      "source": "examtopics",
+      "topic": "Agents & Licensing",
+      "type": "single-select",
+      "question": "From Microsoft 365, you [BLANK] the Researcher agent.",
+      "options": [
+        "cannot modify the settings of",
+        "can modify the agent instructions of",
+        "can add an additional suggested prompt to",
+        "can delete one of the suggested prompts from"
+      ],
+      "correct": [
+        0
+      ],
+      "note": "",
+      "also_in": []
+    },
+    {
+      "id": 76,
+      "source": "examtopics",
+      "topic": "Copilot Features & Tools",
+      "type": "single-select",
+      "question": "To set the persona, you should modify the [BLANK]",
+      "options": [
+        "capabilities.",
+        "description.",
+        "instructions.",
+        "suggested prompts."
+      ],
+      "correct": [
+        2
+      ],
+      "note": "",
+      "also_in": []
+    },
+    {
+      "id": 77,
+      "source": "examtopics",
+      "topic": "Copilot Features & Tools",
+      "type": "single-select",
+      "question": "[BLANK] enables organizations to apply governance policies to conversations generated by using Microsoft 365 Copilot.",
+      "options": [
+        "Microsoft Defender for Cloud",
+        "Microsoft Entra ID",
+        "Microsoft Intune",
+        "Microsoft Purview"
+      ],
+      "correct": [
+        3
+      ],
+      "note": "",
+      "also_in": []
+    },
+    {
+      "id": 78,
+      "source": "examtopics",
+      "topic": "Agents & Licensing",
+      "type": "hotspot-yesno",
+      "question": "For each of the following statements, select Yes if the statement is true. Otherwise, select No.",
+      "statements": [
+        "You can chat with the Analyst agent from within an existing Microsoft 365 Copilot conversation.",
+        "You can chat with the Researcher agent from within an existing Microsoft 365 Copilot conversation.",
+        "You can chat with multiple agents concurrently within an existing Microsoft 365 Copilot conversation."
+      ],
+      "correct": [
+        true,
+        true,
+        true
+      ],
+      "note": "",
+      "also_in": []
+    },
+    {
+      "id": 79,
+      "source": "examtopics",
+      "topic": "Prompt Gallery & Management",
+      "type": "hotspot-complex",
+      "question": "You have a Microsoft 365 Copilot license. You plan to run several prompts. What should you use to ensure Copilot generates the best response?",
+      "correct": [
+        0,
+        2,
+        1
+      ],
+      "note": "",
+      "also_in": [],
+      "subtype": "match",
+      "prompts": [
+        "Prompt 1: From /Feedback_Q1–Q3.xlsx, consolidate all the sheets, categorize the feedback by theme, compute the positive/negative sentiment by product line, and visualize the top five drivers.",
+        "Prompt 2: Using our SharePoint folder '/Go-To-Market/2025' and reputable web sources, produce a 1-page brief about AI trends that includes five key insights, citations, and callouts on gaps/risks.",
+        "Prompt 3: For a VP, prepare a polished executive email that distills the strategic priorities, critical decisions, and immediate next steps from the attached Strategic_Plan_2025.docx, ensuring that the tone aligns with senior leadership's communication standards."
+      ],
+      "options": [
+        "The Analyst agent",
+        "Chat",
+        "The Researcher agent"
+      ]
+    },
+    {
+      "id": 80,
+      "source": "examtopics",
+      "topic": "Conversation & Activity Management",
+      "type": "single-select",
+      "question": "You have a Microsoft 365 Copilot conversation as shown in the exhibit. Document1.docx [answer choice]",
+      "options": [
+        "is in a notebook.",
+        "has a sensitivity label applied.",
+        "is NOT a supported file type.",
+        "is NOT accessible outside of your organization."
+      ],
+      "correct": [
+        2
+      ],
+      "note": "",
+      "also_in": []
+    },
+    {
+      "id": 81,
+      "source": "examtopics",
+      "topic": "Agents & Licensing",
+      "type": "hotspot-yesno",
+      "question": "You are creating an agent in the Microsoft 365 Copilot app. For each of the following statements...",
+      "statements": [
+        "You can configure the agent to search shared mailboxes.",
+        "You can use natural language prompts to create the agent.",
+        "You can configure the agent to use another agent as a knowledge source."
+      ],
+      "correct": [
+        true,
+        true,
+        true
+      ],
+      "note": "",
+      "also_in": []
+    },
+    {
+      "id": 82,
+      "source": "examtopics",
+      "topic": "Agents & Licensing",
+      "type": "hotspot-yesno",
+      "question": "You plan to create an agent by using the Microsoft 365 Copilot app. For each of the following statements...",
+      "statements": [
+        "The agent will be available in Microsoft Word.",
+        "The agent can be shared to other users in your organization.",
+        "The agent can contain complex workflows that use third-party connectors."
+      ],
+      "correct": [
+        true,
+        true,
+        true
+      ],
+      "note": "",
+      "also_in": []
+    },
+    {
+      "id": 83,
+      "source": "examtopics",
+      "topic": "Conversation & Activity Management",
+      "type": "hotspot-yesno",
+      "question": "For each of the following statements, select Yes if the statement is true. Otherwise, select No.",
+      "statements": [
+        "From the Microsoft 365 Copilot desktop app, you can see only the last 20 conversations.",
+        "From the Microsoft 365 Copilot desktop app, you can hide conversations, but you cannot delete them.",
+        "If you start a conversation in the Microsoft 365 Copilot desktop app, you can continue the conversation when you sign in to Copilot by using a web browser on a different computer."
+      ],
+      "correct": [
+        false,
+        false,
+        true
+      ],
+      "note": "",
+      "also_in": []
+    },
+    {
+      "id": 84,
+      "source": "examtopics",
+      "topic": "Notebook & Pages",
+      "type": "hotspot-yesno",
+      "question": "For each of the following statements, select Yes if the statement is true. Otherwise, select No.",
+      "statements": [
+        "You can group conversations into a Microsoft 365 Copilot notebook.",
+        "You can use a Microsoft 365 Copilot notebook to collaborate with users in your organization.",
+        "You can add instructions to a Microsoft 365 Copilot notebook to tell Copilot how to respond."
+      ],
+      "correct": [
+        true,
+        true,
+        true
+      ],
+      "note": "",
+      "also_in": []
+    },
+    {
+      "id": 85,
+      "source": "examtopics",
+      "topic": "Copilot Features & Tools",
+      "type": "hotspot-yesno",
+      "question": "For each of the following statements, select Yes if the statement is true. Otherwise, select No.",
+      "statements": [
+        "Scheduled prompts can be web-grounded.",
+        "Scheduled prompts can run a maximum of once per day.",
+        "Scheduled prompts can run up to a maximum of 15 times."
+      ],
+      "correct": [
+        true,
+        true,
+        true
+      ],
+      "note": "",
+      "also_in": []
+    },
+    {
+      "id": 86,
+      "source": "examtopics",
+      "topic": "Copilot Features & Tools",
+      "type": "hotspot-yesno",
+      "question": "For each of the following statements, select Yes if the statement is true. Otherwise, select No.",
+      "statements": [
+        "Microsoft 365 Copilot can use its own model knowledge to make the response of a prompt more specific.",
+        "Microsoft 365 Copilot can use business data that will provide additional context to make the response of a prompt more specific.",
+        "Microsoft 365 Copilot can use the latest information from the web that will provide additional context to make a prompt more specific."
+      ],
+      "correct": [
+        true,
+        true,
+        true
+      ],
+      "note": "",
+      "also_in": []
+    },
+    {
+      "id": 87,
+      "source": "examtopics",
+      "topic": "Agents & Licensing",
+      "type": "single-select",
+      "question": "From Microsoft 365 Copilot, you can use [BLANK] to help users begin conversations with an agent and guide the users to use the agent more effectively.",
+      "options": [
+        "agent settings",
+        "capabilities",
+        "instructions",
+        "suggested prompts"
+      ],
+      "correct": [
+        3
+      ],
+      "note": "",
+      "also_in": []
+    },
+    {
+      "id": 88,
+      "source": "examtopics",
+      "topic": "Copilot in M365 Apps",
+      "type": "hotspot-yesno",
+      "question": "You are a business user. You want to use Microsoft 365 Copilot to help with meetings. For each of the following statements, select Yes if the statement is true. Otherwise, select No.",
+      "statements": [
+        "Copilot can answer questions about Teams meetings that you are NOT invited to.",
+        "Copilot can provide summaries and answer questions about chat messages, channel posts, and Teams meetings.",
+        "Copilot can provide a summary of all the upcoming Teams meeting details you are invited to next week."
+      ],
+      "correct": [
+        false,
+        true,
+        true
+      ],
+      "note": "",
+      "also_in": []
+    },
+    {
+      "id": 89,
+      "source": "examtopics",
+      "topic": "Agents & Licensing",
+      "type": "single-select",
+      "question": "When you are creating an agent in Microsoft 365 Copilot, you can leverage generative AI to build the agent by using [BLANK].",
+      "options": [
+        "the Configure tab",
+        "a Copilot notebook",
+        "a Copilot page",
+        "the Describe tab"
+      ],
+      "correct": [
+        0
+      ],
+      "note": "",
+      "also_in": []
+    },
+    {
+      "id": 90,
+      "source": "examtopics",
+      "topic": "Prompt Gallery & Management",
+      "type": "hotspot-complex",
+      "question": "What are two limitations of prompt scheduling in Microsoft 365 Copilot?",
+      "statements": [
+        "You can schedule the prompt to run as often as: [BLANK]",
+        "Once per hour",
+        "Once per day",
+        "Once per week",
+        "The maximum number of times that a scheduled prompt can run is: [BLANK]",
+        "15 times",
+        "365 times",
+        "Unlimited"
+      ],
+      "correct": [
+        2,
+        5
+      ],
+      "note": "",
+      "also_in": []
+    },
+    {
+      "id": 91,
+      "source": "examtopics",
+      "topic": "Prompt Gallery & Management",
+      "type": "hotspot-complex",
+      "question": "You have a Microsoft 365 Copilot license. You plan to run several prompts. What should you use to ensure Copilot generates the best response?",
+      "correct": [
+        2,
+        0,
+        1
+      ],
+      "note": "",
+      "also_in": [],
+      "subtype": "match",
+      "prompts": [
+        "Prompt 1: Explain the differences between Contoso, Ltd, and Litware, Inc. Include sources and a table of the differences. Provide insights into why the differences exist.",
+        "Prompt 2: From /Sales_2022.xlsx /Sales_2023.xlsx /Sales_2024.xlsx, create a pivot table of revenue by region and product, highlight MoM changes > 10%, and recommend 3 follow-up analyses.",
+        "Prompt 3: Generate a structured action plan from an ongoing meeting chat, grouping tasks by functional area, identifying owners where mentioned, and including any implied deadlines or dependencies."
+      ],
+      "options": [
+        "The Analyst agent",
+        "Chat",
+        "The Researcher agent"
+      ]
+    },
+    {
+      "id": 92,
+      "source": "examtopics",
+      "topic": "Agents & Licensing",
+      "type": "single-select",
+      "question": "You generate a report by using the Researcher agent in Microsoft 365 Copilot. You can use [BLANK] to save and edit the response.",
+      "options": [
+        "an agent",
+        "a conversation",
+        "a notebook",
+        "a page"
+      ],
+      "correct": [
+        3
+      ],
+      "note": "",
+      "also_in": []
+    },
+    {
+      "id": 93,
+      "source": "examtopics",
+      "topic": "Agents & Licensing",
+      "type": "hotspot-yesno",
+      "question": "For each of the following statements, select Yes if the statement is true. Otherwise, select No.",
+      "statements": [
+        "You can add a Microsoft Teams chat as a knowledge source to a Microsoft 365 Copilot agent.",
+        "You can add a Microsoft 365 Copilot conversation as a knowledge source to a Copilot agent.",
+        "You can use an image file, such as a JPG file, as a knowledge source for a Microsoft 365 Copilot agent."
+      ],
+      "correct": [
+        true,
+        true,
+        true
+      ],
+      "note": "",
+      "also_in": []
+    },
+    {
+      "id": 94,
+      "source": "examtopics",
+      "topic": "Agents & Licensing",
+      "type": "hotspot-yesno",
+      "question": "You run a prompt by using the Researcher agent. For each of the following statements, select Yes if the statement is true. Otherwise, select No.",
+      "statements": [
+        "You can continue the conversation in Copilot in Word.",
+        "You can continue the conversation in Copilot for Teams.",
+        "You can continue the conversation in Copilot in Outlook."
+      ],
+      "correct": [
+        true,
+        true,
+        true
+      ],
+      "note": "",
+      "also_in": []
+    },
+    {
+      "id": 95,
+      "source": "examtopics",
+      "topic": "Data Security",
+      "type": "hotspot-yesno",
+      "question": "For each of the following statements, select Yes if the statement is true. Otherwise, select No.",
+      "statements": [
+        "Microsoft 365 Copilot indicates whether source content has a sensitivity label applied as part of the references in the response.",
+        "Microsoft 365 Copilot can provide you with summaries of files in SharePoint that have sensitivity labels applied as long as you have access to the files.",
+        "When you use Microsoft 365 Copilot to create new content based on an item that has a sensitivity label, the new content automatically inherits the sensitivity label."
+      ],
+      "correct": [
+        true,
+        true,
+        true
+      ],
+      "note": "",
+      "also_in": []
+    },
+    {
+      "id": 96,
+      "source": "examtopics",
+      "topic": "Notebook & Pages",
+      "type": "hotspot-yesno",
+      "question": "You are evaluating the features of Microsoft 365 Copilot notebooks. For each of the following statements, select Yes if the statement is true. Otherwise, select No.",
+      "statements": [
+        "You can create an agent from a notebook.",
+        "You can generate an audio overview of a notebook.",
+        "Copilot continually adds new references to notebooks."
+      ],
+      "correct": [
+        true,
+        true,
+        true
+      ],
+      "note": "",
+      "also_in": []
     }
   ]
 }
