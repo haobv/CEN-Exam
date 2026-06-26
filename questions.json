@@ -1675,21 +1675,17 @@
       "source": "examtopics",
       "topic": "Prompt Gallery & Management",
       "type": "hotspot-complex",
+      "subtype": "select",
       "question": "What are two limitations of prompt scheduling in Microsoft 365 Copilot?",
-      "statements": [
-        "You can schedule the prompt to run as often as: [BLANK]",
-        "Once per hour",
-        "Once per day",
-        "Once per week",
-        "The maximum number of times that a scheduled prompt can run is: [BLANK]",
-        "15 times",
-        "365 times",
-        "Unlimited"
+      "prompts": [
+        "You can schedule the prompt to run as often as:",
+        "The maximum number of times that a scheduled prompt can run is:"
       ],
-      "correct": [
-        2,
-        5
+      "options_per_prompt": [
+        ["Once per hour", "Once per day", "Once per week"],
+        ["15 times", "365 times", "Unlimited"]
       ],
+      "correct": [1, 0],
       "note": "",
       "also_in": []
     },

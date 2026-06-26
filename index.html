@@ -42,26 +42,6 @@ body {
 .home-title { font-size: 1.7rem; font-weight: 800; margin-bottom: 6px; }
 .home-sub   { font-size: 0.85rem; color: var(--muted); margin-bottom: 28px; }
 
-.size-options {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
-  margin: 12px 0 20px;
-}
-.size-options .size-btn:nth-child(n+5) { grid-column: span 2; }
-.size-btn {
-  background: #fff;
-  border: 1.5px solid var(--border);
-  border-radius: 10px;
-  padding: 12px 6px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--text);
-  cursor: pointer;
-  transition: border-color .15s, background .15s;
-}
-.size-btn:hover    { border-color: var(--y); }
-.size-btn.selected { border-color: var(--y); background: var(--y-light); color: var(--y-text); }
 
 .stats-hint { font-size: 0.8rem; color: #1d4ed8; margin-top: 4px; min-height: 18px; }
 .reset-link { font-size: 0.75rem; color: var(--muted); cursor: pointer; text-decoration: underline; margin-top: 14px; display: inline-block; }
@@ -164,7 +144,7 @@ body {
 .match-sel {
   padding: 7px 10px; border: 1.5px solid var(--border);
   border-radius: 8px; font-size: 0.82rem; outline: none;
-  transition: border-color .12s;
+  transition: border-color .12s; min-width: 130px;
 }
 .match-sel:focus   { border-color: var(--y); }
 .match-sel.correct { border-color: #16a34a; background: #f0fdf4; }
@@ -192,6 +172,24 @@ button.btn:active { transform: scale(.97); }
 .btn-primary   { background: var(--y); color: #fff; }
 .btn-secondary { background: #f3f4f6; color: var(--muted); flex: 0 0 auto; padding: 13px 16px; }
 
+/* ── Quick buttons ── */
+.section-label { font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin:20px 0 8px; }
+.quick-btns { display:flex; gap:8px; }
+.quick-btn { flex:1; padding:11px 6px 10px; border-radius:10px; border:1.5px solid #e5e7eb; background:#f9fafb; font-size:0.78rem; font-weight:600; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:3px; transition:all .15s; }
+.quick-btn .qb-num { font-size:1.15rem; font-weight:800; color:var(--y); line-height:1; }
+.quick-btn:hover:not(:disabled) { border-color:var(--y); background:var(--y-light); }
+.quick-btn:disabled { opacity:.38; cursor:not-allowed; }
+.quick-btn-warn .qb-num { color:#dc2626; }
+.quick-btn-warn:hover:not(:disabled) { border-color:#dc2626; background:#fef2f2; }
+
+/* ── Topic chips ── */
+.topic-chips { display:flex; flex-direction:column; gap:7px; }
+.topic-chip { display:flex; align-items:center; justify-content:space-between; width:100%; padding:11px 14px; border-radius:10px; border:1.5px solid #e5e7eb; background:#f9fafb; font-size:0.85rem; font-weight:500; cursor:pointer; transition:all .15s; text-align:left; gap:8px; }
+.topic-chip:hover { border-color:var(--y); background:var(--y-light); }
+.chip-right { display:flex; align-items:center; gap:6px; flex-shrink:0; }
+.chip-count { background:#e5e7eb; color:#374151; border-radius:99px; padding:2px 9px; font-size:0.72rem; font-weight:700; }
+.chip-wrong { background:#fecaca; color:#dc2626; border-radius:99px; padding:2px 8px; font-size:0.72rem; font-weight:700; }
+
 /* ── Result ── */
 .big-pct    { font-size: 4rem; font-weight: 800; color: var(--y); line-height: 1; margin: 14px 0 6px; }
 .result-sub { color: var(--muted); font-size: 0.875rem; margin-bottom: 24px; }
@@ -202,10 +200,10 @@ button.btn:active { transform: scale(.97); }
   body { padding: 0; justify-content: flex-start; background: #fff; }
   .card {
     border-radius: 0; box-shadow: none; max-width: 100%;
-    height: 100svh; padding: 20px 20px 32px;
-    display: flex; flex-direction: column; overflow-y: auto;
+    min-height: 100svh; padding: 20px 20px 32px;
+    display: flex; flex-direction: column;
   }
-  .q-text { flex: 1; display: flex; align-items: flex-start; }
+  .fb { flex: 1; }
   .actions { margin-top: auto; padding-top: 16px; }
 }
 </style>
@@ -215,24 +213,24 @@ button.btn:active { transform: scale(.97); }
 <!-- Home -->
 <div class="card" id="home">
   <div class="home-title">AB-730 Study</div>
-  <div class="home-sub" id="homeSub">Microsoft AI Business Professional · 96 câu</div>
+  <div class="home-sub">Microsoft AI Business Professional · 96 câu</div>
   <div class="stats-hint" id="statsHint"></div>
 
-  <div style="margin-bottom:16px"></div>
-
-  <label style="font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)">Số câu mỗi lần luyện</label>
-  <div class="size-options">
-    <button class="size-btn" data-n="10"     data-m="all"    onclick="setSize(this)">10</button>
-    <button class="size-btn selected" data-n="20" data-m="all" onclick="setSize(this)">20</button>
-    <button class="size-btn" data-n="30"     data-m="all"    onclick="setSize(this)">30</button>
-    <button class="size-btn" data-n="0"      data-m="all"    onclick="setSize(this)">Tất cả</button>
-    <button class="size-btn" data-n="0"      data-m="unseen" onclick="setSize(this)" id="btnUnseen">Chưa làm</button>
-    <button class="size-btn" data-n="0"      data-m="wrong"  onclick="setSize(this)" id="btnWrong">Câu sai</button>
+  <div class="section-label">Luyện tập</div>
+  <div class="quick-btns">
+    <button class="quick-btn" onclick="startAll()">
+      <span class="qb-num">96</span>Tất cả
+    </button>
+    <button class="quick-btn" id="btnUnseen" onclick="startMode('unseen')">
+      <span class="qb-num" id="unseenCount">—</span>Chưa làm
+    </button>
+    <button class="quick-btn quick-btn-warn" id="btnWrong" onclick="startMode('wrong')">
+      <span class="qb-num" id="wrongCount">—</span>Câu sai
+    </button>
   </div>
 
-  <div class="actions" style="justify-content:center">
-    <button class="btn btn-primary" onclick="startMode('auto')">Bắt đầu →</button>
-  </div>
+  <div class="section-label">Ôn theo topic</div>
+  <div class="topic-chips" id="topicChips"></div>
 
   <a class="reset-link" onclick="resetProgress()">Xóa tiến trình</a>
 </div>
@@ -272,65 +270,65 @@ button.btn:active { transform: scale(.97); }
   </div>
   <div class="actions" style="flex-direction:column;gap:8px">
     <button class="btn btn-primary" id="btnRetry" onclick="startMode('wrong')" style="display:none">Ôn câu sai →</button>
-    <button class="btn btn-secondary" style="flex:none" onclick="startMode('auto')">Làm lại</button>
+    <button class="btn btn-secondary" style="flex:none" onclick="startAll()">Làm lại →</button>
     <button class="btn btn-secondary" style="flex:none" onclick="goHome()">← Trang chủ</button>
   </div>
 </div>
 
 <script>
-let Q=[], queue=[], cur=0, ok=0, bad=0, answered=false, batchSize=20, batchMode='all';
+let Q=[], queue=[], cur=0, ok=0, bad=0, answered=false;
 const KEY='ab730v3';
 const KEYS=['A','B','C','D','E','F'];
 
 function load(){try{return JSON.parse(localStorage.getItem(KEY))||{seen:{},wrong:{},correct:{}};}catch{return{seen:{},wrong:{},correct:{}};}}
 function save(p){localStorage.setItem(KEY,JSON.stringify(p));}
 
-fetch('questions.json').then(r=>r.json()).then(d=>{Q=d.questions;show('home');refresh();});
+fetch('questions.json').then(r=>r.json()).then(d=>{Q=d.questions;show('home');refresh();buildTopics();});
+
+const TOPIC_GROUPS=[
+  {label:'Agents & Copilot Studio',    topics:['Agents & Licensing','Agents — Creation & Configuration']},
+  {label:'Copilot App & Tính năng',    topics:['Copilot Features & Tools','AI Fundamentals']},
+  {label:'Prompts & Notebooks',        topics:['Prompt Gallery & Management','Prompt Grounding','Notebook & Pages']},
+  {label:'Ứng dụng M365 & Quản lý',   topics:['Copilot in M365 Apps','Conversation & Activity Management','M365 Copilot Versions','Copilot Settings & Customization']},
+  {label:'Bảo mật & Responsible AI',  topics:['Responsible AI','Data Privacy & Compliance','Data Security','Prompt Errors & Troubleshooting']},
+];
 
 function refresh(){
   const p=load();
   const nW=Object.keys(p.wrong).length, nS=Object.keys(p.seen).length;
   const nUnseen=Math.max(Q.length-nS,0);
-  const hint=document.getElementById('statsHint');
-  hint.textContent=`Đã làm: ${nS}/${Q.length} · Chưa làm: ${nUnseen} · Câu sai: ${nW}`;
+  document.getElementById('statsHint').textContent=`Đã làm: ${nS}/${Q.length} · Câu sai: ${nW}`;
+  const wu=document.getElementById('unseenCount'); if(wu) wu.textContent=nUnseen;
+  const ww=document.getElementById('wrongCount');  if(ww) ww.textContent=nW;
   const bw=document.getElementById('btnWrong');
-  if(bw){ bw.disabled=(nW===0); bw.style.opacity=nW===0?.35:1; bw.style.cursor=nW===0?'not-allowed':'pointer'; }
+  if(bw) bw.disabled=(nW===0);
   const bu=document.getElementById('btnUnseen');
-  if(bu){ bu.disabled=(nUnseen===0); bu.style.opacity=nUnseen===0?.35:1; bu.style.cursor=nUnseen===0?'not-allowed':'pointer'; }
+  if(bu) bu.disabled=(nUnseen===0);
 }
 
-function setSize(btn){
-  document.querySelectorAll('.size-btn').forEach(b=>b.classList.remove('selected'));
-  btn.classList.add('selected');
-  batchSize=parseInt(btn.dataset.n);
-  batchMode=btn.dataset.m;
+function startAll(){
+  const p=load();
+  const wrongIds=new Set(Object.keys(p.wrong).map(Number));
+  const seenIds=new Set(Object.keys(p.seen).map(Number));
+  const wrong=shuffle(Q.filter(q=>wrongIds.has(q.id)));
+  const unseen=shuffle(Q.filter(q=>!seenIds.has(q.id)));
+  const done=shuffle(Q.filter(q=>seenIds.has(q.id)&&!wrongIds.has(q.id)));
+  queue=[...wrong,...unseen,...done];
+  cur=0;ok=0;bad=0;show('quiz');render();
 }
-
-function applyBatch(arr){ return batchSize>0 ? arr.slice(0,batchSize) : arr; }
 
 function startMode(mode){
   const p=load();
   const wrongIds=new Set(Object.keys(p.wrong).map(Number));
-  const seenIds =new Set(Object.keys(p.seen).map(Number));
-  let pool;
-  const resolvedMode=mode==='auto'?batchMode:mode;
-
-  if(resolvedMode==='wrong'){
-    if(!wrongIds.size){alert('Chưa có câu sai nào!');return;}
-    pool=shuffle(Q.filter(q=>wrongIds.has(q.id)));
-  }else if(resolvedMode==='unseen'){
-    pool=shuffle(Q.filter(q=>!seenIds.has(q.id)));
-    if(!pool.length){alert('Đã làm hết rồi!');return;}
+  const seenIds=new Set(Object.keys(p.seen).map(Number));
+  if(mode==='wrong'){
+    if(!wrongIds.size)return;
+    queue=shuffle(Q.filter(q=>wrongIds.has(q.id)));
   }else{
-    const wrong =shuffle(Q.filter(q=>wrongIds.has(q.id)));
-    const unseen=shuffle(Q.filter(q=>!seenIds.has(q.id)));
-    const done  =shuffle(Q.filter(q=>seenIds.has(q.id)&&!wrongIds.has(q.id)));
-    pool=[...wrong,...unseen,...done];
+    queue=shuffle(Q.filter(q=>!seenIds.has(q.id)));
+    if(!queue.length)return;
   }
-
-  queue=(resolvedMode==='wrong'||resolvedMode==='unseen')?pool:applyBatch(pool);
-  cur=0;ok=0;bad=0;
-  show('quiz');render();
+  cur=0;ok=0;bad=0;show('quiz');render();
 }
 
 function render(){
@@ -345,15 +343,17 @@ function render(){
   let pills=`<span class="src-pill src-primary">${srcMap[q.source]||q.source}</span>`;
   if(q.also_in&&q.also_in.length) pills+=q.also_in.map(s=>`<span class="src-pill src-also">${srcMap[s]||s}</span>`).join('');
   srcEl.innerHTML=pills;
-  document.getElementById('qText').innerHTML=q.question.replace(/\[BLANK\d?\]/g,'<span class="blank">[.....]</span>');
+  const qHtml=q.question.replace(/\[BLANK\d?\]/g,'<span class="blank">[.....]</span>');
+  document.getElementById('qText').innerHTML=qHtml.includes('blank')?qHtml.replace(/<br\s*\/?>/gi,' '):qHtml;
   const hintMap={'multiple-select':'Chọn nhiều đáp án','hotspot-yesno':'Chọn Yes / No cho từng câu','hotspot-complex':'Đọc và xem đáp án'};
   document.getElementById('qHint').textContent=hintMap[q.type]||'';
-  document.getElementById('btnCheck').textContent=(q.type==='hotspot-complex'&&q.subtype!=='match')?'Xem đáp án':'Kiểm tra';
+  document.getElementById('btnCheck').textContent=(q.type==='hotspot-complex'&&!q.subtype)?'Xem đáp án':'Kiểm tra';
   document.getElementById('fb').className='fb';
   document.getElementById('fb').innerHTML='';
   document.getElementById('btnCheck').style.display='';
   document.getElementById('btnNext').style.display='none';
   document.getElementById('btnNext').textContent=cur===queue.length-1?'Xem kết quả →':'Tiếp →';
+  document.getElementById('quiz').dataset.qid=q.id;
   renderBody(q);
 }
 
@@ -397,8 +397,17 @@ function renderBody(q){
            ).join('')}</div>
          </div>`
       ).join('');
+    }else if(q.subtype==='select'){
+      body.innerHTML=q.prompts.map((p,i)=>
+        `<div class="hc-match-row" data-i="${i}">
+           <div class="hc-prompt">${p}</div>
+           <div class="hc-opts">${q.options_per_prompt[i].map((o,j)=>
+             `<label class="hc-opt"><input type="radio" name="hcs${i}" data-r="${i}" data-v="${j}"> ${o}</label>`
+           ).join('')}</div>
+         </div>`
+      ).join('');
     }else{
-      body.innerHTML=q.statements.map((s,i)=>`<div class="hc-stmt" data-i="${i}">${s}</div>`).join('');
+      body.innerHTML=q.statements.map((s,i)=>`<div class="hc-stmt" data-i="${i}">${s.replace(/\[BLANK\d?\]/g,'<span class="blank">[.....]</span>')}</div>`).join('');
     }
   }
 }
@@ -462,10 +471,11 @@ function check(){
     }
     isOk=all;
   }else if(q.type==='hotspot-complex'){
-    if(q.subtype==='match'){
+    if(q.subtype==='match'||q.subtype==='select'){
+      const prefix=q.subtype==='match'?'hcm':'hcs';
       let all=true;
       for(let i=0;i<q.prompts.length;i++){
-        const sel=document.querySelector(`input[name="hcm${i}"]:checked`);if(!sel)return;
+        const sel=document.querySelector(`input[name="${prefix}${i}"]:checked`);if(!sel)return;
         const ok2=parseInt(sel.dataset.v)===q.correct[i];
         const row=document.querySelector(`.hc-match-row[data-i="${i}"]`);
         row.classList.add(ok2?'correct':'wrong');
@@ -487,7 +497,7 @@ function check(){
 
 function showFb(q,isOk){
   const fb=document.getElementById('fb');
-  if(q.type==='hotspot-complex'&&q.subtype!=='match'){
+  if(q.type==='hotspot-complex'&&!q.subtype){
     fb.className='fb ok';fb.innerHTML='📋 Đáp án đã hiển thị (các mục được tô xanh)';
     if(q.note)fb.innerHTML+=`<div class="note">${q.note}</div>`;
     return;
@@ -500,7 +510,8 @@ function showFb(q,isOk){
     else if(q.type==='fill-in')ans=q.correct.join(' / ');
     else if(q.type==='yes-no')ans=q.options.map((s,i)=>`${s}: <b>${q.correct[i]}</b>`).join(' · ');
     else if(q.type==='matching')ans=q.options.map((s,i)=>`${s} → <b>${q.correct[i]}</b>`).join(' · ');
-    else if(q.type==='hotspot-yesno')ans=q.statements.map((s,i)=>`${s.slice(0,60)}…: <b>${q.correct[i]?'Yes':'No'}</b>`).join('<br>');
+    else if(q.type==='hotspot-yesno')ans=q.statements.map((s,i)=>`${s.length>60?s.slice(0,60)+'…':s}: <b>${q.correct[i]?'Yes':'No'}</b>`).join('<br>');
+    else if(q.type==='hotspot-complex'&&q.subtype==='select')ans=q.prompts.map((p,i)=>`${p} <b>${q.options_per_prompt[i][q.correct[i]]}</b>`).join('<br>');
     fb.className='fb bad';fb.innerHTML=`❌ Sai. Đáp án: ${ans}`;
   }
   if(q.note)fb.innerHTML+=`<div class="note">${q.note}</div>`;
@@ -527,10 +538,29 @@ function showResults(){
   btn.style.display=nW?'':'none';btn.textContent=`Ôn ${nW} câu sai`;
 }
 
-function goHome(){ show('home'); refresh(); }
+function buildTopics(){
+  const p=load();
+  const wrongIds=new Set(Object.keys(p.wrong).map(Number));
+  document.getElementById('topicChips').innerHTML=TOPIC_GROUPS.map(g=>{
+    const n=Q.filter(q=>g.topics.includes(q.topic)).length;
+    const w=Q.filter(q=>g.topics.includes(q.topic)&&wrongIds.has(q.id)).length;
+    const wTag=w?`<span class="chip-wrong">${w} sai</span>`:'';
+    const key=JSON.stringify(g.topics).replace(/"/g,'&quot;');
+    return `<button class="topic-chip" onclick="startTopic(this)" data-topics="${key}">
+      <span>${g.label}</span>
+      <span class="chip-right"><span class="chip-count">${n} câu</span>${wTag}</span>
+    </button>`;
+  }).join('');
+}
+function startTopic(btn){
+  const topics=JSON.parse(btn.dataset.topics);
+  queue=shuffle(Q.filter(q=>topics.includes(q.topic)));
+  cur=0;ok=0;bad=0;show('quiz');render();
+}
+function goHome(){ show('home'); refresh(); buildTopics(); }
 function show(s){ ['home','quiz','results'].forEach(id=>document.getElementById(id).style.display=id===s?'block':'none'); }
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
-function resetProgress(){if(confirm('Xóa tiến trình?')){localStorage.removeItem(KEY);refresh();}}
+function resetProgress(){if(confirm('Xóa tiến trình?')){localStorage.removeItem(KEY);refresh();buildTopics();}}
 </script>
 </body>
 </html>
