@@ -181,6 +181,21 @@ button.btn:active { transform: scale(.97); }
 .quick-btn:disabled { opacity:.38; cursor:not-allowed; }
 .quick-btn-warn .qb-num { color:#dc2626; }
 .quick-btn-warn:hover:not(:disabled) { border-color:#dc2626; background:#fef2f2; }
+.exam-btn { width:100%; margin-top:8px; padding:14px; border-radius:10px; border:none; background:var(--y); color:#fff; font-size:0.92rem; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; transition:opacity .15s, transform .1s; }
+.exam-btn:hover { opacity:.92; }
+.exam-btn:active { transform:scale(.98); }
+.exam-btn .ex-sub { font-weight:500; opacity:.85; font-size:0.78rem; }
+
+/* ── Result domain breakdown ── */
+.domain-breakdown { display:flex; flex-direction:column; gap:16px; margin-bottom:24px; text-align:left; }
+.dom-head { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:7px; font-size:.84rem; gap:8px; }
+.dom-head span { color:var(--text); }
+.dom-head b { font-weight:700; white-space:nowrap; }
+.dom-bar { height:6px; border-radius:3px; background:#f1f3f5; overflow:hidden; }
+.dom-fill { height:100%; border-radius:3px; background:#16a34a; }
+.dom-fill.fail { background:#dc2626; }
+.dom-pass { color:#16a34a; }
+.dom-fail { color:#dc2626; }
 
 /* ── Topic chips ── */
 .topic-chips { display:flex; flex-direction:column; gap:7px; }
@@ -191,9 +206,12 @@ button.btn:active { transform: scale(.97); }
 .chip-wrong { background:#fecaca; color:#dc2626; border-radius:99px; padding:2px 8px; font-size:0.72rem; font-weight:700; }
 
 /* ── Result ── */
-.big-pct    { font-size: 4rem; font-weight: 800; color: var(--y); line-height: 1; margin: 14px 0 6px; }
-.result-sub { color: var(--muted); font-size: 0.875rem; margin-bottom: 24px; }
-.result-row { display: flex; gap: 24px; margin-bottom: 24px; font-size: 0.875rem; }
+.res-top { text-align:center; margin-bottom:30px; }
+.big-pct    { font-size: 3.4rem; font-weight: 800; line-height: 1; margin-bottom:10px; }
+.res-badge { display:inline-block; font-size:.78rem; font-weight:700; padding:3px 12px; border-radius:99px; }
+.res-badge.pass { background:#dcfce7; color:#15803d; }
+.res-badge.fail { background:#fee2e2; color:#b91c1c; }
+.result-sub { color: var(--muted); font-size: 0.82rem; margin-top:10px; }
 
 /* ── Mobile ── */
 @media (max-width: 540px) {
@@ -228,6 +246,9 @@ button.btn:active { transform: scale(.97); }
       <span class="qb-num" id="wrongCount">—</span>Câu sai
     </button>
   </div>
+  <button class="exam-btn" onclick="startExam()">
+    📝 Thi thử <span class="ex-sub">50 câu · random theo tỉ trọng</span>
+  </button>
 
   <div class="section-label">Ôn theo topic</div>
   <div class="topic-chips" id="topicChips"></div>
@@ -261,13 +282,13 @@ button.btn:active { transform: scale(.97); }
 
 <!-- Result -->
 <div class="card" id="results" style="display:none">
-  <div style="color:var(--muted);font-size:.85rem">Kết quả</div>
-  <div class="big-pct" id="resPct"></div>
-  <div class="result-sub" id="resSub"></div>
-  <div class="result-row">
-    <span>✅ <b id="resOk"></b> đúng</span>
-    <span>❌ <b id="resBad"></b> sai</span>
+  <div class="res-top">
+    <div class="big-pct" id="resPct"></div>
+    <div class="res-badge" id="resBadge"></div>
+    <div class="result-sub" id="resSub"></div>
   </div>
+  <div class="section-label" id="domLabel">Theo domain · đạt khi ≥ 80%</div>
+  <div class="domain-breakdown" id="resDomains"></div>
   <div class="actions" style="flex-direction:column;gap:8px">
     <button class="btn btn-primary" id="btnRetry" onclick="startMode('wrong')" style="display:none">Ôn câu sai →</button>
     <button class="btn btn-secondary" style="flex:none" onclick="startAll()">Làm lại →</button>
@@ -276,7 +297,7 @@ button.btn:active { transform: scale(.97); }
 </div>
 
 <script>
-let Q=[], queue=[], cur=0, ok=0, bad=0, answered=false;
+let Q=[], queue=[], cur=0, ok=0, bad=0, answered=false, sess=[];
 const KEY='ab730v3';
 const KEYS=['A','B','C','D','E','F'];
 
@@ -286,11 +307,9 @@ function save(p){localStorage.setItem(KEY,JSON.stringify(p));}
 fetch('questions.json').then(r=>r.json()).then(d=>{Q=d.questions;show('home');refresh();buildTopics();});
 
 const TOPIC_GROUPS=[
-  {label:'Agents & Copilot Studio',    topics:['Agents & Licensing','Agents — Creation & Configuration']},
-  {label:'Copilot App & Tính năng',    topics:['Copilot Features & Tools','AI Fundamentals']},
-  {label:'Prompts & Notebooks',        topics:['Prompt Gallery & Management','Prompt Grounding','Notebook & Pages']},
-  {label:'Ứng dụng M365 & Quản lý',   topics:['Copilot in M365 Apps','Conversation & Activity Management','M365 Copilot Versions','Copilot Settings & Customization']},
-  {label:'Bảo mật & Responsible AI',  topics:['Responsible AI','Data Privacy & Compliance','Data Security','Prompt Errors & Troubleshooting']},
+  {label:'Understand generative AI fundamentals',     topics:['AI Fundamentals','Responsible AI','Data Privacy & Compliance','Data Security','M365 Copilot Versions','Agents & Licensing','Copilot Settings & Customization']},
+  {label:'Manage prompts and conversations by using AI', topics:['Prompt Gallery & Management','Prompt Grounding','Prompt Errors & Troubleshooting','Conversation & Activity Management']},
+  {label:'Draft and analyze business content by using AI', topics:['Copilot in M365 Apps','Notebook & Pages','Copilot Features & Tools','Agents — Creation & Configuration']},
 ];
 
 function refresh(){
@@ -314,7 +333,15 @@ function startAll(){
   const unseen=shuffle(Q.filter(q=>!seenIds.has(q.id)));
   const done=shuffle(Q.filter(q=>seenIds.has(q.id)&&!wrongIds.has(q.id)));
   queue=[...wrong,...unseen,...done];
-  cur=0;ok=0;bad=0;show('quiz');render();
+  cur=0;ok=0;bad=0;sess=[];show('quiz');render();
+}
+
+function startExam(){
+  // 50 câu random theo tỉ trọng: Fundamentals 30%, Prompts 40%, Business 30%
+  const quota=[15,20,15];
+  const pick=(g,n)=>shuffle(Q.filter(q=>TOPIC_GROUPS[g].topics.includes(q.topic))).slice(0,n);
+  queue=shuffle([...pick(0,quota[0]),...pick(1,quota[1]),...pick(2,quota[2])]);
+  cur=0;ok=0;bad=0;sess=[];show('quiz');render();
 }
 
 function startMode(mode){
@@ -328,7 +355,7 @@ function startMode(mode){
     queue=shuffle(Q.filter(q=>!seenIds.has(q.id)));
     if(!queue.length)return;
   }
-  cur=0;ok=0;bad=0;show('quiz');render();
+  cur=0;ok=0;bad=0;sess=[];show('quiz');render();
 }
 
 function render(){
@@ -521,6 +548,7 @@ function record(q,isOk){
   const p=load();p.seen[q.id]=true;
   if(isOk){p.correct[q.id]=true;delete p.wrong[q.id];ok++;}
   else{p.wrong[q.id]=true;delete p.correct[q.id];bad++;}
+  sess.push({topic:q.topic,ok:isOk});
   save(p);document.getElementById('qScore').textContent=`✓ ${ok}`;
 }
 
@@ -529,10 +557,23 @@ function next(){cur++;if(cur>=queue.length)showResults();else render();}
 function showResults(){
   show('results');
   const total=ok+bad,pct=Math.round(ok/total*100);
-  document.getElementById('resPct').textContent=pct+'%';
-  document.getElementById('resSub').textContent=`${ok}/${total} câu đúng · ${pct>=70?'Đạt 🎉':'Cần ôn thêm'}`;
-  document.getElementById('resOk').textContent=ok;
-  document.getElementById('resBad').textContent=bad;
+  const PASS=80, passed=pct>=PASS;
+  const pctEl=document.getElementById('resPct');
+  pctEl.textContent=pct+'%';
+  pctEl.style.color=passed?'#16a34a':'#dc2626';
+  const badge=document.getElementById('resBadge');
+  badge.className='res-badge '+(passed?'pass':'fail');
+  badge.textContent=passed?'Đạt':'Chưa đạt';
+  document.getElementById('resSub').textContent=`${ok}/${total} câu đúng · mức đạt ${PASS}%`;
+  const labels=['Generative AI fundamentals','Prompts & conversations','Business content'];
+  const dom=[[0,0],[0,0],[0,0]];
+  sess.forEach(r=>{const gi=TOPIC_GROUPS.findIndex(g=>g.topics.includes(r.topic));if(gi<0)return;dom[gi][1]++;if(r.ok)dom[gi][0]++;});
+  document.getElementById('domLabel').style.display=dom.some(s=>s[1])?'':'none';
+  document.getElementById('resDomains').innerHTML=dom.map((s,i)=>{
+    if(!s[1])return '';
+    const dp=Math.round(s[0]/s[1]*100), dpass=dp>=PASS;
+    return `<div class="dom-row"><div class="dom-head"><span>${labels[i]}</span><b class="${dpass?'dom-pass':'dom-fail'}">${s[0]}/${s[1]} · ${dp}%</b></div><div class="dom-bar"><div class="dom-fill${dpass?'':' fail'}" style="width:${dp}%"></div></div></div>`;
+  }).join('');
   const nW=Object.keys(load().wrong).length;
   const btn=document.getElementById('btnRetry');
   btn.style.display=nW?'':'none';btn.textContent=`Ôn ${nW} câu sai`;
@@ -555,7 +596,7 @@ function buildTopics(){
 function startTopic(btn){
   const topics=JSON.parse(btn.dataset.topics);
   queue=shuffle(Q.filter(q=>topics.includes(q.topic)));
-  cur=0;ok=0;bad=0;show('quiz');render();
+  cur=0;ok=0;bad=0;sess=[];show('quiz');render();
 }
 function goHome(){ show('home'); refresh(); buildTopics(); }
 function show(s){ ['home','quiz','results'].forEach(id=>document.getElementById(id).style.display=id===s?'block':'none'); }
