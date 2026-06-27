@@ -47,7 +47,9 @@ body {
 .reset-link { font-size: 0.75rem; color: var(--muted); cursor: pointer; text-decoration: underline; margin-top: 14px; display: inline-block; }
 
 /* ── Progress ── */
-.meta { display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--muted); margin-bottom: 8px; }
+.meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: var(--muted); margin-bottom: 8px; }
+.exit-link { background: none; border: none; color: var(--muted); font-size: 0.78rem; cursor: pointer; padding: 4px 0; font-family: inherit; }
+.exit-link:hover { color: #dc2626; }
 .progress-bar { height: 4px; background: var(--border); border-radius: 2px; margin-bottom: 24px; overflow: hidden; }
 .progress-fill { height: 100%; background: var(--y); border-radius: 2px; transition: width .4s ease; }
 
@@ -259,6 +261,7 @@ button.btn:active { transform: scale(.97); }
 <!-- Quiz -->
 <div class="card" id="quiz" style="display:none">
   <div class="meta">
+    <button class="exit-link" onclick="exitQuiz()">✕ Thoát</button>
     <span id="qNum">1 / 58</span>
     <span id="qScore">✓ 0</span>
   </div>
@@ -274,7 +277,7 @@ button.btn:active { transform: scale(.97); }
   <div class="fb" id="fb"></div>
 
   <div class="actions">
-    <button class="btn btn-secondary" onclick="goHome()">←</button>
+    <button class="btn btn-secondary" id="btnPrev" onclick="prev()">←</button>
     <button class="btn btn-primary" id="btnCheck" onclick="check()">Kiểm tra</button>
     <button class="btn btn-primary" id="btnNext"  onclick="next()" style="display:none">Tiếp →</button>
   </div>
@@ -360,6 +363,7 @@ function startMode(mode){
 
 function render(){
   answered=false;
+  window.scrollTo({top:0,behavior:'smooth'});
   const q=queue[cur];
   document.getElementById('progFill').style.width=(cur/queue.length*100)+'%';
   document.getElementById('qNum').textContent=`${cur+1} / ${queue.length}`;
@@ -380,6 +384,7 @@ function render(){
   document.getElementById('btnCheck').style.display='';
   document.getElementById('btnNext').style.display='none';
   document.getElementById('btnNext').textContent=cur===queue.length-1?'Xem kết quả →':'Tiếp →';
+  const bp=document.getElementById('btnPrev');bp.disabled=cur===0;bp.style.opacity=cur===0?'0.35':'';
   document.getElementById('quiz').dataset.qid=q.id;
   renderBody(q);
 }
@@ -553,6 +558,8 @@ function record(q,isOk){
 }
 
 function next(){cur++;if(cur>=queue.length)showResults();else render();}
+function prev(){if(cur>0){cur--;render();}}
+function exitQuiz(){if(confirm('Thoát về trang chủ? Câu đã làm vẫn được lưu, chỉ dừng phiên hiện tại.'))goHome();}
 
 function showResults(){
   show('results');
