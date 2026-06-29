@@ -409,9 +409,9 @@
         "the Microsoft 365 Copilot app"
       ],
       "correct": [
-        0
+        3
       ],
-      "note": "The M365 Copilot app allows deleting a specific individual conversation while retaining others. My Account portal is for bulk/date-range deletion of all activity. ✅ Confirmed by ExamTopics (T2Q14).",
+      "note": "The M365 Copilot app lets you delete a specific individual conversation yourself (no admin approval) while retaining others. ExamTopics answer: D.",
       "also_in": [
         "pass4success"
       ]
@@ -602,9 +602,9 @@
       ],
       "correct": [
         0,
-        3
+        2
       ],
-      "note": "Copilot Pages supports @mentions and link sharing for real-time collaboration.",
+      "note": "Collaborate on a page by @mentioning the colleague and by sharing the page link. ExamTopics answer: A, C.",
       "also_in": [
         "marks4sure"
       ]
@@ -692,9 +692,9 @@
         "Copilot provides responses based only on the general knowledge that Copilot was trained on."
       ],
       "correct": [
-        2
+        0
       ],
-      "note": "Work scope = user's accessible M365 data + Copilot's general training knowledge. Permission trimming ensures users only see data they're authorized to access.",
+      "note": "Work scope = data the user can access PLUS Copilot's general training knowledge. ExamTopics answer: A.",
       "also_in": [
         "dumpsbase"
       ]
@@ -858,9 +858,9 @@
         "The conversation was shared."
       ],
       "correct": [
-        1
+        4
       ],
-      "note": "The green badge next to the Standings conversation indicates it contains a verified response. ⚠️ This question references an exhibit — the green verified badge is the key visual cue."
+      "note": "ExamTopics official answer: E — the green indicator next to the Standings conversation denotes it was shared. (Community is split, but the marked answer is E.)"
     },
     {
       "id": 46,
