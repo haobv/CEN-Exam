@@ -234,13 +234,13 @@ button.btn:active { transform: scale(.97); }
 <!-- Home -->
 <div class="card" id="home">
   <div class="home-title">AB-730 Study</div>
-  <div class="home-sub">Microsoft AI Business Professional · 96 câu</div>
+  <div class="home-sub">Microsoft AI Business Professional · <span id="homeTotal">—</span> câu</div>
   <div class="stats-hint" id="statsHint"></div>
 
   <div class="section-label">Luyện tập</div>
   <div class="quick-btns">
     <button class="quick-btn" onclick="startAll()">
-      <span class="qb-num">96</span>Tất cả
+      <span class="qb-num" id="allCount">—</span>Tất cả
     </button>
     <button class="quick-btn" id="btnUnseen" onclick="startMode('unseen')">
       <span class="qb-num" id="unseenCount">—</span>Chưa làm
@@ -320,6 +320,8 @@ function refresh(){
   const p=load();
   const nW=Object.keys(p.wrong).length, nS=Object.keys(p.seen).length;
   const nUnseen=Math.max(Q.length-nS,0);
+  const ht=document.getElementById('homeTotal'); if(ht) ht.textContent=Q.length;
+  const ac=document.getElementById('allCount');  if(ac) ac.textContent=Q.length;
   document.getElementById('statsHint').textContent=`Đã làm: ${nS}/${Q.length} · Câu sai: ${nW}`;
   const wu=document.getElementById('unseenCount'); if(wu) wu.textContent=nUnseen;
   const ww=document.getElementById('wrongCount');  if(ww) ww.textContent=nW;
