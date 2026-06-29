@@ -311,9 +311,9 @@ function save(p){localStorage.setItem(KEY,JSON.stringify(p));}
 fetch('questions.json').then(r=>r.json()).then(d=>{Q=d.questions.filter(q=>q.type!=='fill-in');show('home');refresh();buildTopics();});
 
 const TOPIC_GROUPS=[
-  {label:'Understand generative AI fundamentals',     topics:['AI Fundamentals','Responsible AI','Data Privacy & Compliance','Data Security','M365 Copilot Versions','Agents & Licensing','Copilot Settings & Customization']},
-  {label:'Manage prompts and conversations by using AI', topics:['Prompt Gallery & Management','Prompt Grounding','Prompt Errors & Troubleshooting','Conversation & Activity Management']},
-  {label:'Draft and analyze business content by using AI', topics:['Copilot in M365 Apps','Notebook & Pages','Copilot Features & Tools','Agents — Creation & Configuration']},
+  {label:'Understand generative AI fundamentals',     topics:['AI Fundamentals','Responsible AI','Data Privacy & Compliance','Data Security','M365 Copilot Versions','Agents & Licensing','Copilot Settings & Customization','AI Fundamentals & Security']},
+  {label:'Manage prompts and conversations by using AI', topics:['Prompt Gallery & Management','Prompt Grounding','Prompt Errors & Troubleshooting','Conversation & Activity Management','Prompts & Conversations']},
+  {label:'Draft and analyze business content by using AI', topics:['Copilot in M365 Apps','Notebook & Pages','Copilot Features & Tools','Agents — Creation & Configuration','Business Content & Collaboration']},
 ];
 
 function refresh(){
@@ -370,7 +370,7 @@ function render(){
   document.getElementById('qNum').textContent=`${cur+1} / ${queue.length}`;
   document.getElementById('qScore').textContent=`✓ ${ok}`;
   document.getElementById('qTopic').textContent=q.topic;
-  const srcMap={examtopics:'ExamTopics',marks4sure:'Marks4Sure',pass4success:'Pass4Success',dumpsbase:'DumpsBase',edusum:'Edusum'};
+  const srcMap={examtopics:'ExamTopics',marks4sure:'Marks4Sure',pass4success:'Pass4Success',dumpsbase:'DumpsBase',edusum:'Edusum',microsoft:'Microsoft'};
   const srcEl=document.getElementById('qSource');
   let pills=`<span class="src-pill src-primary">${srcMap[q.source]||q.source}</span>`;
   if(q.also_in&&q.also_in.length) pills+=q.also_in.map(s=>`<span class="src-pill src-also">${srcMap[s]||s}</span>`).join('');

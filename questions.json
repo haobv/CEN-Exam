@@ -1685,10 +1685,21 @@
         "The maximum number of times that a scheduled prompt can run is:"
       ],
       "options_per_prompt": [
-        ["Once per hour", "Once per day", "Once per week"],
-        ["15 times", "365 times", "Unlimited"]
+        [
+          "Once per hour",
+          "Once per day",
+          "Once per week"
+        ],
+        [
+          "15 times",
+          "365 times",
+          "Unlimited"
+        ]
       ],
-      "correct": [1, 0],
+      "correct": [
+        1,
+        0
+      ],
       "note": "",
       "also_in": []
     },
@@ -1810,6 +1821,1722 @@
       ],
       "note": "",
       "also_in": []
+    },
+    {
+      "id": 97,
+      "source": "microsoft",
+      "topic": "AI Fundamentals & Security",
+      "type": "single-select",
+      "question": "You need to use the Agent Builder in Microsoft 365 Copilot to build a custom agent that will answer HR questions for a small team. The agent must be accessible to only the members of the team and must generate responses only from the knowledge sources that you configure. What should you use to ensure that the requirements are met?",
+      "options": [
+        "application lifecycle management",
+        "data loss prevention (DLP)",
+        "environment-level policies",
+        "Microsoft 365 permissions"
+      ],
+      "correct": [
+        3
+      ],
+      "note": "Objective: 1.1 Understand generative AI capabilities across Microsoft 365 experiences What This Item Tests: Understand the use case for creating your own agent Additional Reading: Build agents by using Agent Builder in Microsoft 365 Copilot Rationale: Agents built by using the Agent Builder respect existing Microsoft 365 permissions, which control both who can access the agent and which content the agent can use for grounding. Application lifecycle management and environment-level policies apply to app and environment governance scenarios, while DLP focuses on preventing data exfiltration rather than controlling agent access and knowledge scope."
+    },
+    {
+      "id": 98,
+      "source": "microsoft",
+      "topic": "AI Fundamentals & Security",
+      "type": "single-select",
+      "question": "Select the answer that correctly completes the sentence. The Agent Builder in Microsoft 365 Copilot is used to build [Target_A].",
+      "options": [
+        "agents by creating automated workflows that use triggers and actions",
+        "agents by deploying custom code to Azure",
+        "declarative agents that use natural language instructions or manual configuration",
+        "role-based Copilot experiences that connect to external apps or services"
+      ],
+      "correct": [
+        2
+      ],
+      "note": "Objective: 1.1 Understand generative AI capabilities across Microsoft 365 experiences What This Item Tests: Understand the use case for creating your own agent Additional Reading: Build from a template Agent Builder in Microsoft 365 Copilot Microsoft 365 Copilot Rationale: The Agent Builder enables users to create declarative agents by defining instructions and behavior without writing code. Deploying custom code, building workflow automation, and creating role-based Copilot products are not supported use cases for the Agent Builder."
+    },
+    {
+      "id": 99,
+      "source": "microsoft",
+      "topic": "AI Fundamentals & Security",
+      "type": "single-select",
+      "question": "A company uses Microsoft 365 Copilot. An employee wants to use Copilot to summarize an email thread that is stored in a PST file on their local computer and is NOT uploaded to Microsoft 365. You need to identify whether Copilot can access the content. What should you identify?",
+      "options": [
+        "Copilot cannot access or summarize the email.",
+        "Copilot can summarize the email by using Microsoft 365 Copilot Chat.",
+        "Copilot can summarize the email by using Copilot in Microsoft Outlook.",
+        "Copilot can summarize the email by using Microsoft 365 Copilot Search."
+      ],
+      "correct": [
+        0
+      ],
+      "note": "Objective: 1.1 Understand generative AI capabilities across Microsoft 365 experiences What This Item Tests: Understand how the context, like your work files, web data, or the app you’re using, can affect Copilot responses Additional Reading: Copilot features in Microsoft 365 apps Frequently asked questions about Copilot in Outlook Rationale: Copilot can only access content that is stored within Microsoft 365 services and governed by tenant permissions. Email data stored locally in a PST file is outside the Microsoft 365 service boundary, so Copilot cannot access or summarize it regardless of the Copilot experience used."
+    },
+    {
+      "id": 100,
+      "source": "microsoft",
+      "topic": "AI Fundamentals & Security",
+      "type": "single-select",
+      "question": "A company has frequent employee questions about benefits and wants to automate responses by creating an AI agent that uses approved HR information to autonomously respond to emails. You need to choose which tool to use to build the agent. What should you choose?",
+      "options": [
+        "Copilot in Microsoft 365 apps",
+        "Microsoft 365 Copilot Chat",
+        "Microsoft Copilot Studio",
+        "Microsoft Purview"
+      ],
+      "correct": [
+        2
+      ],
+      "note": "Objective: 1.1 Understand generative AI capabilities across Microsoft 365 experiences What This Item Tests: Understand the use case for creating your own agent Additional Reading: Choose between Microsoft 365 Copilot and Copilot Studio to build your agent Build from a template Choose what type of agent to build Rationale: Copilot Studio is the tool used to create and configure agents by defining instructions, adding knowledge sources, and controlling behavior. Copilot Chat and Copilot in Microsoft 365 apps are Copilot experiences rather than building agents, and Microsoft Purview focuses on governance and compliance rather than agent creation."
+    },
+    {
+      "id": 101,
+      "source": "microsoft",
+      "topic": "AI Fundamentals & Security",
+      "type": "single-select",
+      "question": "A company wants to use AI to automate a repeatable business process that follows defined steps and can be reused by multiple users. You need to choose the appropriate Copilot capability. What should you choose?",
+      "options": [
+        "an agent",
+        "Copilot chat",
+        "Copilot in Microsoft 365 apps",
+        "Microsoft 365 Copilot for Sales"
+      ],
+      "correct": [
+        0
+      ],
+      "note": "Objective: 1.1 Understand generative AI capabilities across Microsoft 365 experiences What This Item Tests: Understand the differences in features and capabilities of the Copilot experience in various Microsoft 365 apps Additional Reading: Overview of Microsoft 365 Copilot Chat Copilot features in Microsoft 365 apps Prerequisites for managing agents in Microsoft 365 Rationale: Agents are designed to automate structured, repeatable business processes with defined steps and can be reused across users; Copilot chat is intended for ad hoc interactions and does not support reusable workflows; Copilot for Sales is a domain-specific experience and does not provide general-purpose process automation; Copilot in Microsoft 365 apps focuses on productivity within individual applications rather than reusable business process automation."
+    },
+    {
+      "id": 102,
+      "source": "microsoft",
+      "topic": "AI Fundamentals & Security",
+      "type": "single-select",
+      "question": "Microsoft 365 Copilot is enabled for all users in your tenant. Confidential pricing files are stored on a Microsoft SharePoint Online site to which access is restricted to the members of a Microsoft 365 group. Management is concerned that Copilot might expose the pricing files to users that are not members of the group. Which statement accurately describes how Copilot handles access to the pricing files?",
+      "options": [
+        "Copilot can surface the pricing files to any user that has access to the Copilot app.",
+        "Copilot can surface the pricing files only to users that are authorized to access the SharePoint site.",
+        "Copilot can surface the pricing files to all users, unless a Microsoft Purview retention policy is configured.",
+        "Copilot can search across SharePoint and Microsoft OneDrive and surface the pricing files to any user in the tenant."
+      ],
+      "correct": [
+        1
+      ],
+      "note": "Objective: 1.1 Understand generative AI capabilities across Microsoft 365 experiences What This Item Tests: Understand how Copilot works to keep your organization’s information private and secure Additional Reading: Data, Privacy, and Security for Microsoft 365 Copilot Security for Microsoft 365 Copilot Rationale: Copilot can surface the pricing files only to users that have permission to access the SharePoint site because it respects Microsoft 365 permissions and operates within the existing security boundary of the tenant. Copilot does not bypass site permissions, does not grant access based solely on app availability, and does not require a retention policy to prevent unauthorized access to restricted content."
+    },
+    {
+      "id": 103,
+      "source": "microsoft",
+      "topic": "AI Fundamentals & Security",
+      "type": "single-select",
+      "question": "A company uses Microsoft 365 Copilot and has documents stored in Microsoft SharePoint Online. Access to the documents is controlled by permissions and sensitivity labels. Management wants to understand how Copilot identifies which organizational data can appear in responses. Which statement accurately describes how Copilot handles organizational data?",
+      "options": [
+        "Copilot includes labeled content in responses even if label settings restrict how the content can be used.",
+        "Copilot can access and summarize all the content stored in the tenant, regardless of individual user permissions.",
+        "Copilot sends organizational prompts and retrieved data to public AI services for processing before returning results.",
+        "Copilot only surfaces organizational data that the current user is authorized to access and respects existing security controls."
+      ],
+      "correct": [
+        3
+      ],
+      "note": "Objective: 1.1 Understand generative AI capabilities across Microsoft 365 experiences What This Item Tests: Understand how Copilot works to keep your organization’s information private and secure Additional Reading: Security for Microsoft 365 Copilot Rationale: Copilot only surfaces organizational data that the current user is authorized to access and respects existing Microsoft 365 security controls, including permissions and sensitivity labels, because it operates within the Microsoft 365 security boundary. Copilot does not bypass tenant permissions, does not override label restrictions, and does not send organizational data to public AI services for processing."
+    },
+    {
+      "id": 104,
+      "source": "microsoft",
+      "topic": "AI Fundamentals & Security",
+      "type": "single-select",
+      "question": "A company uses Microsoft 365 Copilot Chat to help verify technical documentation for a new product. An employee plans to copy and paste the Copilot-generated output directly to the company’s support site without additional review. What is the primary risk in this scenario?",
+      "options": [
+        "Using the Copilot output in this way will violate Microsoft copyrights.",
+        "Using the Copilot output will violate Microsoft responsible AI principles.",
+        "The Copilot output will prevent the company from training its own AI models.",
+        "Inaccurate Copilot output can result in incorrect information being published to customers."
+      ],
+      "correct": [
+        3
+      ],
+      "note": "Objective: 1.2 Identify responsible AI and data protection practices What This Item Tests: Select verification steps appropriate to the task, including citation checks and human review Additional Reading: Responsible AI at Microsoft Rationale: Copilot-generated content might contain errors or incomplete information, and publishing the content without verification increases the risk of sharing inaccurate guidance with customers. Using Copilot-generated output does not automatically violate copyright or responsible AI principles, and using this output has no impact on an organization’s ability to train AI models, making these options inappropriate for this scenario."
+    },
+    {
+      "id": 105,
+      "source": "microsoft",
+      "topic": "AI Fundamentals & Security",
+      "type": "single-select",
+      "question": "A company uses a generative AI tool to create business content. You discover that some AI-generated responses contain incorrect and misleading information. You need to identify a likely cause of the issue. What is the most likely cause?",
+      "options": [
+        "The AI tool was prompted by using clear and specific instructions.",
+        "The AI tool was prompted by using verified internal company documents.",
+        "The AI tool was prompted to provide an answer to a general business question.",
+        "The AI tool was prompted about a topic that was not well represented in the training data."
+      ],
+      "correct": [
+        3
+      ],
+      "note": "Objective: 1.2 Identify responsible AI and data protection practices What This Item Tests: Identify common risks, including fabrications, prompt injection, and over-reliance Additional Reading: Security for Microsoft 365 Copilot Microsoft 365 Copilot and privacy controls for connected experiences Rationale: Generative AI can produce fabricated or misleading content when asked about topics that are poorly represented or missing from its training data, which is a common cause of hallucinations. Asking a general business question does not inherently cause incorrect output, and clear instructions and verified internal documents typically improve accuracy rather than introduce errors."
+    },
+    {
+      "id": 106,
+      "source": "microsoft",
+      "topic": "AI Fundamentals & Security",
+      "type": "multiple-select",
+      "question": "A company plans to use Microsoft 365 Copilot. The company wants to minimize the risk of sensitive data being exposed in Copilot responses. You need to implement controls that reduce the risk of data leaks. Which two actions should you perform? Each correct answer presents part of the solution.",
+      "options": [
+        "Delete all the data that contains sensitive information.",
+        "Encrypt all the data that contains sensitive information.",
+        "Use Microsoft Purview to configure information barriers (IBs).",
+        "Configure Microsoft Purview data loss prevention (DLP) policies.",
+        "Apply sensitivity labels to content that contains sensitive information."
+      ],
+      "correct": [
+        3,
+        4
+      ],
+      "note": "Objective: 1.2 Identify responsible AI and data protection practices What This Item Tests: Recognize and mitigate risks to sensitive data Additional Reading: Microsoft 365 Copilot and privacy controls for connected experiences Security for Microsoft 365 Copilot Prepare your organization for Microsoft 365 Copilot Rationale: Applying sensitivity labels helps classify and control how sensitive content is accessed and used by Microsoft 365 Copilot, while DLP policies prevent sensitive information from being shared or surfaced inappropriately, directly reducing the risk of data leaks. Deleting or encrypting all the sensitive data is impractical and does not specifically control Copilot behavior, and IBs are designed to restrict user communication rather than manage how Copilot accesses or generates content."
+    },
+    {
+      "id": 107,
+      "source": "microsoft",
+      "topic": "AI Fundamentals & Security",
+      "type": "multiple-select",
+      "question": "A company enables Microsoft 365 Copilot and must comply with GDPR requirements. You need to understand how Enterprise data protection (EDP) applies to Copilot interactions. Which two types of content are protected by using EDP? Each correct answer presents a complete solution.",
+      "options": [
+        "conversations in Microsoft Teams chats",
+        "files created directly by users",
+        "generated search queries",
+        "prompts entered by users",
+        "responses generated by Copilot"
+      ],
+      "correct": [
+        3,
+        4
+      ],
+      "note": "Objective: 1.2 Identify responsible AI and data protection practices What This Item Tests: Understand how data protection restricts prompt results Additional Reading: Privacy and protections Data, Privacy, and Security for Microsoft 365 Copilot Rationale: EDP in Copilot ensures that prompts entered by users and the responses generated by Copilot are handled securely, are not used to train foundation models, and remain within an organization’s compliance boundaries, including GDPR. Teams chats and files generated by Copilot are protected by using Microsoft 365 compliance features but are not the specific scope of EDP, and generated search queries are part of the processing workflow rather than protected content under EDP."
+    },
+    {
+      "id": 108,
+      "source": "microsoft",
+      "topic": "AI Fundamentals & Security",
+      "type": "multiple-select",
+      "question": "A company adopts Microsoft 365 Copilot to help employees generate business documents. You need to ensure that the content generated by using Copilot in Microsoft Word is accurate and reliable before it is shared. Which two actions should you perform? Each correct answer presents part of the solution.",
+      "options": [
+        "Have a human reviewer inspect the content before it is shared.",
+        "Check the Copilot activity history for the user that generated the content.",
+        "Use the citations provided by Copilot to verify the sources of the content.",
+        "Turn on the privacy control for all connected experiences in Microsoft 365 Apps for enterprise.",
+        "Turn off the privacy control for all connected experiences in Microsoft 365 Apps for enterprise."
+      ],
+      "correct": [
+        0,
+        2
+      ],
+      "note": "Objective: 1.2 Identify responsible AI and data protection practices What This Item Tests: Identify common risks, including fabrications, prompt injection, and over-reliance Additional Reading: Microsoft 365 Copilot and privacy controls for connected experiences Fabrication in AI models Rationale: Reviewing Copilot-provided citations enables users to validate the origin and reliability of generated information, which helps detect fabricated or misleading content. Requiring a human review before sharing content reduces over-reliance on AI output and adds judgment and context that Copilot cannot provide. The activity history focuses on auditing usage rather than validating accuracy, and privacy controls manage data access and protection but do not verify whether generated content is correct."
+    },
+    {
+      "id": 109,
+      "source": "microsoft",
+      "topic": "AI Fundamentals & Security",
+      "type": "multiple-select",
+      "question": "You need to prevent sensitive organizational data, such as financial records, customer information, and intellectual property (IP), from being accessed inappropriately or exposed through Microsoft 365 Copilot or agents. Which two Microsoft Purview features help achieve this goal? Each correct answer presents part of the solution.",
+      "options": [
+        "Audit",
+        "data lifecycle management",
+        "data loss prevention (DLP)",
+        "eDiscovery",
+        "sensitivity labels"
+      ],
+      "correct": [
+        2,
+        4
+      ],
+      "note": "Objective: 1.2 Identify responsible AI and data protection practices What This Item Tests: Recognize and mitigate risks to sensitive data Additional Reading: Security for Microsoft 365 Copilot Microsoft 365 Copilot and privacy controls for connected experiences Protect your sensitive data with Microsoft Purview Rationale: DLP helps prevent sensitive information from being shared or exposed through Copilot by enforcing policy-based controls, while sensitivity labels help streamline protecting sensitive data types. Audit, eDiscovery, and data lifecycle management support investigation, retention, and governance but do not directly prevent inappropriate access or leakage."
+    },
+    {
+      "id": 110,
+      "source": "microsoft",
+      "topic": "AI Fundamentals & Security",
+      "type": "single-select",
+      "question": "Select the answer that correctly completes the sentence. To [Target_A] prompt injection attacks, agents must operate in trusted, isolated environments and apply validation checks before executing instructions.",
+      "options": [
+        "amplify",
+        "eliminate",
+        "mitigate",
+        "overlook"
+      ],
+      "correct": [
+        2
+      ],
+      "note": "Objective: 1.2 Identify responsible AI and data protection practices What This Item Tests: Identify common risks, including fabrications, prompt injection, and over-reliance Additional Reading: How Microsoft Defender helps security teams detect prompt injection attacks in Microsoft 365 Copilot Rationale: Prompt injection attacks can be reduced by isolating agent environments and validating instructions before execution. These measures mitigate risk but cannot completely eliminate it, nor do they increase or ignore the risk."
+    },
+    {
+      "id": 111,
+      "source": "microsoft",
+      "topic": "AI Fundamentals & Security",
+      "type": "single-select",
+      "question": "You use Microsoft 365 Copilot in an environment that contains sensitive organizational data. You need to ensure that Copilot responses are limited to content a user is authorized to view. What should you use?",
+      "options": [
+        "Conditional Access policies",
+        "group expiration policies",
+        "Microsoft 365 access permissions",
+        "retention policies"
+      ],
+      "correct": [
+        2
+      ],
+      "note": "Objective: 1.2 Identify responsible AI and data protection practices What This Item Tests: Understand how data protection restricts prompt results Additional Reading: Prepare your organization for Microsoft 365 Copilot Rationale: Copilot respects existing Microsoft 365 access permissions when generating responses, ensuring that users can only see data that they are authorized to access. Conditional Access, group expiration policies, and retention policies serve important governance roles but do not directly control which data Copilot can surface in prompt responses."
+    },
+    {
+      "id": 112,
+      "source": "microsoft",
+      "topic": "AI Fundamentals & Security",
+      "type": "single-select",
+      "question": "You want to understand how Microsoft helps protect organizational data when using Microsoft 365 Copilot. Which statement best describes the Microsoft approach to securing Copilot? More than one answer choice may achieve the goal. Select the BEST answer.",
+      "options": [
+        "combining secure engineering practices with threat intelligence and Zero Trust access controls",
+        "embedding privacy and compliance protections alongside secure development and risk mitigation",
+        "relying on customer-managed controls to prevent potential data exposure",
+        "using AI-generated safeguards to replace existing Microsoft security services"
+      ],
+      "correct": [
+        1
+      ],
+      "note": "Objective: 1.2 Identify responsible AI and data protection practices What This Item Tests: Recognize and mitigate risks to sensitive data Additional Reading: Security for Microsoft 365 Copilot Data, Privacy, and Security for Microsoft 365 Copilot Copilot extensibility in the Microsoft 365 ecosystem Rationale: Microsoft secures Copilot by embedding privacy and compliance protections into secure engineering practices and ongoing threat intelligence and risk mitigation. Copilot does not replace existing security services or rely solely on customer controls, and Zero Trust is one component rather than the full description of the Microsoft security approach."
+    },
+    {
+      "id": 113,
+      "source": "microsoft",
+      "topic": "AI Fundamentals & Security",
+      "type": "multiple-select",
+      "question": "You use Microsoft 365 Copilot to generate technical documentation that will be shared externally. You need to reduce the risk of publishing incorrect or misleading content. Which two actions should you perform? Each correct answer presents part of the solution.",
+      "options": [
+        "Include more detailed instructions in the original prompt.",
+        "Rely on Copilot to automatically include accurate citations.",
+        "Add formatting, such as tables or lists, to the generated content.",
+        "Check Copilot-generated claims against original or trusted sources.",
+        "Perform a human review of the generated content before publishing the content."
+      ],
+      "correct": [
+        3,
+        4
+      ],
+      "note": "Objective: 1.2 Identify responsible AI and data protection practices What This Item Tests: Select verification steps appropriate to the task, including citation checks and human review Additional Reading: Privacy and protections Rationale: Reducing the risk of publishing incorrect or misleading information requires verifying claims against trusted sources and performing a human review before publication. Adding formatting and refining prompts do not validate accuracy, and relying on automatic citations alone does not guarantee that information is correct or appropriate for release."
+    },
+    {
+      "id": 114,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "single-select",
+      "question": "You are using Microsoft 365 Copilot to draft an announcement about a new hybrid work policy. You want the announcement to be concise, aligned to company standards, and focused on what employees must do next. Which prompt should you use? More than one answer choice may achieve the goal. Select the BEST answer.",
+      "options": [
+        "Summarize the new hybrid work policy for internal communication.",
+        "Create an announcement about the new hybrid work policy for employees.",
+        "Create an announcement for employees that describes the new hybrid work policy and its background.",
+        "Create a concise announcement for employees that outlines the new hybrid work policy, key changes, and required next steps."
+      ],
+      "correct": [
+        3
+      ],
+      "note": "Objective: 2.1 Create and manage prompts in Microsoft 365 Copilot What This Item Tests: Understand how to create an effective prompt Additional Reading: Craft effective prompts for Microsoft 365 Copilot Write effective instructions for declarative agents Rationale: The most effective prompt is the one that specifies conciseness, audience, key changes, and required next steps because it aligns directly to the goal of producing a clear and action-oriented announcement. A general request to create an announcement lacks direction about focus. Including background information expands the scope beyond which employees must act. Requesting a summary does not ensure clarity on required actions."
+    },
+    {
+      "id": 115,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "single-select",
+      "question": "Select the answer that correctly completes the sentence. In Microsoft 365 Copilot, you can create [Target_A] scheduled prompts.",
+      "options": [
+        "an unlimited number of",
+        "up to 10 different",
+        "up to 20 different",
+        "up to five different"
+      ],
+      "correct": [
+        1
+      ],
+      "note": "Objective: 2.1 Create and manage prompts in Microsoft 365 Copilot What This Item Tests: Schedule a prompt Additional Reading: Manage scheduled prompts for Microsoft 365 Copilot Schedule Copilot prompts Rationale: Copilot limits the number of different scheduled prompts you can create to 10, which helps users manage recurring automation without overloading the experience. Five and 20 do not match the documented limit. Unlimited is not supported because scheduled prompts have a defined cap."
+    },
+    {
+      "id": 116,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "single-select",
+      "question": "You are using Microsoft 365 Copilot Chat to prepare a response to a client about delivery delays. The explanation must be based only on information discussed in a specific Microsoft Teams meeting titled Q4 Logistics Review that occurred last week. What should you reference in the prompt?",
+      "options": [
+        "your recent documents",
+        "the Q4 Logistics Review meeting",
+        "the Teams channel where the meeting occurred",
+        "the Microsoft SharePoint Online site associated with the project"
+      ],
+      "correct": [
+        1
+      ],
+      "note": "Objective: 2.1 Create and manage prompts in Microsoft 365 Copilot What This Item Tests: Select appropriate resources to reference in a prompt Additional Reading: Add content to Microsoft 365 Copilot Chat prompts Rationale: Referencing the Q4 Logistics Review meeting is the correct answer because it directly grounds the response in the specific meeting requested. Referencing the Teams channel broadens the scope to all channel conversations rather than limiting the context to the meeting itself. Referencing the SharePoint site expands the source to all project documents, not just the meeting discussion. Using recent documents does not ensure that the response will be based only on the specified meeting."
+    },
+    {
+      "id": 117,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "single-select",
+      "question": "You are using Microsoft 365 Copilot Chat to create a marketing presentation. You need to ensure that Copilot uses only the following two files: A Microsoft Excel workbook named SalesForecast.xlsx A Microsoft Word document named MarketingPlan.docx What should you do?",
+      "options": [
+        "Reference the folder where the files are located.",
+        "Attach SalesForecast.xlsx and MarketingPlan.docx to a prompt.",
+        "Provide the URL of the Microsoft SharePoint Online site where the files are stored.",
+        "Include the SalesForecast.xlsx and MarketingPlan.docx file names in the prompt text."
+      ],
+      "correct": [
+        1
+      ],
+      "note": "Objective: 2.1 Create and manage prompts in Microsoft 365 Copilot What This Item Tests: Select appropriate resources to reference in a prompt Additional Reading: Add content to Microsoft 365 Copilot Chat prompts Rationale: Attaching SalesForecast.xlsx and MarketingPlan.docx to the prompt is appropriate because this explicitly grounds the Copilot responses in only those selected documents. Including only the file names does not guarantee that Copilot will restrict its response to those files. Providing a SharePoint site URL or referencing a folder broadens the scope of accessible content rather than limiting it to the two required documents."
+    },
+    {
+      "id": 118,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "single-select",
+      "question": "You frequently create similar executive updates in Microsoft Teams Word, and, Outlook by rewriting the same type of prompt in Microsoft 365 Copilot. You need a faster way to access structured prompts designed for common business tasks across Microsoft 365 apps. What should you use?",
+      "options": [
+        "Copilot Notebooks",
+        "Copilot Prompt Gallery",
+        "Copilot saved conversations",
+        "Copilot scheduled prompts"
+      ],
+      "correct": [
+        1
+      ],
+      "note": "Objective: 2.1 Create and manage prompts in Microsoft 365 Copilot What This Item Tests: Understand how to create an effective prompt Additional Reading: Understand Prompt Gallery in Copilot Rationale: Copilot Prompt Gallery is correct because it provides curated, prebuilt prompts for common business scenarios that can be accessed across Microsoft 365 apps. Copilot Notebooks organizes conversations but does not provide structured prompt templates. Copilot scheduled prompts automate recurring execution rather than provide reusable templates. Copilot saved conversations store previous chats but do not supply standardized prompts for repeated business tasks."
+    },
+    {
+      "id": 119,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "single-select",
+      "question": "In Microsoft 365 Copilot Chat, you create a prompt that analyzes sales data and generates a summary for management. You plan to reuse the prompt regularly and want quick access to the prompt in the future. What should you do?",
+      "options": [
+        "Save the prompt.",
+        "Share the prompt.",
+        "Schedule the prompt.",
+        "Add the conversation to a notebook."
+      ],
+      "correct": [
+        0
+      ],
+      "note": "Objective: 2.1 Create and manage prompts in Microsoft 365 Copilot What This Item Tests: Save a prompt Additional Reading: How to save prompts Rationale: Saving the prompt is correct because it enable you to reuse the exact prompt later without recreating it. Adding the conversation to a notebook organizes the chat but does not store the prompt for standalone reuse. Scheduling the prompt configures it to run automatically, which is not required in this scenario. Sharing the prompt distributes it to others but does not address personal reuse and quick access."
+    },
+    {
+      "id": 120,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "single-select",
+      "question": "You use Microsoft 365 Copilot Chat to generate a weekly sales summary from a shared Microsoft Excel file. You need Copilot to automatically run the same prompt every Monday morning and deliver the updated summary. What should you do?",
+      "options": [
+        "Share the prompt.",
+        "Schedule the prompt.",
+        "Add the prompt to a notebook.",
+        "Save the prompt and pin it to the top of the chat list."
+      ],
+      "correct": [
+        1
+      ],
+      "note": "Objective: 2.1 Create and manage prompts in Microsoft 365 Copilot What This Item Tests: Schedule a prompt Additional Reading: Microsoft 365 environment for scheduled prompts Rationale: Scheduling the prompt is correct because it enables Copilot to automatically run a saved prompt at a defined time and frequency without user intervention. Adding the prompt to a notebook organizes it for reference but does not automate execution. Saving and pinning the prompt makes it easier to locate but still requires manual use. Sharing the prompt enables others to reuse the prompt but does not cause the prompt to run automatically."
+    },
+    {
+      "id": 121,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "single-select",
+      "question": "You rename a conversation in Microsoft 365 Copilot Chat. What does renaming the conversation change?",
+      "options": [
+        "the conversation title",
+        "the conversation content",
+        "the Copilot memory settings",
+        "the notebook where the conversation is stored"
+      ],
+      "correct": [
+        0
+      ],
+      "note": "Objective: 2.2 Manage conversations in Copilot What This Item Tests: Rename a chat Additional Reading: Revisit your Microsoft 365 Copilot Chat history Rationale: Renaming a conversation changes only the conversation title, so it is easier to identify later. It does not alter the content of the conversation, does not modify Copilot memory settings, and does not automatically move or change the notebook where the conversation is stored."
+    },
+    {
+      "id": 122,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "multiple-select",
+      "question": "You use Microsoft 365 Copilot Chat to work on multiple projects each month. You need to reopen a conversation from several weeks ago. Which two actions can you perform to locate the conversation? Each correct answer presents a complete solution.",
+      "options": [
+        "Search for keywords.",
+        "View Copilot memory.",
+        "Review the chat history.",
+        "Start a new chat and enter the same prompt."
+      ],
+      "correct": [
+        0,
+        2
+      ],
+      "note": ""
+    },
+    {
+      "id": 123,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "single-select",
+      "question": "You regularly use Microsoft 365 Copilot Chat to research client proposals. A colleague asks you to review a conversation you had several weeks ago about a specific client. Where should you go to locate the conversation?",
+      "options": [
+        "the chat history",
+        "Copilot memory",
+        "Microsoft 365 file search",
+        "a new chat"
+      ],
+      "correct": [
+        0
+      ],
+      "note": "Objective: 2.2 Manage conversations in Copilot What This Item Tests: Understand how to find previous conversations Additional Reading: Revisit your Microsoft 365 Copilot Chat history Rationale: The chat history in Copilot Chat displays previous conversations and enables you to reopen them. Copilot memory stores saved preferences and personalization details but does not contain full conversation threads. Microsoft 365 file search retrieves documents and files rather than Copilot Chat conversations. Starting a new chat creates a new conversation rather than retrieving an existing one."
+    },
+    {
+      "id": 124,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "single-select",
+      "question": "You are using Microsoft 365 Copilot Chat to plan a product launch. You need to keep an existing project conversation organized with related files and notes, so you can continue the conversation later. What should you do?",
+      "options": [
+        "Rename the conversation.",
+        "Add the conversation to a notebook.",
+        "Share the conversation with your team.",
+        "Pin the conversation in the chat history."
+      ],
+      "correct": [
+        1
+      ],
+      "note": "Objective: 2.2 Manage conversations in Copilot What This Item Tests: Add a conversation to a notebook Additional Reading: Revisit your Microsoft 365 Copilot Chat history Get started with Microsoft 365 Copilot Notebooks Rationale: Adding the conversation to a notebook organizes the existing chat with related materials, while preserving its content for continued work. Pinning the conversation keeps it visible in the chat history but does not group it with other resources. Renaming the conversation changes only its title and does not organize it. Sharing the conversation enables collaboration but does not structure it alongside related project content."
+    },
+    {
+      "id": 125,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "single-select",
+      "question": "Select the answer that correctly completes the sentence. To enable a Microsoft 365 Copilot agent to reference the documents stored on a Microsoft SharePoint Online site when generating responses, you must configure the [Target_A] setting.",
+      "options": [
+        "Capabilities",
+        "Instructions",
+        "Knowledge sources",
+        "Suggested prompts"
+      ],
+      "correct": [
+        2
+      ],
+      "note": "Objective: 2.3 Create and manage Microsoft 365 Copilot agents What This Item Tests: Configure an agent that has knowledge Additional Reading: Add knowledge sources to your declarative agent in Microsoft 365 Copilot Rationale: Knowledge sources must be configured to allow the agent to reference documents stored in SharePoint or other organizational locations. Capabilities enable functional actions but do not provide access to content. Instructions define how the agent behaves or formats responses. Suggested prompts provide example user queries but do not connect the agent to enterprise data."
+    },
+    {
+      "id": 126,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "single-select",
+      "question": "You build a Microsoft 365 Copilot agent for the procurement team at your company. The agent must respond in bullet points and limit answers to three recommendations. During testing, the agent returns long paragraph responses. What should you configure?",
+      "options": [
+        "Capabilities",
+        "Instructions",
+        "Knowledge sources",
+        "Suggested prompts"
+      ],
+      "correct": [
+        1
+      ],
+      "note": "Objective: 2.3 Create and manage Microsoft 365 Copilot agents What This Item Tests: Configure agent settings such as instructions, capabilities and suggested prompts Additional Reading: Write effective instructions for declarative agents Build agents by using Agent Builder in Microsoft 365 Copilot Build agents by using Agent Builder in Microsoft 365 Copilot Rationale: Instructions control how the agent formats and structures its responses, including requirements, such as using bullet points and limiting the number of recommendations. Capabilities enable specific functional actions and do not control the response format. Knowledge sources establish which content the agent can reference, not how it presents information. Suggested prompts provide example user queries but do not enforce response behavior."
+    },
+    {
+      "id": 127,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "single-select",
+      "question": "You are building a Microsoft 365 Copilot agent for the legal team at your company. You need the agent to always respond in a formal tone and include a disclaimer at the end of every response. Which setting should you configure?",
+      "options": [
+        "Capabilities",
+        "Instructions",
+        "Knowledge sources",
+        "Suggested prompts"
+      ],
+      "correct": [
+        1
+      ],
+      "note": "Objective: 2.3 Create and manage Microsoft 365 Copilot agents What This Item Tests: Configure agent settings such as instructions, capabilities and suggested prompts Additional Reading: Write effective instructions for declarative agents Build agents by using Agent Builder in Microsoft 365 Copilot Use natural language to describe your agent Rationale: Instructions define how the agent behaves and formats its responses, including tone and required elements, such as disclaimers. Capabilities enable specific functional actions the agent can perform. Knowledge sources connect the agent to organizational content. Suggested prompts provide example questions for users but do not control response behavior."
+    },
+    {
+      "id": 128,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "single-select",
+      "question": "Select the answer that correctly completes the sentence. You can use [Target_A] to add and start using a prebuilt agent without creating a new one.",
+      "options": [
+        "the Agent Store",
+        "Microsoft 365 Copilot Chat",
+        "Microsoft 365 Copilot Studio",
+        "the Agent Builder in Microsoft 365 Copilot"
+      ],
+      "correct": [
+        0
+      ],
+      "note": "Objective: 2.3 Create and manage Microsoft 365 Copilot agents What This Item Tests: Understand when to use Agent Store versus creating a new agent Additional Reading: Choose what type of agent to build Introducing the Agent Store: Build, publish, and discover agents in Microsoft 365 Copilot Rationale: The Agent Store is used to browse, add, and use prebuilt agents without creating a new agent. The Agent Builder and Copilot Studio are used to create or customize agents, which involves configuration work. Copilot Chat provides conversational assistance but does not provide reusable prebuilt agents."
+    },
+    {
+      "id": 129,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "single-select",
+      "question": "You are creating a new agent in Microsoft 365 Copilot. You need to ensure that the agent can generate images in response to user prompts. Which field should you configure?",
+      "options": [
+        "Capabilities",
+        "Description",
+        "Instructions",
+        "Knowledge"
+      ],
+      "correct": [
+        0
+      ],
+      "note": "Objective: 2.3 Create and manage Microsoft 365 Copilot agents What This Item Tests: Configure agent settings such as instructions, capabilities and suggested prompts Additional Reading: Add the image generator capability to your agent Rationale: Capabilities control which actions an agent can perform, including generating images, making this the correct choice. Description is used to summarize the agent’s purpose for users and does not affect functionality. Instructions guide how the agent should behave or respond but does not enable image generation. Knowledge defines the content sources the agent can reference and is unrelated to enabling generative features such as images."
+    },
+    {
+      "id": 130,
+      "source": "microsoft",
+      "topic": "Business Content & Collaboration",
+      "type": "single-select",
+      "question": "You are preparing for a meeting with a potential partner. You need Microsoft 365 Copilot to draft a first version of a partnership proposal in Microsoft Word, even though no related documents currently exist. What should you do?",
+      "options": [
+        "Ask Copilot to suggest a proposal.",
+        "Upload meeting notes from a previous project.",
+        "Search for similar proposals in Microsoft Teams.",
+        "Describe the partnership goals and key requirements in a prompt."
+      ],
+      "correct": [
+        3
+      ],
+      "note": "Objective: 3.1 Draft business documents and communications What This Item Tests: Create a new document from a prompt Additional Reading: Create and draft with Microsoft 365 Copilot Rationale: Creating a new document from scratch by using Copilot begins by providing a prompt that describes the purpose, audience, and key requirements of the document. Searching for existing content, uploading unrelated materials, or waiting for automatic suggestions do not initiate document creation when no source documents exist."
+    },
+    {
+      "id": 131,
+      "source": "microsoft",
+      "topic": "Business Content & Collaboration",
+      "type": "single-select",
+      "question": "You are collaborating on the launch plan for a new product. You need to create a management summary based on an existing launch plan document by using Copilot in Microsoft Word. How should you use Copilot to draft the summary?",
+      "options": [
+        "Rewrite the launch plan by using a more formal tone.",
+        "Summarize each section of the launch plan individually.",
+        "Copy the launch plan content into Word and summarize it.",
+        "Ask Copilot to create a new document by referencing the launch plan document."
+      ],
+      "correct": [
+        3
+      ],
+      "note": "Objective: 3.1 Draft business documents and communications What This Item Tests: Generate a document from an existing document Additional Reading: Create and draft with Microsoft 365 Copilot Rationale: Generating a management summary from an existing document requires Copilot to reference the original document while creating a new output tailored for leadership. Manually copying content, rewriting tone, and summarizing sections individually do not create a new document based on the existing one by using Copilot."
+    },
+    {
+      "id": 132,
+      "source": "microsoft",
+      "topic": "Business Content & Collaboration",
+      "type": "single-select",
+      "question": "You are working with a team to understand how Microsoft 365 Copilot can support daily work. You need to explain how Copilot helps users reuse information from one Microsoft 365 app while working in another. Which statement accurately describes this capability?",
+      "options": [
+        "Copilot provides general AI responses that are NOT connected to your work data.",
+        "Copilot works within a single app and cannot reference information from other apps.",
+        "Copilot requires users to manually copy content between apps before the content can be reused.",
+        "Copilot can bring relevant information from emails, chats, and files into the app you are working in."
+      ],
+      "correct": [
+        3
+      ],
+      "note": "Objective: 3.1 Draft business documents and communications What This Item Tests: Move data and insights between Microsoft 365 apps Additional Reading: Work smarter with Microsoft 365 Copilot Chat Rationale: Copilot helps users move data and insights between apps by bringing relevant information from sources, such as emails, chats, and files, into the current app context. Copilot does not operate in isolation, does not require manual copying, and does not limit users to a single app when reusing work information."
+    },
+    {
+      "id": 133,
+      "source": "microsoft",
+      "topic": "Business Content & Collaboration",
+      "type": "single-select",
+      "question": "Select the answer that correctly completes the sentence. With Copilot in Microsoft Word, you can create a new document by [Target_A].",
+      "options": [
+        "generating a rewritten version of the document with a different structure",
+        "referencing an existing document as the starting point",
+        "summarizing the document into a shorter executive version",
+        "transforming the document into a different format, such as a report outline"
+      ],
+      "correct": [
+        1
+      ],
+      "note": "Objective: 3.1 Draft business documents and communications What This Item Tests: Generate a document from an existing document Additional Reading: Create and draft with Microsoft 365 Copilot Rationale: Copilot in Word can create a new document by referencing an existing document as the starting point, which enables content to be reused in a separate file. Rewriting, summarizing, or transforming the document changes the form of the same content rather than generating a new document based on an existing one."
+    },
+    {
+      "id": 134,
+      "source": "microsoft",
+      "topic": "Business Content & Collaboration",
+      "type": "single-select",
+      "question": "You are drafting a proposal in by using Copilot in Microsoft Word. Important background information is spread across emails in Microsoft Outlook and meeting notes in Microsoft Teams. You want Copilot to incorporate the relevant information into the proposal, while minimizing manual effort and duplication. What should you do?",
+      "options": [
+        "Export the Outlook emails and Teams notes as files and reference them in Copilot.",
+        "Use Copilot in Word to incorporate insights from related Outlook emails and Teams meetings.",
+        "Use Microsoft 365 Copilot Chat to summarize the emails and meetings notes before drafting the proposal.",
+        "Paste key excerpts from the emails and meeting notes into the Word document, and then ask Copilot to refine them."
+      ],
+      "correct": [
+        1
+      ],
+      "note": "Objective: 3.1 Draft business documents and communications What This Item Tests: Move data and insights between Microsoft 365 apps Additional Reading: Introduction to Microsoft 365 Copilot Rationale: Using Copilot directly in Word to incorporate insights from Outlook emails and Teams meetings enables information to move seamlessly across Microsoft 365 apps without manual copying, exporting, or context switching. Exporting files or pasting excerpts introduces unnecessary steps and duplication, while summarizing content separately in Copilot Chat adds an extra workflow that does not take full advantage of Copilot in-app, cross-app integration."
+    },
+    {
+      "id": 135,
+      "source": "microsoft",
+      "topic": "Business Content & Collaboration",
+      "type": "single-select",
+      "question": "You create an employee onboarding overview on a Microsoft 365 Copilot Page that includes information about company culture, core values, and onboarding goals. You need to reuse key information from the Copilot Page to create a Microsoft PowerPoint presentation. How should you use Copilot to do this?",
+      "options": [
+        "Import the Copilot Page as a PDF into PowerPoint..",
+        "Copy the content from the Copilot Page to PowerPoint.",
+        "Rewrite the content in PowerPoint by using Microsoft 365 Copilot Chat.",
+        "Use the Copilot Page reference as an input for Copilot when creating the presentation."
+      ],
+      "correct": [
+        3
+      ],
+      "note": "Objective: 3.1 Draft business documents and communications What This Item Tests: Move data and insights between Microsoft 365 apps Additional Reading: Work smarter with Microsoft 365 Copilot Chat Introduction to Microsoft 365 Copilot Rationale: Using a Copilot Page as a reference allows Copilot to reuse existing content across Microsoft 365 apps without manual copying or file conversion. Copying content, exporting files, and rewriting information introduces extra steps and increases the risk of losing or altering key insights."
+    },
+    {
+      "id": 136,
+      "source": "microsoft",
+      "topic": "Business Content & Collaboration",
+      "type": "single-select",
+      "question": "You use Microsoft 365 Copilot to create a business case document in Microsoft Word. You want Copilot to generate the document based on your requirements. What should you do first?",
+      "options": [
+        "Copy and paste your related notes into Copilot.",
+        "Select the formatting options for the document.",
+        "Choose a document template for the business case.",
+        "Describe the business case you want Copilot to create in a prompt."
+      ],
+      "correct": [
+        3
+      ],
+      "note": "Objective: 3.1 Draft business documents and communications What This Item Tests: Create a new document from a prompt Additional Reading: Create and draft with Microsoft 365 Copilot Rationale: To create a new document by using Microsoft 365 Copilot, start by describing what you want Copilot to generate in a prompt, which defines the purpose and scope of the document. Other references and files can be added later to refine or ground the output, but they are optional and not required to begin document creation. Choosing templates or formatting options also occurs after Copilot generates an initial draft."
+    },
+    {
+      "id": 137,
+      "source": "microsoft",
+      "topic": "Business Content & Collaboration",
+      "type": "single-select",
+      "question": "You are reviewing a detailed draft document created by using Microsoft 365 Copilot. You need to provide senior leaders with a short, executive-level overview that highlights the most important points in the document. What should you ask Copilot to do?",
+      "options": [
+        "Summarize each section of the document in detail.",
+        "Convert the document into a slide-based presentation.",
+        "Create a concise management summary highlighting key outcomes.",
+        "Rewrite the document to match an executive communication style."
+      ],
+      "correct": [
+        2
+      ],
+      "note": "Objective: 3.1 Draft business documents and communications What This Item Tests: Generate a management summary based on a document Additional Reading: Create and draft with Microsoft 365 Copilot Rationale: Creating a concise management summary focuses on key outcomes and provides an executive-level overview suitable for senior leaders. Converting the document into slides changes the format, rewriting the document changes the purpose, and summarizing each section in detail produces content that is too granular for an executive summary."
+    },
+    {
+      "id": 138,
+      "source": "microsoft",
+      "topic": "Business Content & Collaboration",
+      "type": "single-select",
+      "question": "You use Microsoft 365 Copilot to create a document. You need to start the document by describing what you require Copilot to write. What should you use?",
+      "options": [
+        "an existing document",
+        "meeting notes from Microsoft Teams",
+        "a prompt",
+        "a saved Copilot conversation"
+      ],
+      "correct": [
+        2
+      ],
+      "note": "Objective: 3.1 Draft business documents and communications What This Item Tests: Create a new document from a prompt Additional Reading: Create and draft with Microsoft 365 Copilot Rationale: Copilot can create a new document when you provide a prompt that describes the content you want to generate. Existing documents, saved conversations, and meeting notes can be used as references, but they are not required to create a new document from scratch."
+    },
+    {
+      "id": 139,
+      "source": "microsoft",
+      "topic": "Business Content & Collaboration",
+      "type": "single-select",
+      "question": "You capture meeting outcomes and notes on a Microsoft 365 Copilot Page edited by multiple members of a team. You need to create a Microsoft PowerPoint presentation that reflects the latest shared content. The solution must minimize a rework of the content. What should you do?",
+      "options": [
+        "Use Copilot to generate a PowerPoint presentation directly from the Copilot Page.",
+        "Copy the Copilot Page content into PowerPoint and ask Copilot to format the slides.",
+        "Export the Copilot Page to Microsoft Word, and then use Copilot to generate slides.",
+        "Create a new presentation in PowerPoint by using Copilot Chat based on a general description of the meeting outcomes"
+      ],
+      "correct": [
+        0
+      ],
+      "note": "Objective: 3.1 Draft business documents and communications What This Item Tests: Generate a document from an existing document Additional Reading: Create and draft with Microsoft 365 Copilot Rationale: Creating the presentation directly from the Copilot Page by using Copilot ensures the latest collaboratively edited content is used and minimizes manual effort. The other options introduce unnecessary copying, step conversion, and content recreation, which increases effort and risks losing updates."
+    },
+    {
+      "id": 140,
+      "source": "microsoft",
+      "topic": "Business Content & Collaboration",
+      "type": "single-select",
+      "question": "You use Copilot in Microsoft Teams to help with meetings. During a transcribed meeting, you prompt Copilot to focus summaries on action items. After the meeting ends, you ask Copilot to summarize the meeting. How does Copilot use the provided instruction?",
+      "options": [
+        "Copilot ignores the instruction once the meeting has ended.",
+        "Copilot requires the instructions to be restated after the meeting.",
+        "Copilot uses the instruction to emphasize action items in the summary.",
+        "Copilot applies the instruction only if the transcription ran for the entire meeting."
+      ],
+      "correct": [
+        2
+      ],
+      "note": "Objective: 3.2 Manage meetings and collaboration What This Item Tests: Describe how Copilot uses memory and instructions Additional Reading: Recap a Teams meeting Rationale: Copilot can use instructions provided during a meeting to guide generated follow-up content, such as meeting summaries. The other options incorrectly suggest that instructions are discarded after the meeting, depend on full transcription, or must always be repeated."
+    },
+    {
+      "id": 141,
+      "source": "microsoft",
+      "topic": "Business Content & Collaboration",
+      "type": "single-select",
+      "question": "You organize a Microsoft Teams meeting. You need to ensure that participants can interact with Copilot while the meeting is in progress. The solution must ensure that the participants cannot access Copilot or Copilot-generated content after the meeting ends. Which Copilot meeting option should you select?",
+      "options": [
+        "During and after the meeting",
+        "Off",
+        "Only d uring the meeting"
+      ],
+      "correct": [
+        2
+      ],
+      "note": "Objective: 3.2 Manage meetings and collaboration What This Item Tests: Describe how to use Copilot for meetings Additional Reading: Use Copilot in Microsoft Teams meetings Rationale: Selecting Only d uring the meeting enables participants to use Copilot while the meeting is in progress and prevents Copilot access after the meeting ends. Allowing Copilot during and after the meeting enables post-meeting access, and turning Copilot off prevents in-meeting use."
+    },
+    {
+      "id": 142,
+      "source": "microsoft",
+      "topic": "Business Content & Collaboration",
+      "type": "single-select",
+      "question": "You are using Microsoft 365 Copilot and must understand how Copilot personalizes responses over time. Which information is stored in Copilot memory?",
+      "options": [
+        "chat history from previous conversations",
+        "saved memories and user instructions",
+        "temporary meeting transcripts",
+        "user prompts from the last 90 days"
+      ],
+      "correct": [
+        1
+      ],
+      "note": "Objective: 3.2 Manage meetings and collaboration What This Item Tests: Describe how Copilot uses memory and instructions Additional Reading: Manage Copilot Memory in Microsoft 365 Copilot Rationale: Copilot memory stores information that users explicitly save as memories along with user-defined instructions that guide how Copilot responds over time. Chat history, prompts, and meeting transcripts are retained separately and are not stored as part of Copilot memory."
+    },
+    {
+      "id": 143,
+      "source": "microsoft",
+      "topic": "Business Content & Collaboration",
+      "type": "single-select",
+      "question": "You are in a Microsoft Teams meeting where multiple topics are being discussed rapidly. Before the meeting moves on to a new agenda item, you plan to use Copilot to synthesize the decisions made so far and any unresolved questions. What should you ask Copilot to do?",
+      "options": [
+        "Summarize the meeting after it ends.",
+        "Schedule a follow-up meeting in Microsoft Outlook.",
+        "Provide a verbatim transcript of the meeting conversation.",
+        "Generate a list of open questions and decisions discussed so far."
+      ],
+      "correct": [
+        3
+      ],
+      "note": "Objective: 3.2 Manage meetings and collaboration What This Item Tests: Describe how to use Copilot for meetings Additional Reading: Manage Copilot for Teams meetings and events Use Copilot in Microsoft Teams meetings Frequently asked questions about Copilot in Microsoft Teams Rationale: Copilot can be used during a Teams meeting to surface synthesized insights, such as decisions made and unresolved questions, which helps participants align before moving forward. A transcript provides raw conversation without synthesis, and post-meeting summaries or follow-up scheduling do not support real-time collaboration during the meeting."
+    },
+    {
+      "id": 144,
+      "source": "microsoft",
+      "topic": "Business Content & Collaboration",
+      "type": "single-select",
+      "question": "You need Copilot to generate a meeting summary and a list of action items after a Microsoft Teams meeting ends. What should you enable during the meeting?",
+      "options": [
+        "live captions",
+        "meeting recording",
+        "meeting transcription",
+        "Together mode"
+      ],
+      "correct": [
+        2
+      ],
+      "note": ""
+    },
+    {
+      "id": 145,
+      "source": "microsoft",
+      "topic": "Business Content & Collaboration",
+      "type": "single-select",
+      "question": "You have two Microsoft Teams meetings that were recorded and transcribed. You need to generate a written list of decisions and action items based only on what was discussed, without manually reviewing the recordings. What should you do in Teams?",
+      "options": [
+        "Search the meeting chat for keywords, such as decision and action item.",
+        "Turn on Together mode and ask Copilot to generate decisions and action items.",
+        "Use Copilot in each meeting recap to summarize the discussion and identify decisions and action items.",
+        "Export the attendance report and ask Copilot to infer decisions and action items from the attendee list."
+      ],
+      "correct": [
+        2
+      ],
+      "note": "Objective: 3.2 Manage meetings and collaboration What This Item Tests: Describe how to use Copilot for meetings Additional Reading: Streamline meeting preparation and follow ups with Copilot Rationale: Using Copilot in each meeting to summarize the discussion and identify decisions and action items generates structured output directly from the meeting transcript without manually reviewing the recordings. Exporting the attendance report does not include meeting content and cannot provide decisions or action items. Searching the meeting chat can miss a verbal discussion that was not typed. Turning on Together mode only changes the meeting layout and does not affect Copilot summarization capabilities."
+    },
+    {
+      "id": 146,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "single-select",
+      "question": "You use Copilot in Microsoft Outlook to summarize a negotiation with a vendor. The key negotiation details were discussed across multiple replies within one email conversation. What should you reference in the prompt to ensure that Copilot includes the complete discussion?",
+      "options": [
+        "the entire mailbox",
+        "the specific email conversation",
+        "the vendor contact",
+        "your recent Outlook messages"
+      ],
+      "correct": [
+        1
+      ],
+      "note": "Objective: 2.1 Create and manage prompts in Microsoft 365 Copilot What This Item Tests: Select appropriate resources to reference in a prompt Additional Reading: Chat with Copilot in Outlook Rationale: The specific email conversation is correct because it contains all the replies and ensures that Copilot uses the full negotiation context. Referencing the entire mailbox expands the scope beyond the relevant discussion. Referencing the vendor contact does not guarantee the inclusion of the complete conversation history. Using recent Outlook messages might omit earlier replies in the negotiation thread."
+    },
+    {
+      "id": 147,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "multiple-select",
+      "question": "You use Microsoft 365 Copilot to draft a project update for senior management. You need to ensure that the prompt generates a clear and useful response. Which two elements should you include in the prompt? Each correct answer presents part of the solution.",
+      "options": [
+        "a clear description of the task to be completed",
+        "a specific audience and an expected output format",
+        "background information about how long the project has existed",
+        "instructions to make the response as detailed as possible",
+        "the names of the team members involved in the project"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "note": "Objective: 2.1 Create and manage prompts in Microsoft 365 Copilot What This Item Tests: Understand how to create an effective prompt Additional Reading: Craft effective prompts for Microsoft 365 Copilot Write effective instructions for declarative agents Rationale: A clear description of the task ensures that Copilot understands the objective of the request. A specific audience and expected output format guide tone, structure, and relevance, which improves response quality. Background information about project duration might provide context, but it is not a core structural element of an effective prompt. Asking for maximum detail can reduce clarity if not paired with a defined goal or format. Listing team members does not inherently improve prompt effectiveness unless directly tied to the task."
+    },
+    {
+      "id": 148,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "single-select",
+      "question": "In Microsoft 365 Copilot Chat, you create a prompt that generates a structured quarterly report. You need the prompt to be available in your saved prompts list so you can reuse it later. What does saving the prompt enable?",
+      "options": [
+        "read-only protection of the prompt",
+        "organization-wide access to the prompt",
+        "availability of the prompt from your saved prompts list",
+        "automatic execution of the prompt at scheduled intervals"
+      ],
+      "correct": [
+        2
+      ],
+      "note": "Objective: 2.1 Create and manage prompts in Microsoft 365 Copilot What This Item Tests: Save a prompt Additional Reading: Understand Prompt Gallery in Copilot Rationale: Availability of the prompt in your saved prompts list is the correct answer because saving a prompt stores it for future reuse within Copilot. Automatic execution at scheduled intervals requires scheduling the prompt, which is a separate feature. Organization-wide access requires sharing the prompt with other users and does not occur automatically when saving. Read-only protection is not a function of saving; saved prompts can still be edited by the user who saved them."
+    },
+    {
+      "id": 149,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "single-select",
+      "question": "You are using Microsoft 365 Copilot Chat to plan a project. You need to keep an existing conversation grouped with related project materials, so you can continue working on the project over time. What should you do?",
+      "options": [
+        "Pin the chat.",
+        "Rename the chat.",
+        "Start a new chat.",
+        "Add the conversation to a notebook."
+      ],
+      "correct": [
+        3
+      ],
+      "note": "Objective: 2.2 Manage conversations in Copilot What This Item Tests: Add a conversation to a notebook Additional Reading: Get started with Microsoft 365 Copilot Notebooks Rationale: Adding the conversation to a notebook groups it with related materials and enables continued work in context. Pinning the chat keeps it visible in the chat history but does not organize it with other project content. Renaming the chat changes only its title. Starting a new chat creates a separate conversation rather than organizing an existing one."
+    },
+    {
+      "id": 150,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "single-select",
+      "question": "You delete a conversation from Microsoft 365 Copilot Chat. What occurs to the conversation?",
+      "options": [
+        "The conversation is removed only from any notebooks.",
+        "The conversation title is reset to its original name.",
+        "The conversation is no longer visible in the chat history.",
+        "The conversation remains in the chat history but is marked as inactive."
+      ],
+      "correct": [
+        2
+      ],
+      "note": "Objective: 2.2 Manage conversations in Copilot What This Item Tests: Delete a chat Additional Reading: Revisit your Microsoft 365 Copilot Chat history Rationale: Deleting a conversation removes it from the chat history in Copilot Chat, so the conversation is no longer visible. This action is not limited to notebooks, and the conversation is not retained in an inactive state. Deleting the conversation does not reset or modify its title; instead, it removes the conversation entirely from view."
+    },
+    {
+      "id": 151,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "single-select",
+      "question": "You are using Microsoft 365 Copilot Chat to research marketing ideas for a new product launch. After the chat, you need the conversation title to clearly reflect the topic, so you can easily identify the conversation later. What should you do?",
+      "options": [
+        "Rename the chat from the conversation settings.",
+        "Export the chat and reload it with a new file name.",
+        "Create a new chat and copy the previous responses to it.",
+        "Delete the existing chat and start a new chat that has the new title."
+      ],
+      "correct": [
+        0
+      ],
+      "note": "Objective: 2.2 Manage conversations in Copilot What This Item Tests: Rename a chat Additional Reading: Revisit your Microsoft 365 Copilot Chat history Rationale: Renaming the chat from the conversation options enables you to update the conversation title without losing the existing chat history, which supports the better organization and retrieval of prior discussions. Creating a new chat requires duplicating content and does not modify the original conversation. Deleting the existing chat removes the conversation entirely. Exporting and reloading the chat changes file artifacts but does not rename the Copilot conversation within the chat interface."
+    },
+    {
+      "id": 152,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "single-select",
+      "question": "You are configuring the following instruction for a Microsoft 365 Copilot agent that drafts internal status reports: “Provide a detailed explanation of all project activities and keep the response under 100 words.” During testing, responses are inconsistent in length and detail. What is the most likely cause of the issue?",
+      "options": [
+        "The agent must include suggested prompts.",
+        "The Capabilities setting is not configured.",
+        "The agent requires additional knowledge sources.",
+        "The agent instruction contains conflicting guidance."
+      ],
+      "correct": [
+        3
+      ],
+      "note": "Objective: 2.3 Create and manage Microsoft 365 Copilot agents What This Item Tests: Configure agent settings such as instructions, capabilities and suggested prompts Additional Reading: Write effective instructions for declarative agents Rationale: The instruction includes conflicting guidance by requiring both a detailed explanation of all activities and a strict word limit, which can lead to inconsistent responses. Knowledge sources affect content access but do not resolve structural conflicts. Suggested prompts do not control how the agent formats responses. Capabilities enable specific functional actions and are unrelated to instruction clarity."
+    },
+    {
+      "id": 153,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "single-select",
+      "question": "You are configuring a Microsoft 365 Copilot agent for a department at your company. When the users open the agent, you want them to see example questions that they can ask the agent. Which setting should you configure?",
+      "options": [
+        "Capabilities",
+        "Instructions",
+        "Knowledge",
+        "Suggested prompts"
+      ],
+      "correct": [
+        3
+      ],
+      "note": "Objective: 2.3 Create and manage Microsoft 365 Copilot agents What This Item Tests: Configure agent settings such as instructions, capabilities and suggested prompts Additional Reading: Build agents by using Agent Builder in Microsoft 365 Copilot Rationale: Suggested prompts display example questions that users can select when interacting with the agent. Capabilities enable specific actions the agent can perform, such as generating images or performing tasks. Instructions define how the agent should behave or respond. Knowledge connects the agent to organizational content sources."
+    },
+    {
+      "id": 154,
+      "source": "microsoft",
+      "topic": "Business Content & Collaboration",
+      "type": "single-select",
+      "question": "You are building a Microsoft 365 Copilot agent for the finance team at your company. The agent must answer questions by referencing internal budgeting documents on a Microsoft SharePoint Online site. You need to ensure that the agent uses the documents to generate responses. What should you do?",
+      "options": [
+        "Add suggested prompts related to budgeting.",
+        "Add the SharePoint site as a knowledge source.",
+        "Add instructions that describe the budgeting process.",
+        "Update the agent description to mention budgeting support."
+      ],
+      "correct": [
+        1
+      ],
+      "note": ""
+    },
+    {
+      "id": 155,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "single-select",
+      "question": "You build a Microsoft 365 Copilot agent for a team named Sales West. You need to ensure that only the users on Sales West can use the agent during a pilot. What should you do?",
+      "options": [
+        "Share the agent link in a Microsoft Teams channel.",
+        "Create a new agent specifically for each Sales West user.",
+        "Select a security group that contains the Sales West users.",
+        "Add the Sales West users individually by using Manage Sharing."
+      ],
+      "correct": [
+        2
+      ],
+      "note": "Objective: 2.3 Create and manage Microsoft 365 Copilot agents What This Item Tests: Share an agent with team members Additional Reading: Share and manage agents"
+    },
+    {
+      "id": 156,
+      "source": "microsoft",
+      "topic": "AI Fundamentals & Security",
+      "type": "single-select",
+      "question": "You use Copilot in Microsoft Excel to analyze a worksheet that contains quarterly sales figures. When you ask Copilot to explain trends in the data, the response focuses only on the numbers in the worksheet and does NOT reference industry benchmarks or market trends from the web. Why did Copilot generate this type of response?",
+      "options": [
+        "Copilot cannot use web data when working in Excel.",
+        "Copilot restricts responses to numeric content only.",
+        "Copilot prioritized the data in the current workbook.",
+        "Copilot requires explicit permission to access web data."
+      ],
+      "correct": [
+        2
+      ],
+      "note": "Objective: 1.1 Understand generative AI capabilities across Microsoft 365 experiences What This Item Tests: Understand how the context, like your work files, web data, or the app you’re using, can affect Copilot responses Additional Reading: Application card: Microsoft 365 Copilot Rationale: Copilot uses the context of the app and the content currently in focus, such as an Excel worksheet, to ground its responses, which is why the response is based on the workbook’s data rather than external information. Copilot can use web data when appropriate, is not limited to numeric-only responses, and does not require special permission to reference web data in this scenario."
+    },
+    {
+      "id": 157,
+      "source": "microsoft",
+      "topic": "AI Fundamentals & Security",
+      "type": "single-select",
+      "question": "You are comparing Microsoft 365 Copilot Chat and Microsoft 365 Copilot. Which statement accurately describes a key difference between the two experiences?",
+      "options": [
+        "Copilot Chat includes in-app editing features, while Copilot does NOT.",
+        "Copilot Chat can summarize Microsoft 365 files by default, while Copilot cannot.",
+        "Copilot Chat is available only on the web, while Copilot is available only in Microsoft Teams.",
+        "Copilot Chat provides a general-purpose AI chat experience, while Copilot uses Work IQ to ground responses in your organization’s Microsoft 365 data."
+      ],
+      "correct": [
+        3
+      ],
+      "note": "Objective: 1.1 Understand generative AI capabilities across Microsoft 365 experiences What This Item Tests: Understand the differences in features and capabilities of the Copilot experience in various Microsoft 365 apps Additional Reading: Overview of Microsoft 365 Copilot Chat Microsoft 365 Copilot overview Rationale: Copilot Chat is designed as a general-purpose conversational AI experience, while Copilot is integrated into Microsoft 365 apps and grounded in organizational data, such as files, emails, meetings, and chats, which are subject to user permissions. The other options describe availability or capabilities that do not reflect how the two experiences differ."
+    },
+    {
+      "id": 158,
+      "source": "microsoft",
+      "topic": "AI Fundamentals & Security",
+      "type": "single-select",
+      "question": "You need to understand how Microsoft 365 Copilot protects organizational data. Which statement accurately describes how Copilot handles organizational data?",
+      "options": [
+        "Copilot restricts access to data by using sensitivity labels.",
+        "Copilot limits access to data based on Conditional Access policies.",
+        "Copilot requires administrators to manually approve each data request.",
+        "Copilot uses organizational data only within the tenant and does NOT use the data to train foundation models."
+      ],
+      "correct": [
+        3
+      ],
+      "note": "Objective: 1.1 Understand generative AI capabilities across Microsoft 365 experiences What This Item Tests: Understand how Copilot works to keep your organization’s information private and secure Additional Reading: Security for Microsoft 365 Copilot Rationale: Copilot processes organizational data within the tenant boundary and does not use customer data to train foundation models, which helps protect organizational information. Conditional Access and sensitivity labels address access and protection controls but do not describe how Copilot handles data for model training, and the manual approval of data requests is not part of the Copilot security model."
+    },
+    {
+      "id": 159,
+      "source": "microsoft",
+      "topic": "AI Fundamentals & Security",
+      "type": "single-select",
+      "question": "A company plans to implement generative AI tools and wants to ensure that sensitive business and personal data is handled responsibly. You need to align the implementation with Microsoft responsible AI principles. Which responsible AI principle should you prioritize?",
+      "options": [
+        "accountability",
+        "fairness",
+        "privacy and security",
+        "transparency"
+      ],
+      "correct": [
+        2
+      ],
+      "note": "Objective: 1.2 Identify responsible AI and data protection practices What This Item Tests: Recognize and mitigate risks to sensitive data Additional Reading: Responsible AI at Microsoft Rationale: The privacy and security principle focuses on protecting sensitive data, preventing unauthorized access, and ensuring compliance with data protection requirements, which directly addresses the risk of data exposure when using AI systems. Fairness and transparency address bias and explainability rather than data protection, and accountability relates to governance and oversight rather than safeguarding sensitive information."
+    },
+    {
+      "id": 160,
+      "source": "microsoft",
+      "topic": "AI Fundamentals & Security",
+      "type": "single-select",
+      "question": "You are reviewing a document generated by using Microsoft 365 Copilot. The document includes references to external sources, but you are unsure whether the references accurately support the content. Which responsible AI practice should you follow?",
+      "options": [
+        "Add more references by prompting Copilot again.",
+        "Remove the references to avoid potential inaccuracies.",
+        "Trust the references because Copilot generates them automatically.",
+        "Manually verify the referenced sources before relying on the content."
+      ],
+      "correct": [
+        3
+      ],
+      "note": "Objective: 1.2 Identify responsible AI and data protection practices What This Item Tests: Select verification steps appropriate to the task, including citation checks and human review Additional Reading: Responsible AI at Microsoft Rationale: Responsible use of AI-generated content requires verifying referenced sources to ensure that they accurately support the information presented. Automatically trusting references, removing them without verification, and adding more references do not address the risk of hallucinated or incorrect citations."
+    },
+    {
+      "id": 161,
+      "source": "microsoft",
+      "topic": "Business Content & Collaboration",
+      "type": "single-select",
+      "question": "You use Microsoft 365 Copilot to draft a report that includes sensitive information. What should you expect when data protection policies are applied to the prompt?",
+      "options": [
+        "Copilot stores sensitive prompt data for future reuse.",
+        "Copilot can generate responses only from the data that you can access.",
+        "Copilot ignores data protection policies when generating detailed reports.",
+        "Copilot automatically expands results beyond your data access permissions to improve accuracy."
+      ],
+      "correct": [
+        1
+      ],
+      "note": ""
+    },
+    {
+      "id": 162,
+      "source": "microsoft",
+      "topic": "Business Content & Collaboration",
+      "type": "single-select",
+      "question": "You have an existing document that contains detailed background information. You need to use Microsoft 365 Copilot to create a new document that reuses this information but is written for a different audience. What should you ask Copilot to do?",
+      "options": [
+        "Summarize the existing document.",
+        "Create an outline based on the existing document.",
+        "Edit the existing document to change its tone and wording.",
+        "Generate a new document by using the existing document as a reference."
+      ],
+      "correct": [
+        3
+      ],
+      "note": "Objective: 3.1 Draft business documents and communications What This Item Tests: Generate a document from an existing document Additional Reading: Create and draft with Microsoft 365 Copilot Rationale: Generating a new document from an existing one requires using the original document as a reference, while creating a separate file tailored to a new audience. Summarizing the document reduces content rather than producing a new document, editing tone modifies the same document, and creating an outline prepares structure but does not result in a new document."
+    },
+    {
+      "id": 163,
+      "source": "microsoft",
+      "topic": "Business Content & Collaboration",
+      "type": "single-select",
+      "question": "You use Microsoft 365 Copilot to summarize a detailed project status report. Senior leaders need a brief update that focuses on risks, progress, and next steps, without operational details. What should you ask Copilot to do?",
+      "options": [
+        "Generate a management summary.",
+        "Convert the report into slides.",
+        "Summarize each section of the report.",
+        "Rewrite the report by using an executive tone."
+      ],
+      "correct": [
+        0
+      ],
+      "note": "Objective: 3.1 Draft business documents and communications What This Item Tests: Generate a management summary based on a document Additional Reading: Create and draft with Microsoft 365 Copilot Rationale: A management summary provides a concise, executive-level overview that highlights risks, progress, and next steps without including operational details. Converting the content into slides changes the format, rewriting the report alters tone without reducing details, and summarizing each section results in more information than the senior leaders need."
+    },
+    {
+      "id": 164,
+      "source": "microsoft",
+      "topic": "Business Content & Collaboration",
+      "type": "single-select",
+      "question": "You are reviewing a long business report in Microsoft Word. You need to provide senior leaders with a concise overview of the report that focuses on key decisions and outcomes, without sharing the full document. What should you do?",
+      "options": [
+        "Use Copilot to translate the document.",
+        "Rewrite the document using a formal tone.",
+        "Copy sections of the document into Microsoft 365 Copilot Chat.",
+        "Ask Copilot to summarize the document for an executive audience."
+      ],
+      "correct": [
+        3
+      ],
+      "note": "Objective: 3.1 Draft business documents and communications What This Item Tests: Generate a management summary based on a document Additional Reading: Create and draft with Microsoft 365 Copilot Rationale: Using Copilot to summarize the document for an executive audience enables you to generate a concise overview that focuses on key decisions and outcomes without rewriting or translating the content. Copying sections into Copilot Chat is unnecessary and inefficient, rewriting the document changes its purpose rather than summarizing it, and translation does not address the need for an executive-level summary."
+    },
+    {
+      "id": 165,
+      "source": "microsoft",
+      "topic": "Business Content & Collaboration",
+      "type": "single-select",
+      "question": "After a meeting, you need multiple team members to collaboratively edit and refine AI-generated notes in a shared workspace. Which Copilot capability supports this scenario?",
+      "options": [
+        "Copilot meeting recap",
+        "Copilot prompts saved in a notebook",
+        "Microsoft 365 Copilot Pages",
+        "Microsoft 365Copilot Chat"
+      ],
+      "correct": [
+        2
+      ],
+      "note": "Objective: 3.2 Manage meetings and collaboration What This Item Tests: Describe how to use Copilot for meetings Additional Reading: Get started with Microsoft 365 Copilot Pages Rationale: Copilot Pages provides a shared workspace where multiple users can collaboratively edit, organize, and refine AI-generated content after a meeting. Copilot Chat, meeting recaps, and saved prompts do not provide a persistent, shared editing surface for collaborative refinement."
+    },
+    {
+      "id": 166,
+      "source": "microsoft",
+      "topic": "Business Content & Collaboration",
+      "type": "single-select",
+      "question": "Which statement accurately describes how Copilot answers questions during a Microsoft Teams meeting?",
+      "options": [
+        "Copilot references transcripts from other meetings in the tenant.",
+        "Copilot summarizes recent Teams chats and uses them to answer meeting questions.",
+        "Copilot answers questions based on the live meeting transcript and meeting context.",
+        "Copilot pulls the user’s emails, chats, and documents from Microsoft Graph during the meeting."
+      ],
+      "correct": [
+        2
+      ],
+      "note": ""
+    },
+    {
+      "id": 167,
+      "source": "microsoft",
+      "topic": "Business Content & Collaboration",
+      "type": "single-select",
+      "question": "You want meeting participants to use Microsoft 365 Copilot effectively for meeting follow-up tasks, such as asking questions and reviewing AI-generated insights, after a Microsoft Teams meeting ends. Which condition should be met to support this scenario?",
+      "options": [
+        "Copilot must be allowed during and after the meeting.",
+        "End-to-end encryption must be enabled for the meeting.",
+        "External participants must be removed from the meeting.",
+        "The meeting must be scheduled by using Microsoft Outlook."
+      ],
+      "correct": [
+        0
+      ],
+      "note": "Objective: 3.2 Manage meetings and collaboration What This Item Tests: Describe how to use Copilot for meetings Additional Reading: Use Copilot in Microsoft Teams meetings Rationale: For Copilot to support meeting follow-up interactions after a meeting ends, it must be available both during and after the meeting so that Copilot context is retained. The encryption settings, participant composition, and scheduling method do not ensure that Copilot can be used for post-meeting follow-up."
+    },
+    {
+      "id": 168,
+      "source": "microsoft",
+      "topic": "Business Content & Collaboration",
+      "type": "single-select",
+      "question": "Which statement accurately describes how Microsoft 365 Copilot uses memory and instructions?",
+      "options": [
+        "Copilot requires meeting transcripts to be enabled before it can remember information.",
+        "Copilot only uses information from the current conversation and cannot be personalized.",
+        "Copilot automatically remembers all chat content and permanently applies it to future responses.",
+        "Copilot can use previous chat context, and users can save information as memories and set instructions to personalize responses."
+      ],
+      "correct": [
+        3
+      ],
+      "note": "Objective: 3.2 Manage meetings and collaboration What This Item Tests: Describe how Copilot uses memory and instructions Additional Reading: Copilot personalization and memory Rationale: Copilot can reference prior chat context and enables users to explicitly save information as memories and define instructions that guide how responses are generated over time. Copilot does not automatically retain all chat content permanently, personalization is supported beyond the current conversation, and meeting transcripts are not a requirement for Copilot memory or instructions."
+    },
+    {
+      "id": 169,
+      "source": "microsoft",
+      "topic": "Business Content & Collaboration",
+      "type": "single-select",
+      "question": "You join a Microsoft Teams project review meeting after the meeting has already started. Microsoft 365 Copilot is enabled for the meeting. You need to understand quickly what has been discussed so far without interrupting the conversation. What should you ask Copilot to do?",
+      "options": [
+        "Create action items after the meeting ends.",
+        "Generate a summary of the discussion so far.",
+        "Draft a follow-up email in Microsoft Outlook.",
+        "Start a real-time transcription of the meeting."
+      ],
+      "correct": [
+        1
+      ],
+      "note": "Objective: 3.2 Manage meetings and collaboration What This Item Tests: Describe how to use Copilot for meetings Additional Reading: Use Copilot in Microsoft Teams meetings Enhance meeting productivity with Copilot in Microsoft Teams Rationale: Copilot can generate an in-meeting summary that highlights key points discussed up to that moment, enabling a participant who joins late to quickly gain context without disrupting the meeting. A Transcription records spoken content but does not synthesize it, and post-meeting actions, such as action items or follow-up emails, do not address the immediate need during the meeting."
+    },
+    {
+      "id": 170,
+      "source": "microsoft",
+      "topic": "Business Content & Collaboration",
+      "type": "single-select",
+      "question": "You use Microsoft 365 Copilot to analyze customer feedback stored in a document. You have the following current prompt: “Analyze this customer feedback.” You need management to quickly understand the most significant issues and which actions the team should take next. Which revised prompt best achieves the goal? More than one answer choice may achieve the goal. Select the BEST answer.",
+      "options": [
+        "Analyze this customer feedback and list actions mentioned in the comments.",
+        "Analyze this customer feedback in detail and suggest actions with supporting examples.",
+        "Analyze this customer feedback and provide a detailed summary of comments and suggested next steps.",
+        "Analyze this customer feedback and identify the top three recurring themes and two recommended actions for each."
+      ],
+      "correct": [
+        3
+      ],
+      "note": ""
+    },
+    {
+      "id": 171,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "single-select",
+      "question": "In Microsoft 365 Copilot Chat, you create a prompt that generates a monthly financial summary. You need Copilot to run the prompt automatically at the beginning of each month. What should you do first?",
+      "options": [
+        "Save the prompt.",
+        "Turn on the Web content toggle.",
+        "Share the prompt with your team.",
+        "Add the conversation to a notebook."
+      ],
+      "correct": [
+        0
+      ],
+      "note": "Objective: 2.1 Create and manage prompts in Microsoft 365 Copilot What This Item Tests: Schedule a prompt Additional Reading: How to save prompts Rationale: Save the prompt is correct because a prompt must be saved before it can be scheduled for recurring execution. Adding the conversation to a notebook organizes the discussion but does not enable scheduling. Sharing the prompt enables others to reuse it but is not required for scheduling. Turning on the Web content toggle controls grounding behavior and is unrelated to scheduling."
+    },
+    {
+      "id": 172,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "single-select",
+      "question": "Select the answer that correctly completes the sentence. With Microsoft 365 Copilot Chat, you can group an existing conversation with related materials by using [Target_A].",
+      "options": [
+        "an agent",
+        "the chat history",
+        "a notebook",
+        "a prompt"
+      ],
+      "correct": [
+        2
+      ],
+      "note": "Objective: 2.2 Manage conversations in Copilot What This Item Tests: Add a conversation to a notebook Additional Reading: Revisit your Microsoft 365 Copilot Chat history Get started with Microsoft 365 Copilot Notebooks Rationale: A notebook enables you to group an existing Copilot Chat conversation with related materials for continued work. An agent provides task-specific assistance but does not organize conversations. The chat history displays previous conversations but does not group them with additional materials. A prompt is a request entered into Copilot and does not organize conversations."
+    },
+    {
+      "id": 173,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "single-select",
+      "question": "You build a Microsoft 365 Copilot agent. You need a small group of users to test the agent in Microsoft Teams before the agent is released to the entire organization. What should you do?",
+      "options": [
+        "Share the agent.",
+        "Sideload the agent.",
+        "Submit the agent to the organization catalog.",
+        "Publish the agent to the Microsoft commercial marketplace."
+      ],
+      "correct": [
+        1
+      ],
+      "note": "Objective: 2.3 Create and manage Microsoft 365 Copilot agents What This Item Tests: Share an agent with team members Additional Reading: Share an agent Sideload agents at your organization Rationale: Sideloading the agent installs it in Teams for limited testing before broader deployment. Sharing the agent grants access permissions but does not make it available in Teams. Publishing to the Microsoft commercial marketplace distributes the agent externally. Submitting the agent to the organization catalog prepares it for wider internal availability rather than restricted pilot testing."
+    },
+    {
+      "id": 174,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "single-select",
+      "question": "Your company wants to provide employees with an agent that helps generate marketing campaign ideas. A prebuilt solution with this functionality is already available. You need to make this functionality available to the employees. The solution must minimize setup effort. What should you use?",
+      "options": [
+        "the Agent Store",
+        "Microsoft 365 Copilot Studio",
+        "the Microsoft commercial marketplace",
+        "the Agent Builder in Microsoft 365 Copilot"
+      ],
+      "correct": [
+        0
+      ],
+      "note": "Objective: 2.3 Create and manage Microsoft 365 Copilot agents What This Item Tests: Understand when to use Agent Store versus creating a new agent Additional Reading: Choose what type of agent to build Introducing the Agent Store: Build, publish, and discover agents in Microsoft 365 Copilot Rationale: The Agent Store is used to discover and add prebuilt agents that are already available for organizations, making it the appropriate choice when a suitable solution exists and minimal setup is required. The Agent Builder and Copilot Studio are used to create or customize agents, which involves additional configuration effort. The Microsoft commercial marketplace is intended for publishing solutions externally rather than installing existing agents for internal use."
+    },
+    {
+      "id": 175,
+      "source": "microsoft",
+      "topic": "AI Fundamentals & Security",
+      "type": "single-select",
+      "question": "When you ask Microsoft 365 Copilot to summarize a project in Microsoft Word, you receive a response that is based on an internal project document but does not include information from public websites. Why did Copilot generate this type of response?",
+      "options": [
+        "Copilot restricts responses to the files you created.",
+        "Copilot automatically excludes web data for all prompts.",
+        "Copilot only uses documents stored in Microsoft SharePoint Online.",
+        "Copilot prioritized content from the current app and your work files."
+      ],
+      "correct": [
+        3
+      ],
+      "note": "Objective: 1.1 Understand generative AI capabilities across Microsoft 365 experiences What This Item Tests: Understand how the context, like your work files, web data, or the app you’re using, can affect Copilot responses Additional Reading: Microsoft 365 Copilot overview Rationale: Copilot uses contextual signals, such as the app you are working in and relevant work files, to ground its responses, which explains why the summary relied on an internal document in Word. Web data can be included depending on the experience and prompt, so it is not automatically excluded. Copilot is not limited to SharePoint-only content, nor does it restrict responses to files created by the current user."
+    },
+    {
+      "id": 176,
+      "source": "microsoft",
+      "topic": "AI Fundamentals & Security",
+      "type": "single-select",
+      "question": "A company uses Microsoft 365 Copilot to help employees quickly ask questions and receive one-time responses during their daily work. The interactions do NOT need to follow predefined instructions, be reused, or use curated organizational knowledge. You need to choose the appropriate Copilot experience. What should you choose?",
+      "options": [
+        "an agent experience",
+        "a role-based Copilot experience",
+        "the Microsoft 365 Copilot Chat experience",
+        "the Copilot in Microsoft 365 apps experience"
+      ],
+      "correct": [
+        2
+      ],
+      "note": "Objective: 1.1 Understand generative AI capabilities across Microsoft 365 experiences What This Item Tests: Understand the difference between a chat experience and an agent experience Additional Reading: Which Copilot is right for me or my organization? Overview of Microsoft 365 Copilot Chat Rationale: A Copilot Chat experience supports ad hoc, conversational interactions that provide one-time responses without persistent instructions or reusable behavior. Agent experiences are designed for repeatable, instruction-based interactions, Copilot in Microsoft 365 apps focuses on in-context productivity assistance, and role-based Copilot experiences are tailored to specific job functions."
+    },
+    {
+      "id": 177,
+      "source": "microsoft",
+      "topic": "AI Fundamentals & Security",
+      "type": "single-select",
+      "question": "A company is implementing Microsoft 365 Copilot. Users need to ask questions, receive answers, and occasionally generate content based on organizational data. The interaction does not require executing tasks or automating business processes. You need to choose the appropriate type of Copilot interaction. What should you choose?",
+      "options": [
+        "a chat-based Copilot experience",
+        "an agent that performs tasks on behalf of users",
+        "a custom Copilot Studio agent with multi-step workflows",
+        "an automated workflow triggered by Microsoft Power Automate"
+      ],
+      "correct": [
+        0
+      ],
+      "note": "Objective: 1.1 Understand generative AI capabilities across Microsoft 365 experiences What This Item Tests: Understand the difference between a chat experience and an agent experience Additional Reading: Agent in-app experience Overview of Microsoft 365 Copilot Chat Which Copilot is right for me or my organization? Rationale: A chat-based Copilot experience is appropriate for ad hoc interactions such as asking questions, generating content, and retrieving information without executing tasks; Agents are designed to perform actions and automate processes on behalf of users; Custom Copilot Studio agents and automated workflows introduce unnecessary complexity when task execution is not required."
+    },
+    {
+      "id": 178,
+      "source": "microsoft",
+      "topic": "AI Fundamentals & Security",
+      "type": "single-select",
+      "question": "A company plans to create a Microsoft 365 Copilot agent that provides writing and presentation coaching based on organizational standards. The agent uses Microsoft SharePoint Online as a knowledge source and interacts with external business systems. You need to enable the agent to perform actions outside of Microsoft 365. Which capability should you add to the agent?",
+      "options": [
+        "an adaptive card",
+        "a Copilot connector",
+        "a custom API action",
+        "an image generator"
+      ],
+      "correct": [
+        2
+      ],
+      "note": "Objective: 1.1 Understand generative AI capabilities across Microsoft 365 experiences What This Item Tests: Understand the use case for creating your own agent Additional Reading: Agent Builder in Microsoft 365 Copilot Build from a template Microsoft 365 Copilot Rationale: A custom API action enables a Copilot agent to call external services and perform actions beyond retrieving knowledge, which is required when the agent must interact with business systems outside of Microsoft 365. Copilot connectors are used to ingest external data rather than execute actions, image generation does not support system interaction, and adaptive cards control how information is displayed rather than extending agent functionality."
+    },
+    {
+      "id": 179,
+      "source": "microsoft",
+      "topic": "AI Fundamentals & Security",
+      "type": "multiple-select",
+      "question": "A company uses Microsoft 365 Copilot. You need to reduce the risk of prompt injection attacks that can influence Copilot responses. Which two features help mitigate prompt injection attacks? Each correct answer presents part of the solution.",
+      "options": [
+        "Copilot encrypts all Microsoft 365 data at rest.",
+        "Copilot isolates the tenant data of Microsoft SharePoint Online.",
+        "Copilot applies grounding and filtering to prompts and responses.",
+        "Copilot enables users to review and edit generated content before use.",
+        "Copilot supports Microsoft Purview data loss prevention (DLP) policies."
+      ],
+      "correct": [
+        2,
+        3
+      ],
+      "note": "Objective: 1.2 Identify responsible AI and data protection practices What This Item Tests: Recognize and mitigate risks to sensitive data Additional Reading: Microsoft 365 Copilot and privacy controls for connected experiences Apply responsible AI principles Security for Microsoft 365 Copilot Rationale: Copilot mitigates prompt injection by grounding responses in trusted organizational data and applying filters to reduce the impact of malicious or misleading prompts. Copilot also keeps users in the loop, so they can review and modify outputs before acting on them. Encryption, tenant isolation, and DLP policies protect sensitive data but do not directly address how prompt injection influences model behavior or responses."
+    },
+    {
+      "id": 180,
+      "source": "microsoft",
+      "topic": "Business Content & Collaboration",
+      "type": "single-select",
+      "question": "You are starting to write a new Microsoft Word document by using Microsoft 365 Copilot. You need Copilot to generate an initial draft that matches a specific audience, purpose, and tone, even though no reference documents exist. Which information is most important to include in the prompt?",
+      "options": [
+        "the audience, goal, and tone of the document",
+        "the file location where the document will be saved",
+        "the length of time the document will be edited",
+        "the Microsoft 365 app where the document will be shared"
+      ],
+      "correct": [
+        0
+      ],
+      "note": ""
+    },
+    {
+      "id": 181,
+      "source": "microsoft",
+      "topic": "Business Content & Collaboration",
+      "type": "single-select",
+      "question": "Select the answer that correctly completes the sentence. You can use Microsoft 365 Copilot to [Target_A] when senior leaders need a brief overview of an existing document.",
+      "options": [
+        "generate a management summary",
+        "improve a document’s tone",
+        "restructure a document",
+        "translate a document"
+      ],
+      "correct": [
+        0
+      ],
+      "note": "Objective: Objective: 3.1 Draft business documents and communications What This Item Tests: Generate a management summary based on a document Additional Reading: Create and draft with Microsoft 365 Copilot Rationale: Copilot can generate a management summary to provide senior leaders with a concise overview of key information from a document. Improving tone, restructuring content, and translating the document address different needs and do not produce a leadership-focused summary."
+    },
+    {
+      "id": 182,
+      "source": "microsoft",
+      "topic": "Business Content & Collaboration",
+      "type": "single-select",
+      "question": "You are using Copilot in Microsoft Word to create a new document. You want Copilot to generate the document by using content from an existing document. Which Copilot feature should you use?",
+      "options": [
+        "Chat",
+        "Draft",
+        "Loop",
+        "Summarize"
+      ],
+      "correct": [
+        1
+      ],
+      "note": "Objective: 3.1 Draft business documents and communications What This Item Tests: Create a new document from a prompt Additional Reading: Draft and add content with Copilot in Word Create and draft with Microsoft 365 Copilot Rationale: The Draft feature in Microsoft 365 Copilot enables you to create a new document by referencing and reusing content from an existing document. Chat provides conversational responses, Loop is used for collaborative components rather than document drafting and Summarize condenses content instead of generating a new document."
+    },
+    {
+      "id": 183,
+      "source": "microsoft",
+      "topic": "Business Content & Collaboration",
+      "type": "single-select",
+      "question": "A company starts using Microsoft 365 Copilot Pages to collaborate on meeting outcomes across multiple teams. What is a key benefit of using Copilot Pages in this scenario?",
+      "options": [
+        "automatically enforces data governance policies across Microsoft 365 tenants",
+        "defines organizational goals, use cases, and success metrics for AI adoption",
+        "Enables multiple users to collaboratively refine and update AI-generated content in one shared space",
+        "prepares an organization for a phased rollout of Microsoft 365 Copilot"
+      ],
+      "correct": [
+        2
+      ],
+      "note": "Objective: 3.2 Manage meetings and collaboration What This Item Tests: Describe how to use Copilot Pages for collaboration Additional Reading: Collaborate with your team on a Microsoft 365 Copilot Page Rationale: Copilot Pages provide a shared, collaborative workspace where multiple users can review, edit, and build on AI-generated content together, making them well suited for coordinating meeting outcomes and shared work. The other options relate to governance, adoption planning, or rollout strategies, which are not functions of Copilot Pages and do not describe how they are used for collaboration."
+    },
+    {
+      "id": 184,
+      "source": "microsoft",
+      "topic": "Business Content & Collaboration",
+      "type": "single-select",
+      "question": "A user named User1 organizes three Microsoft Teams meetings for a project named Project1. Each meeting has a recording and transcript available in Teams. You need a written list of only the action items from the meetings. You cannot manually review the recordings or the transcripts. Which request should you make to Copilot?",
+      "options": [
+        "Explain the Project1 meeting notes by using Copilot in Microsoft PowerPoint.",
+        "Find the last three Project1 meeting recordings and generate summaries for each recording.",
+        "Find meetings organized by User1 and summarize the action items from the last three meetings.",
+        "Create a new Teams meeting that includes User1 and generate a list of action items for Project1."
+      ],
+      "correct": [
+        2
+      ],
+      "note": "Objective: 3.2 Manage meetings and collaboration What This Item Tests: Describe how to use Copilot for meetings Additional Reading: Use Copilot to review past meetings Use Copilot in Microsoft Teams meetings Streamline meeting preparation and follow ups with Copilot Rationale: Asking Copilot to find meetings organized by User1 and summarize action items leverages meeting transcripts and recordings to extract the required information without manual review; Creating a new meeting does not retrieve or summarize past meeting content; Using Copilot in PowerPoint does not access Teams meeting transcripts or recordings; Summarizing recordings without filtering for meetings organized by User1 or focusing specifically on action items does not meet the requirement."
+    },
+    {
+      "id": 185,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "single-select",
+      "question": "In Microsoft 365 Copilot Chat, you create a prompt that generates a weekly project status summary from a shared Microsoft Excel file. You need Copilot to automatically generate and send the updated summary to you every Friday without manually running the prompt. What should you configure?",
+      "options": [
+        "a shared prompt for your team",
+        "a recurring runtime for the prompt",
+        "a saved prompt in Copilot Prompt Gallery",
+        "a summary notification in Microsoft Outlook"
+      ],
+      "correct": [
+        1
+      ],
+      "note": "Objective: 2.1 Create and manage prompts in Microsoft 365 Copilot What This Item Tests: Schedule a prompt Additional Reading: Schedule Copilot prompts Rationale: A recurring runtime for the prompt is correct because scheduling enables Copilot to run the prompt automatically at defined intervals without manual interaction. Saving the prompt makes it reusable but does not cause it to run automatically. Sharing the prompt enables others to use it but does not automate execution. A summary notification in Outlook does not trigger Copilot to generate content on a schedule."
+    },
+    {
+      "id": 186,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "single-select",
+      "question": "You build a Microsoft 365 Copilot agent and attempt to share the agent with a team at your company. The Share option is unavailable. You confirm that the agent is configured correctly. You need to identify why you cannot share the agent. What is the most likely cause of the issue?",
+      "options": [
+        "The agent does not include suggested prompts.",
+        "The agent has no knowledge sources configured.",
+        "Agent sharing is restricted at the organization level.",
+        "The agent must first be published to the Microsoft commercial marketplace."
+      ],
+      "correct": [
+        2
+      ],
+      "note": "Objective: 2.3 Create and manage Microsoft 365 Copilot agents What This Item Tests: Share an agent with team members Additional Reading: Share an agent Agents admin guide for Microsoft 365s Rationale: Agent sharing can be restricted by organizational policies configured by administrators, which can prevent users from sharing agents. Suggested prompts are optional and do not affect sharing capabilities. Knowledge sources are not required to enable sharing. Publishing to the Microsoft commercial marketplace is for external distribution and is not required for internal sharing."
+    },
+    {
+      "id": 187,
+      "source": "microsoft",
+      "topic": "Business Content & Collaboration",
+      "type": "multiple-select",
+      "question": "You are using Microsoft 365 Copilot Pages to collaborate with others on meeting notes and ideas. You need to reuse the content outside of Copilot Pages. Which two actions should you perform? Each correct answer presents part of the solution.",
+      "options": [
+        "Convert the Copilot Page into a Microsoft Word document.",
+        "Generate real-time Copilot responses inside the Copilot Page.",
+        "Restrict the Copilot Page so that only the organizer can edit it.",
+        "Convert the Copilot Page into a Microsoft PowerPoint presentation.",
+        "Sync the Copilot Page automatically to a Microsoft OneNote notebook."
+      ],
+      "correct": [
+        0,
+        3
+      ],
+      "note": "Objective: 3.2 Manage meetings and collaboration What This Item Tests: Describe how to use Copilot Pages for collaboration Additional Reading: Get started with Microsoft 365 Copilot Pages Rationale: Copilot Pages content can be reused by converting it into Word documents or PowerPoint presentations, so that collaborative work can be shared in common Microsoft 365 formats. Copilot Pages does not function as a real-time chat interface, does not automatically enforce organizer-only editing, and does not sync content directly to OneNote."
+    },
+    {
+      "id": 188,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "single-select",
+      "question": "You are using Microsoft 365 Copilot Chat to work on several projects. You need to change the title of the current conversation, so it is easier to identify later. What should you do?",
+      "options": [
+        "Start a new chat.",
+        "Edit the conversation name.",
+        "Remove the conversation from the chat history.",
+        "Delete the conversation and start a new one with the desired name."
+      ],
+      "correct": [
+        1
+      ],
+      "note": "Objective: 2.2 Manage conversations in Copilot What This Item Tests: Rename a chat Additional Reading: Revisit your Microsoft 365 Copilot Chat history Rationale: Editing the conversation name enables you to change the title without affecting the conversation content. Deleting the conversation removes it entirely rather than renaming it. Removing the conversation from the chat history deletes it instead of changing its name. Starting a new chat creates a separate conversation and does not modify the existing one."
+    },
+    {
+      "id": 189,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "single-select",
+      "question": "You and several team members are building an agent by using Agent Builder in Microsoft 365. You need to allow the team members to access and test the agent before the agent is broadly released. What should you do?",
+      "options": [
+        "Share a link to the agent in a Microsoft Teams channel.",
+        "Use Manage Sharing in the Agent Builder to grant access.",
+        "Publish the agent to the Microsoft commercial marketplace.",
+        "Upload the agent files to a Microsoft SharePoint Online document library."
+      ],
+      "correct": [
+        1
+      ],
+      "note": "Objective: 2.3 Create and manage Microsoft 365 Copilot agents What This Item Tests: Share an agent with team members Additional Reading: Share and manage agents Rationale: Using Manage Sharing in the Agent Builder is required to grant users access to the agent. Publishing to the Microsoft commercial marketplace distributes the agent externally rather than enabling internal team collaboration. Sharing a link in Teams does not grant permissions unless access is configured. Uploading files to SharePoint does not control access to the agent itself."
+    },
+    {
+      "id": 190,
+      "source": "microsoft",
+      "topic": "Business Content & Collaboration",
+      "type": "single-select",
+      "question": "You have a Microsoft 365 Copilot license. You need to build a Microsoft 365 Copilot agent that answers employee questions based on your company’s HR policy documents. What should you add to the solution?",
+      "options": [
+        "a capability",
+        "instructions",
+        "a knowledge source",
+        "a starter prompt"
+      ],
+      "correct": [
+        2
+      ],
+      "note": ""
+    },
+    {
+      "id": 191,
+      "source": "microsoft",
+      "topic": "AI Fundamentals & Security",
+      "type": "single-select",
+      "question": "You need to use Microsoft 365 Copilot to summarize a document stored on a Microsoft SharePoint Online site. You are NOT authorized to access the document. What occurs when you prompt Copilot to summarize the document?",
+      "options": [
+        "Copilot blocks the request.",
+        "Copilot prompts you to request elevated access.",
+        "Copilot summarizes the document and provides a citation.",
+        "Copilot summarizes the document by using Microsoft Graph."
+      ],
+      "correct": [
+        0
+      ],
+      "note": "Objective: 1.1 Understand generative AI capabilities across Microsoft 365 experiences What This Item Tests: Understand how Copilot works to keep your organization’s information private and secure Additional Reading: User access and data privacy How does Microsoft 365 Copilot protect organizational data? Security for Microsoft 365 Copilot Rationale: Copilot enforces the same access controls as Microsoft 365 and cannot generate responses from content the user is not authorized to access, so the request is blocked. Copilot does not request or grant elevated permissions, does not bypass access controls by using Microsoft Graph, and does not summarize or cite content that the user cannot access."
+    },
+    {
+      "id": 192,
+      "source": "microsoft",
+      "topic": "Business Content & Collaboration",
+      "type": "single-select",
+      "question": "You need to delete a memory that you previously saved in Microsoft 365 Copilot. Which Copilot setting should you use?",
+      "options": [
+        "Chat history",
+        "Custom instructions",
+        "Enhanced personalization",
+        "Saved memories"
+      ],
+      "correct": [
+        3
+      ],
+      "note": "Objective: 3.2 Manage meetings and collaboration What This Item Tests: Describe how Copilot uses memory and instructions Additional Reading: Manage Copilot Memory in Microsoft 365 Copilot Rationale: Saved memories is the Copilot setting that enables users to view and delete information they have saved explicitly. Chat history and Custom instructions are managed separately, and Enhanced personalization controls behavior rather than individual saved memories."
+    },
+    {
+      "id": 193,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "single-select",
+      "question": "You use Microsoft 365 Copilot Chat throughout the week to draft emails and summarize documents. You need to reopen a conversation you created earlier in the week. Where can you access your previous Copilot Chat conversations?",
+      "options": [
+        "the chat history",
+        "Copilot Notebooks",
+        "the Copilot settings",
+        "a new chat"
+      ],
+      "correct": [
+        0
+      ],
+      "note": "Objective: 2.2 Manage conversations in Copilot What This Item Tests: Understand how to find previous conversations Additional Reading: Revisit your Microsoft 365 Copilot Chat history Rationale: The chat history displays previous Copilot Chat conversations and enables you to reopen them. Copilot Notebooks is used to organize and work with selected content but does not function as the primary chat history view. The Copilot settings manage configuration options and do not provide access to prior conversations. Starting a new chat creates a new conversation rather than reopening an existing one."
+    },
+    {
+      "id": 194,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "single-select",
+      "question": "You use Microsoft 365 Copilot Chat and add several conversations to notebook for an ongoing project. One conversation is no longer needed. You need to remove the conversation completely from Copilot Chat. What should you do?",
+      "options": [
+        "Start a new chat.",
+        "Rename the conversation.",
+        "Remove the conversation from the notebook.",
+        "Delete the conversation from the chat history."
+      ],
+      "correct": [
+        3
+      ],
+      "note": "Objective: 2.2 Manage conversations in Copilot What This Item Tests: Delete a chat Additional Reading: Revisit your Microsoft 365 Copilot Chat history Rationale: Deleting the conversation from the chat history removes it from the visible Copilot Chat conversations. Removing a conversation from a notebook only disconnects it from that notebook but does not delete it from the chat history. Renaming the conversation changes its title but does not remove it. Starting a new chat creates a separate conversation and does not affect existing ones."
+    },
+    {
+      "id": 195,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "single-select",
+      "question": "You are configuring instructions for a Microsoft 365 Copilot agent that summarizes weekly project updates for managers. You need the responses to be consistent, concise, and focused on key information. What should you configure for the agent instructions?",
+      "options": [
+        "Write a professional summary of the weekly updates.",
+        "Summarize weekly project updates in three sections and include as much detail as possible.",
+        "Summarize weekly project updates in three labeled sections and limit the response to 150 words.",
+        "Provide a detailed summary of each update and include all relevant information without limiting the length."
+      ],
+      "correct": [
+        2
+      ],
+      "note": "Objective: 2.3 Create and manage Microsoft 365 Copilot agents What This Item Tests: Configure agent settings such as instructions, capabilities and suggested prompts Additional Reading: Write effective instructions for declarative agents Rationale: The most effective instruction clearly defines structure and includes a measurable length constraint, ensuring consistent and concise responses. The option that includes “as much detail as possible” conflicts with the goal of conciseness. The detailed summary without length limits contradicts the requirement for concise output. The professional summary option is too vague and lacks specific formatting or constraints."
+    },
+    {
+      "id": 196,
+      "source": "microsoft",
+      "topic": "Prompts & Conversations",
+      "type": "single-select",
+      "question": "Select the answer that correctly completes the sentence. In Microsoft 365 Copilot Chat, a notebook is used to [Target_A].",
+      "options": [
+        "group related conversations and materials together",
+        "organize archived conversations into folders in the chat history",
+        "search across previous conversations",
+        "store deleted conversations"
+      ],
+      "correct": [
+        0
+      ],
+      "note": "Objective: 2.2 Manage conversations in Copilot What This Item Tests: Add a conversation to a notebook Additional Reading: Get started with Microsoft 365 Copilot Notebooks Rationale: A notebook is used to group related conversations and materials together, so that users can continue working on a topic in context. It does not create folders within the chat history and does not function as the primary search tool for conversations. Deleted conversations are not stored in notebooks."
     }
   ]
 }
