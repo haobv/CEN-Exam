@@ -54,6 +54,7 @@ body {
 .progress-fill { height: 100%; background: var(--y); border-radius: 2px; transition: width .4s ease; }
 
 /* ── Question ── */
+.q-img { display: block; max-width: 100%; height: auto; margin: 12px 0; border: 1px solid var(--border); border-radius: 8px; cursor: zoom-in; }
 .q-meta-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
 .q-topic { font-size: 0.72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
 .q-source { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
@@ -307,7 +308,7 @@ const KEYS=['A','B','C','D','E','F'];
 function load(){try{return JSON.parse(localStorage.getItem(KEY))||{seen:{},wrong:{},correct:{}};}catch{return{seen:{},wrong:{},correct:{}};}}
 function save(p){localStorage.setItem(KEY,JSON.stringify(p));}
 
-fetch('questions.json').then(r=>r.json()).then(d=>{Q=d.questions;show('home');refresh();buildTopics();});
+fetch('questions.json').then(r=>r.json()).then(d=>{Q=d.questions.filter(q=>q.type!=='fill-in');show('home');refresh();buildTopics();});
 
 const TOPIC_GROUPS=[
   {label:'Understand generative AI fundamentals',     topics:['AI Fundamentals','Responsible AI','Data Privacy & Compliance','Data Security','M365 Copilot Versions','Agents & Licensing','Copilot Settings & Customization']},
@@ -374,8 +375,11 @@ function render(){
   let pills=`<span class="src-pill src-primary">${srcMap[q.source]||q.source}</span>`;
   if(q.also_in&&q.also_in.length) pills+=q.also_in.map(s=>`<span class="src-pill src-also">${srcMap[s]||s}</span>`).join('');
   srcEl.innerHTML=pills;
-  const qHtml=q.question.replace(/\[BLANK\d?\]/g,'<span class="blank">[.....]</span>');
-  document.getElementById('qText').innerHTML=qHtml.includes('blank')?qHtml.replace(/<br\s*\/?>/gi,' '):qHtml;
+  let qHtml=q.question.replace(/\[BLANK\d?\]/g,'<span class="blank">[.....]</span>');
+  qHtml=qHtml.includes('blank')?qHtml.replace(/<br\s*\/?>/gi,' '):qHtml;
+  const imgTag=q.image?`<img class="q-img" src="${q.image}" alt="exhibit" onclick="window.open(this.src)">`:'';
+  qHtml=qHtml.replace(/\/\/IMG\/\//g,imgTag);
+  document.getElementById('qText').innerHTML=qHtml;
   const hintMap={'multiple-select':'Chọn nhiều đáp án','hotspot-yesno':'Chọn Yes / No cho từng câu','hotspot-complex':'Đọc và xem đáp án'};
   document.getElementById('qHint').textContent=hintMap[q.type]||'';
   document.getElementById('btnCheck').textContent=(q.type==='hotspot-complex'&&!q.subtype)?'Xem đáp án':'Kiểm tra';

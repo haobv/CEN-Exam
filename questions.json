@@ -341,6 +341,7 @@
       "topic": "Agents & Licensing",
       "type": "single-select",
       "question": "You sign in to the Microsoft 365 Copilot app by using your work account as shown in the following exhibit.<br/>//IMG//<br/>A colleague tells you that when they open the Microsoft 365 Copilot app, they have access to the Researcher agent.<br/>You need to access to the Researcher agent.<br/>What should you do?",
+      "image": "images/image36.png",
       "options": [
         "Request a Microsoft 365 Copilot license from an administrator.",
         "Select Explore agents and then search for Researcher.",
@@ -781,7 +782,7 @@
         "a template"
       ],
       "correct": [
-        2
+        1
       ],
       "note": "Image generator capability enables the agent to create visual assets (logos, artwork). This is a specific capability that must be explicitly added.",
       "also_in": [
@@ -848,6 +849,7 @@
       "topic": "Copilot Features & Tools",
       "type": "single-select",
       "question": "You open Microsoft 356 Copilot as shown in the following exhibit.<br/>//IMG//<br/>What can you infer about the Standings conversation?",
+      "image": "images/image13.png",
       "options": [
         "The conversation contains only anonymous data.",
         "The conversation contains a verified response.",
@@ -856,9 +858,9 @@
         "The conversation was shared."
       ],
       "correct": [
-        4
+        1
       ],
-      "note": "A share icon on a conversation in M365 Copilot indicates it was shared. ⚠️ This question references an exhibit (screenshot) — the share icon is the key visual cue."
+      "note": "The green badge next to the Standings conversation indicates it contains a verified response. ⚠️ This question references an exhibit — the green verified badge is the key visual cue."
     },
     {
       "id": 46,
@@ -1488,7 +1490,8 @@
       "source": "examtopics",
       "topic": "Conversation & Activity Management",
       "type": "single-select",
-      "question": "You have a Microsoft 365 Copilot conversation as shown in the exhibit. Document1.docx [answer choice]",
+      "question": "You have a Microsoft 365 Copilot conversation as shown in the exhibit.<br/>//IMG//<br/>Document1.docx [answer choice]",
+      "image": "images/image61.png",
       "options": [
         "is in a notebook.",
         "has a sensitivity label applied.",
@@ -1496,9 +1499,9 @@
         "is NOT accessible outside of your organization."
       ],
       "correct": [
-        2
+        1
       ],
-      "note": "",
+      "note": "Copilot summarized Document1.docx, so it IS a supported file type. The red sensitivity-label icon next to the Copilot response indicates the source document has a sensitivity label applied.",
       "also_in": []
     },
     {
