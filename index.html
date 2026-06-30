@@ -188,7 +188,6 @@ button.btn:active { transform: scale(.97); }
 .exam-btn:hover { opacity:.92; }
 .exam-btn:active { transform:scale(.98); }
 .exam-btn .ex-sub { font-weight:500; opacity:.85; font-size:0.78rem; }
-.exam-btn-ms { background:#0067b8; }
 
 /* ── Result domain breakdown ── */
 .domain-breakdown { display:flex; flex-direction:column; gap:16px; margin-bottom:24px; text-align:left; }
@@ -253,9 +252,6 @@ button.btn:active { transform: scale(.97); }
   <button class="exam-btn" onclick="startExam()">
     📝 Thi thử <span class="ex-sub">50 câu · random theo tỉ trọng</span>
   </button>
-  <button class="exam-btn exam-btn-ms" onclick="startMicrosoft()">
-    📘 Đề Microsoft <span class="ex-sub"><span id="msCount">—</span> câu · đề chính thức</span>
-  </button>
 
   <div class="section-label">Ôn theo topic</div>
   <div class="topic-chips" id="topicChips"></div>
@@ -312,7 +308,7 @@ const KEYS=['A','B','C','D','E','F'];
 function load(){try{return JSON.parse(localStorage.getItem(KEY))||{seen:{},wrong:{},correct:{}};}catch{return{seen:{},wrong:{},correct:{}};}}
 function save(p){localStorage.setItem(KEY,JSON.stringify(p));}
 
-fetch('questions.json').then(r=>r.json()).then(d=>{Q=d.questions.filter(q=>q.type!=='fill-in');show('home');refresh();buildTopics();});
+fetch('questions.json').then(r=>r.json()).then(d=>{Q=d.questions.filter(q=>q.type!=='fill-in'&&q.source!=='microsoft');show('home');refresh();buildTopics();});
 
 const TOPIC_GROUPS=[
   {label:'Understand generative AI fundamentals',     topics:['AI Fundamentals','Responsible AI','Data Privacy & Compliance','Data Security','M365 Copilot Versions','Agents & Licensing','Copilot Settings & Customization','AI Fundamentals & Security']},
@@ -326,7 +322,6 @@ function refresh(){
   const nUnseen=Math.max(Q.length-nS,0);
   const ht=document.getElementById('homeTotal'); if(ht) ht.textContent=Q.length;
   const ac=document.getElementById('allCount');  if(ac) ac.textContent=Q.length;
-  const mc=document.getElementById('msCount');    if(mc) mc.textContent=Q.filter(q=>q.source==='microsoft').length;
   document.getElementById('statsHint').textContent=`Đã làm: ${nS}/${Q.length} · Câu sai: ${nW}`;
   const wu=document.getElementById('unseenCount'); if(wu) wu.textContent=nUnseen;
   const ww=document.getElementById('wrongCount');  if(ww) ww.textContent=nW;
@@ -352,11 +347,6 @@ function startExam(){
   const quota=[15,20,15];
   const pick=(g,n)=>shuffle(Q.filter(q=>TOPIC_GROUPS[g].topics.includes(q.topic))).slice(0,n);
   queue=shuffle([...pick(0,quota[0]),...pick(1,quota[1]),...pick(2,quota[2])]);
-  cur=0;ok=0;bad=0;sess=[];show('quiz');render();
-}
-
-function startMicrosoft(){
-  queue=shuffle(Q.filter(q=>q.source==='microsoft'));
   cur=0;ok=0;bad=0;sess=[];show('quiz');render();
 }
 
