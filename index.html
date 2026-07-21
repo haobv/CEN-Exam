@@ -28,6 +28,26 @@ body {
   padding: 16px;
 }
 
+body.loading .card,
+body.loading .lang-switch { visibility: hidden; }
+
+.lang-switch {
+  position: fixed;
+  top: 14px;
+  right: 16px;
+  z-index: 10;
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  background: rgba(255,255,255,.92);
+  color: var(--y-text);
+  padding: 7px 12px;
+  font-family: inherit;
+  font-size: .78rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,.06);
+}
+
 .card {
   background: #fff;
   border-radius: 20px;
@@ -44,6 +64,7 @@ body {
 
 
 .stats-hint { font-size: 0.8rem; color: #1d4ed8; margin-top: 4px; min-height: 18px; }
+.translation-status { display:block; border:0; background:none; padding:0; font:inherit; font-size:0.75rem; color:#92400e; margin-top:5px; min-height:18px; cursor:pointer; text-decoration:underline; }
 .reset-link { font-size: 0.75rem; color: var(--muted); cursor: pointer; text-decoration: underline; margin-top: 14px; display: inline-block; }
 
 /* ── Progress ── */
@@ -92,21 +113,6 @@ body {
 .opt:disabled { cursor: default; }
 .opt-key { font-weight: 700; min-width: 18px; flex-shrink: 0; opacity: .5; }
 .opt.selected .opt-key, .opt.correct .opt-key, .opt.wrong .opt-key { opacity: 1; }
-
-/* ── Fill-in ── */
-.fill-input {
-  width: 100%;
-  background: #f9fafb;
-  border: 1.5px solid var(--border);
-  border-radius: 10px;
-  padding: 12px 14px;
-  font-size: 1rem;
-  outline: none;
-  transition: border-color .15s, box-shadow .15s;
-}
-.fill-input:focus { border-color: var(--y); box-shadow: 0 0 0 3px var(--y-light); }
-.fill-input.correct { border-color: #16a34a; background: #f0fdf4; box-shadow: none; }
-.fill-input.wrong   { border-color: #dc2626; background: #fef2f2; box-shadow: none; }
 
 /* ── Yes-No ── */
 .yn-row { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid #f3f4f6; font-size: 0.875rem; }
@@ -229,40 +235,43 @@ button.btn:active { transform: scale(.97); }
 }
 </style>
 </head>
-<body>
+<body class="loading">
+
+<button class="lang-switch" id="langSwitch" onclick="switchLang()">日本語</button>
 
 <!-- Home -->
 <div class="card" id="home">
-  <div class="home-title">AB-730 Study</div>
-  <div class="home-sub">Microsoft AI Business Professional · <span id="homeTotal">—</span> câu</div>
+  <div class="home-title" id="homeTitle">AB-730 Study</div>
+  <div class="home-sub" id="homeSub">Microsoft AI Business Professional · — câu</div>
   <div class="stats-hint" id="statsHint"></div>
+  <button class="translation-status" id="translationStatus" onclick="startTranslationPreview()" style="display:none"></button>
 
-  <div class="section-label">Luyện tập</div>
+  <div class="section-label" id="practiceLabel">Luyện tập</div>
   <div class="quick-btns">
     <button class="quick-btn" onclick="startAll()">
-      <span class="qb-num" id="allCount">—</span>Tất cả
+      <span class="qb-num" id="allCount">—</span><span id="allLabel">Tất cả</span>
     </button>
     <button class="quick-btn" id="btnUnseen" onclick="startMode('unseen')">
-      <span class="qb-num" id="unseenCount">—</span>Chưa làm
+      <span class="qb-num" id="unseenCount">—</span><span id="unseenLabel">Chưa làm</span>
     </button>
     <button class="quick-btn quick-btn-warn" id="btnWrong" onclick="startMode('wrong')">
-      <span class="qb-num" id="wrongCount">—</span>Câu sai
+      <span class="qb-num" id="wrongCount">—</span><span id="wrongLabel">Câu sai</span>
     </button>
   </div>
-  <button class="exam-btn" onclick="startExam()">
-    📝 Thi thử <span class="ex-sub">50 câu · random theo tỉ trọng</span>
+  <button class="exam-btn" id="examBtn" onclick="startExam()">
+    <span id="examLabel">📝 Thi thử</span> <span class="ex-sub" id="examSub">50 câu · random theo tỉ trọng</span>
   </button>
 
-  <div class="section-label">Ôn theo topic</div>
+  <div class="section-label" id="topicLabel">Ôn theo topic</div>
   <div class="topic-chips" id="topicChips"></div>
 
-  <a class="reset-link" onclick="resetProgress()">Xóa tiến trình</a>
+  <a class="reset-link" id="resetLink" onclick="resetProgress()">Xóa tiến trình</a>
 </div>
 
 <!-- Quiz -->
 <div class="card" id="quiz" style="display:none">
   <div class="meta">
-    <button class="exit-link" onclick="exitQuiz()">✕ Thoát</button>
+    <button class="exit-link" id="exitBtn" onclick="exitQuiz()">✕ Thoát</button>
     <span id="qNum">1 / 58</span>
     <span id="qScore">✓ 0</span>
   </div>
@@ -295,20 +304,81 @@ button.btn:active { transform: scale(.97); }
   <div class="domain-breakdown" id="resDomains"></div>
   <div class="actions" style="flex-direction:column;gap:8px">
     <button class="btn btn-primary" id="btnRetry" onclick="startMode('wrong')" style="display:none">Ôn câu sai →</button>
-    <button class="btn btn-secondary" style="flex:none" onclick="startAll()">Làm lại →</button>
-    <button class="btn btn-secondary" style="flex:none" onclick="goHome()">← Trang chủ</button>
+    <button class="btn btn-secondary" id="retryBtn" style="flex:none" onclick="startAll()">Làm lại →</button>
+    <button class="btn btn-secondary" id="homeBtn" style="flex:none" onclick="goHome()">← Trang chủ</button>
   </div>
 </div>
 
 <script>
-let Q=[], queue=[], cur=0, ok=0, bad=0, answered=false, sess=[];
+let Q=[], queue=[], cur=0, ok=0, bad=0, answered=false, sess=[],QUESTION_TRANSLATIONS={};
 const KEY='ab730v3';
+const LANG_KEY='ab730lang';
 const KEYS=['A','B','C','D','E','F'];
+const langParam=new URLSearchParams(location.search).get('lang');
+let LANG=langParam==='ja'?'ja':langParam==='vi'?'vi':localStorage.getItem(LANG_KEY)==='ja'?'ja':'vi';
+
+const VI_LOCALE={
+  lang:'vi',
+  strings:{
+    pageTitle:'AB-730 Study',homeTitle:'AB-730 Study',homeSubtitle:'Microsoft AI Business Professional · {count} câu',
+    stats:'Đã làm: {seen}/{total} · Câu sai: {wrong}',translationPreview:'Bản dịch mẫu: {translated}/{total} câu',
+    practice:'Luyện tập',all:'Tất cả',unseen:'Chưa làm',wrong:'Câu sai',mockExam:'📝 Thi thử',mockExamSub:'50 câu · random theo tỉ trọng',
+    studyByTopic:'Ôn theo topic',resetProgress:'Xóa tiến trình',exit:'✕ Thoát',check:'Kiểm tra',viewAnswer:'Xem đáp án',next:'Tiếp →',viewResults:'Xem kết quả →',
+    hintMultiple:'Chọn nhiều đáp án',hintYesNo:'Chọn Yes / No cho từng câu',hintComplex:'Đọc và xem đáp án',selectPlaceholder:'— chọn —',
+    yes:'Yes',no:'No',correct:'✅ Chính xác!',incorrect:'❌ Sai. Đáp án: {answer}',answerShown:'📋 Đáp án đã hiển thị (các mục được tô xanh)',
+    passed:'Đạt',failed:'Chưa đạt',resultSub:'{correct}/{total} câu đúng · mức đạt {pass}%',domainThreshold:'Theo domain · đạt khi ≥ 80%',
+    retryWrong:'Ôn {count} câu sai',retry:'Làm lại →',home:'← Trang chủ',topicCount:'{count} câu',topicWrong:'{count} sai',
+    exitConfirm:'Thoát về trang chủ? Câu đã làm vẫn được lưu, chỉ dừng phiên hiện tại.',resetConfirm:'Xóa tiến trình?',imageAlt:'exhibit',
+    switchLabel:'日本語',switchAria:'Chuyển sang bản tiếng Nhật',loadError:'Không thể tải dữ liệu. Vui lòng tải lại trang.'
+  },
+  topics:{},
+  domains:['Generative AI fundamentals','Prompts & conversations','Business content'],
+  groupLabels:[]
+};
+let LOCALE=VI_LOCALE;
+
+function t(key,vars={}){
+  let value=LOCALE.strings[key]||VI_LOCALE.strings[key]||key;
+  Object.entries(vars).forEach(([k,v])=>{value=value.replaceAll(`{${k}}`,v);});
+  return value;
+}
+function topicName(topic){return LOCALE.topics[topic]||topic;}
+function ynLabel(value){return value===true||value==='Yes'?t('yes'):t('no');}
+function answerLabel(q,value){return q.answerLabels?.[value]||value;}
+function localizeQuestion(q){
+  const translated=QUESTION_TRANSLATIONS[q.id];if(!translated)return q;
+  const localized={...q};
+  ['question','options','note','statements','prompts','options_per_prompt','answerLabels'].forEach(k=>{if(k in translated)localized[k]=translated[k];});
+  return localized;
+}
+function setText(id,value){const el=document.getElementById(id);if(el)el.textContent=value;}
+function applyLocale(){
+  document.documentElement.lang=LOCALE.lang;
+  document.title=t('pageTitle');
+  setText('homeTitle',t('homeTitle'));setText('practiceLabel',t('practice'));setText('allLabel',t('all'));
+  setText('unseenLabel',t('unseen'));setText('wrongLabel',t('wrong'));setText('examLabel',t('mockExam'));
+  setText('examSub',t('mockExamSub'));setText('topicLabel',t('studyByTopic'));setText('resetLink',t('resetProgress'));
+  setText('exitBtn',t('exit'));setText('domLabel',t('domainThreshold'));setText('retryBtn',t('retry'));setText('homeBtn',t('home'));
+  const sw=document.getElementById('langSwitch');sw.textContent=t('switchLabel');sw.setAttribute('aria-label',t('switchAria'));
+}
+function switchLang(){
+  const next=LANG==='ja'?'vi':'ja';localStorage.setItem(LANG_KEY,next);
+  const url=new URL(location.href);if(next==='ja')url.searchParams.set('lang','ja');else url.searchParams.delete('lang');
+  location.href=url.toString();
+}
+async function fetchJson(path){const r=await fetch(path);if(!r.ok)throw new Error(`${path}: ${r.status}`);return r.json();}
 
 function load(){try{return JSON.parse(localStorage.getItem(KEY))||{seen:{},wrong:{},correct:{}};}catch{return{seen:{},wrong:{},correct:{}};}}
 function save(p){localStorage.setItem(KEY,JSON.stringify(p));}
 
-fetch('questions.json').then(r=>r.json()).then(d=>{Q=d.questions.filter(q=>q.type!=='fill-in'&&q.source!=='microsoft');show('home');refresh();buildTopics();});
+function pruneProgress(){
+  const p=load(),validIds=new Set(Q.map(q=>q.id));
+  ['seen','wrong','correct'].forEach(k=>{
+    p[k]=p[k]||{};
+    Object.keys(p[k]).forEach(id=>{if(!validIds.has(Number(id)))delete p[k][id];});
+  });
+  save(p);
+}
 
 const TOPIC_GROUPS=[
   {label:'Understand generative AI fundamentals',     topics:['AI Fundamentals','Responsible AI','Data Privacy & Compliance','Data Security','M365 Copilot Versions','Agents & Licensing','Copilot Settings & Customization','AI Fundamentals & Security']},
@@ -316,13 +386,26 @@ const TOPIC_GROUPS=[
   {label:'Draft and analyze business content by using AI', topics:['Copilot in M365 Apps','Notebook & Pages','Copilot Features & Tools','Agents — Creation & Configuration','Business Content & Collaboration']},
 ];
 
+async function init(){
+  const tasks=[fetchJson('questions.json')];
+  if(LANG==='ja')tasks.push(fetchJson('i18n/ja.json'),fetchJson('i18n/questions.ja.json'));
+  const [data,locale,translations]=await Promise.all(tasks);
+  if(locale)LOCALE=locale;if(translations)QUESTION_TRANSLATIONS=translations;
+  Q=data.questions.map(localizeQuestion);pruneProgress();applyLocale();show('home');refresh();buildTopics();
+  document.body.classList.remove('loading');
+}
+init().catch(error=>{console.error(error);applyLocale();show('home');setText('homeSub',t('loadError'));document.body.classList.remove('loading');});
+
 function refresh(){
   const p=load();
   const nW=Object.keys(p.wrong).length, nS=Object.keys(p.seen).length;
   const nUnseen=Math.max(Q.length-nS,0);
-  const ht=document.getElementById('homeTotal'); if(ht) ht.textContent=Q.length;
+  setText('homeSub',t('homeSubtitle',{count:Q.length}));
   const ac=document.getElementById('allCount');  if(ac) ac.textContent=Q.length;
-  document.getElementById('statsHint').textContent=`Đã làm: ${nS}/${Q.length} · Câu sai: ${nW}`;
+  setText('statsHint',t('stats',{seen:nS,total:Q.length,wrong:nW}));
+  const ts=document.getElementById('translationStatus'),translated=Object.keys(QUESTION_TRANSLATIONS).length;
+  ts.style.display=LANG==='ja'&&translated<Q.length?'':'none';
+  ts.textContent=t('translationPreview',{translated,total:Q.length});
   const wu=document.getElementById('unseenCount'); if(wu) wu.textContent=nUnseen;
   const ww=document.getElementById('wrongCount');  if(ww) ww.textContent=nW;
   const bw=document.getElementById('btnWrong');
@@ -339,6 +422,12 @@ function startAll(){
   const unseen=shuffle(Q.filter(q=>!seenIds.has(q.id)));
   const done=shuffle(Q.filter(q=>seenIds.has(q.id)&&!wrongIds.has(q.id)));
   queue=[...wrong,...unseen,...done];
+  cur=0;ok=0;bad=0;sess=[];show('quiz');render();
+}
+
+function startTranslationPreview(){
+  queue=Q.filter(q=>QUESTION_TRANSLATIONS[q.id]);
+  if(!queue.length)return;
   cur=0;ok=0;bad=0;sess=[];show('quiz');render();
 }
 
@@ -371,25 +460,25 @@ function render(){
   document.getElementById('progFill').style.width=(cur/queue.length*100)+'%';
   document.getElementById('qNum').textContent=`${cur+1} / ${queue.length}`;
   document.getElementById('qScore').textContent=`✓ ${ok}`;
-  document.getElementById('qTopic').textContent=q.topic;
-  const srcMap={examtopics:'ExamTopics',marks4sure:'Marks4Sure',pass4success:'Pass4Success',dumpsbase:'DumpsBase',edusum:'Edusum',microsoft:'Microsoft'};
+  document.getElementById('qTopic').textContent=topicName(q.topic);
+  const srcMap={examtopics:'ExamTopics',marks4sure:'Marks4Sure',pass4success:'Pass4Success',dumpsbase:'DumpsBase',edusum:'Edusum'};
   const srcEl=document.getElementById('qSource');
   let pills=`<span class="src-pill src-primary">${srcMap[q.source]||q.source}</span>`;
   if(q.also_in&&q.also_in.length) pills+=q.also_in.map(s=>`<span class="src-pill src-also">${srcMap[s]||s}</span>`).join('');
   srcEl.innerHTML=pills;
   let qHtml=q.question.replace(/\[BLANK\d?\]/g,'<span class="blank">[.....]</span>');
   qHtml=qHtml.includes('blank')?qHtml.replace(/<br\s*\/?>/gi,' '):qHtml;
-  const imgTag=q.image?`<img class="q-img" src="${q.image}" alt="exhibit" onclick="window.open(this.src)">`:'';
+  const imgTag=q.image?`<img class="q-img" src="${q.image}" alt="${t('imageAlt')}" onclick="window.open(this.src)">`:'';
   qHtml=qHtml.replace(/\/\/IMG\/\//g,imgTag);
   document.getElementById('qText').innerHTML=qHtml;
-  const hintMap={'multiple-select':'Chọn nhiều đáp án','hotspot-yesno':'Chọn Yes / No cho từng câu','hotspot-complex':'Đọc và xem đáp án'};
+  const hintMap={'multiple-select':t('hintMultiple'),'hotspot-yesno':t('hintYesNo'),'hotspot-complex':t('hintComplex')};
   document.getElementById('qHint').textContent=hintMap[q.type]||'';
-  document.getElementById('btnCheck').textContent=(q.type==='hotspot-complex'&&!q.subtype)?'Xem đáp án':'Kiểm tra';
+  document.getElementById('btnCheck').textContent=(q.type==='hotspot-complex'&&!q.subtype)?t('viewAnswer'):t('check');
   document.getElementById('fb').className='fb';
   document.getElementById('fb').innerHTML='';
   document.getElementById('btnCheck').style.display='';
   document.getElementById('btnNext').style.display='none';
-  document.getElementById('btnNext').textContent=cur===queue.length-1?'Xem kết quả →':'Tiếp →';
+  document.getElementById('btnNext').textContent=cur===queue.length-1?t('viewResults'):t('next');
   const bp=document.getElementById('btnPrev');bp.disabled=cur===0;bp.style.opacity=cur===0?'0.35':'';
   document.getElementById('quiz').dataset.qid=q.id;
   renderBody(q);
@@ -401,28 +490,26 @@ function renderBody(q){
     body.innerHTML=q.options.map((o,i)=>
       `<button class="opt" data-i="${i}" onclick="selOpt(this,'${q.type}')"><span class="opt-key">${KEYS[i]}</span>${o}</button>`
     ).join('');
-  }else if(q.type==='fill-in'){
-    body.innerHTML=`<input class="fill-input" id="fi" placeholder="Nhập đáp án..." autocomplete="off">`;
   }else if(q.type==='yes-no'){
     body.innerHTML=q.options.map((s,i)=>
       `<div class="yn-row"><div class="yn-stmt">${s}</div><div class="yn-btns">
-        <button class="yn-btn" data-r="${i}" data-v="Yes" onclick="selYN(this)">Yes</button>
-        <button class="yn-btn" data-r="${i}" data-v="No"  onclick="selYN(this)">No</button>
+        <button class="yn-btn" data-r="${i}" data-v="Yes" onclick="selYN(this)">${t('yes')}</button>
+        <button class="yn-btn" data-r="${i}" data-v="No"  onclick="selYN(this)">${t('no')}</button>
        </div></div>`
     ).join('');
   }else if(q.type==='matching'){
     body.innerHTML=q.options.map((s,i)=>
       `<div class="match-row"><div class="match-stmt">${s}</div>
        <select class="match-sel" data-i="${i}">
-         <option value="">— chọn —</option>
-         ${q.correct.map(a=>`<option value="${a}">${a}</option>`).join('')}
+         <option value="">${t('selectPlaceholder')}</option>
+         ${q.correct.map(a=>`<option value="${a}">${answerLabel(q,a)}</option>`).join('')}
        </select></div>`
     ).join('');
   }else if(q.type==='hotspot-yesno'){
     body.innerHTML=q.statements.map((s,i)=>
       `<div class="yn-row"><div class="yn-stmt">${s}</div><div class="yn-btns">
-        <button class="yn-btn" data-r="${i}" data-v="true"  onclick="selYN(this)">Yes</button>
-        <button class="yn-btn" data-r="${i}" data-v="false" onclick="selYN(this)">No</button>
+        <button class="yn-btn" data-r="${i}" data-v="true"  onclick="selYN(this)">${t('yes')}</button>
+        <button class="yn-btn" data-r="${i}" data-v="false" onclick="selYN(this)">${t('no')}</button>
        </div></div>`
     ).join('');
   }else if(q.type==='hotspot-complex'){
@@ -480,11 +567,6 @@ function check(){
       if(q.correct.includes(j))o.classList.add('correct');
       else if(sels.includes(j))o.classList.add('wrong');
     });
-  }else if(q.type==='fill-in'){
-    const v=document.getElementById('fi').value.trim();if(!v)return;
-    isOk=q.correct.some(c=>c.toLowerCase()===v.toLowerCase());
-    document.getElementById('fi').classList.add(isOk?'correct':'wrong');
-    document.getElementById('fi').disabled=true;
   }else if(q.type==='yes-no'){
     let all=true;
     for(let i=0;i<q.options.length;i++){
@@ -536,36 +618,41 @@ function check(){
 function showFb(q,isOk){
   const fb=document.getElementById('fb');
   if(q.type==='hotspot-complex'&&!q.subtype){
-    fb.className='fb ok';fb.innerHTML='📋 Đáp án đã hiển thị (các mục được tô xanh)';
+    fb.className='fb ok';fb.innerHTML=t('answerShown');
     if(q.note)fb.innerHTML+=`<div class="note">${q.note}</div>`;
     return;
   }
   if(isOk){
-    fb.className='fb ok';fb.innerHTML='✅ Chính xác!';
+    fb.className='fb ok';fb.innerHTML=t('correct');
   }else{
     let ans='';
     if(q.type==='single-select'||q.type==='multiple-select')ans=q.correct.map(i=>`<b>${KEYS[i]}. ${q.options[i]}</b>`).join(', ');
-    else if(q.type==='fill-in')ans=q.correct.join(' / ');
-    else if(q.type==='yes-no')ans=q.options.map((s,i)=>`${s}: <b>${q.correct[i]}</b>`).join(' · ');
-    else if(q.type==='matching')ans=q.options.map((s,i)=>`${s} → <b>${q.correct[i]}</b>`).join(' · ');
-    else if(q.type==='hotspot-yesno')ans=q.statements.map((s,i)=>`${s.length>60?s.slice(0,60)+'…':s}: <b>${q.correct[i]?'Yes':'No'}</b>`).join('<br>');
+    else if(q.type==='yes-no')ans=q.options.map((s,i)=>`${s}: <b>${ynLabel(q.correct[i])}</b>`).join(' · ');
+    else if(q.type==='matching')ans=q.options.map((s,i)=>`${s} → <b>${answerLabel(q,q.correct[i])}</b>`).join(' · ');
+    else if(q.type==='hotspot-yesno')ans=q.statements.map((s,i)=>`${s.length>60?s.slice(0,60)+'…':s}: <b>${ynLabel(q.correct[i])}</b>`).join('<br>');
     else if(q.type==='hotspot-complex'&&q.subtype==='select')ans=q.prompts.map((p,i)=>`${p} <b>${q.options_per_prompt[i][q.correct[i]]}</b>`).join('<br>');
-    fb.className='fb bad';fb.innerHTML=`❌ Sai. Đáp án: ${ans}`;
+    fb.className='fb bad';fb.innerHTML=t('incorrect',{answer:ans});
   }
   if(q.note)fb.innerHTML+=`<div class="note">${q.note}</div>`;
 }
 
 function record(q,isOk){
   const p=load();p.seen[q.id]=true;
+  const previous=sess.find(r=>r.id===q.id);
+  if(previous){
+    if(previous.ok)ok--;else bad--;
+    previous.ok=isOk;previous.topic=q.topic;
+  }else{
+    sess.push({id:q.id,topic:q.topic,ok:isOk});
+  }
   if(isOk){p.correct[q.id]=true;delete p.wrong[q.id];ok++;}
   else{p.wrong[q.id]=true;delete p.correct[q.id];bad++;}
-  sess.push({topic:q.topic,ok:isOk});
   save(p);document.getElementById('qScore').textContent=`✓ ${ok}`;
 }
 
 function next(){cur++;if(cur>=queue.length)showResults();else render();}
 function prev(){if(cur>0){cur--;render();}}
-function exitQuiz(){if(confirm('Thoát về trang chủ? Câu đã làm vẫn được lưu, chỉ dừng phiên hiện tại.'))goHome();}
+function exitQuiz(){if(confirm(t('exitConfirm')))goHome();}
 
 function showResults(){
   show('results');
@@ -576,9 +663,9 @@ function showResults(){
   pctEl.style.color=passed?'#16a34a':'#dc2626';
   const badge=document.getElementById('resBadge');
   badge.className='res-badge '+(passed?'pass':'fail');
-  badge.textContent=passed?'Đạt':'Chưa đạt';
-  document.getElementById('resSub').textContent=`${ok}/${total} câu đúng · mức đạt ${PASS}%`;
-  const labels=['Generative AI fundamentals','Prompts & conversations','Business content'];
+  badge.textContent=passed?t('passed'):t('failed');
+  document.getElementById('resSub').textContent=t('resultSub',{correct:ok,total,pass:PASS});
+  const labels=LOCALE.domains;
   const dom=[[0,0],[0,0],[0,0]];
   sess.forEach(r=>{const gi=TOPIC_GROUPS.findIndex(g=>g.topics.includes(r.topic));if(gi<0)return;dom[gi][1]++;if(r.ok)dom[gi][0]++;});
   document.getElementById('domLabel').style.display=dom.some(s=>s[1])?'':'none';
@@ -589,20 +676,20 @@ function showResults(){
   }).join('');
   const nW=Object.keys(load().wrong).length;
   const btn=document.getElementById('btnRetry');
-  btn.style.display=nW?'':'none';btn.textContent=`Ôn ${nW} câu sai`;
+  btn.style.display=nW?'':'none';btn.textContent=t('retryWrong',{count:nW});
 }
 
 function buildTopics(){
   const p=load();
   const wrongIds=new Set(Object.keys(p.wrong).map(Number));
-  document.getElementById('topicChips').innerHTML=TOPIC_GROUPS.map(g=>{
+  document.getElementById('topicChips').innerHTML=TOPIC_GROUPS.map((g,i)=>{
     const n=Q.filter(q=>g.topics.includes(q.topic)).length;
     const w=Q.filter(q=>g.topics.includes(q.topic)&&wrongIds.has(q.id)).length;
-    const wTag=w?`<span class="chip-wrong">${w} sai</span>`:'';
+    const wTag=w?`<span class="chip-wrong">${t('topicWrong',{count:w})}</span>`:'';
     const key=JSON.stringify(g.topics).replace(/"/g,'&quot;');
     return `<button class="topic-chip" onclick="startTopic(this)" data-topics="${key}">
-      <span>${g.label}</span>
-      <span class="chip-right"><span class="chip-count">${n} câu</span>${wTag}</span>
+      <span>${LOCALE.groupLabels[i]||g.label}</span>
+      <span class="chip-right"><span class="chip-count">${t('topicCount',{count:n})}</span>${wTag}</span>
     </button>`;
   }).join('');
 }
@@ -614,7 +701,7 @@ function startTopic(btn){
 function goHome(){ show('home'); refresh(); buildTopics(); }
 function show(s){ ['home','quiz','results'].forEach(id=>document.getElementById(id).style.display=id===s?'block':'none'); }
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
-function resetProgress(){if(confirm('Xóa tiến trình?')){localStorage.removeItem(KEY);refresh();buildTopics();}}
+function resetProgress(){if(confirm(t('resetConfirm'))){localStorage.removeItem(KEY);refresh();buildTopics();}}
 </script>
 </body>
 </html>
