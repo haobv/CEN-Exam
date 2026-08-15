@@ -1,0 +1,14 @@
+{
+  "id": "cpmai",
+  "title": "PMI-CPMAI Study",
+  "subtitle": "Cognitive Project Management in AI",
+  "progressKey": "exam:cpmai:progress:v1",
+  "mockExam": {
+    "questionCount": 50,
+    "passPercent": 80
+  },
+  "topicGroups": [],
+  "sourceLabels": {
+    "cpmai-quiz": "CPMAI Quiz"
+  }
+}

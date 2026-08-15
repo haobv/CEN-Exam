@@ -1,0 +1,18 @@
+{
+  "exams": [
+    {
+      "id": "ab-730",
+      "title": "AB-730",
+      "subtitle": "Microsoft AI Business Professional",
+      "title_ja": "AB-730",
+      "subtitle_ja": "Microsoft AI Business Professional"
+    },
+    {
+      "id": "cpmai",
+      "title": "PMI-CPMAI",
+      "subtitle": "Cognitive Project Management in AI",
+      "title_ja": "PMI-CPMAI",
+      "subtitle_ja": "AI認定プロフェッショナル"
+    }
+  ]
+}

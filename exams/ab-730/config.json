@@ -1,0 +1,33 @@
+{
+  "id": "ab-730",
+  "title": "AB-730 Study",
+  "subtitle": "Microsoft AI Business Professional",
+  "progressKey": "exam:ab-730:progress:v1",
+  "legacyProgressKey": "ab730v3",
+  "mockExam": {
+    "questionCount": 50,
+    "passPercent": 80,
+    "quotas": [15, 20, 15]
+  },
+  "topicGroups": [
+    {
+      "label": "Understand generative AI fundamentals",
+      "topics": ["AI Fundamentals", "Responsible AI", "Data Privacy & Compliance", "Data Security", "M365 Copilot Versions", "Agents & Licensing", "Copilot Settings & Customization", "AI Fundamentals & Security"]
+    },
+    {
+      "label": "Manage prompts and conversations by using AI",
+      "topics": ["Prompt Gallery & Management", "Prompt Grounding", "Prompt Errors & Troubleshooting", "Conversation & Activity Management", "Prompts & Conversations"]
+    },
+    {
+      "label": "Draft and analyze business content by using AI",
+      "topics": ["Copilot in M365 Apps", "Notebook & Pages", "Copilot Features & Tools", "Agents - Creation & Configuration", "Agents — Creation & Configuration", "Business Content & Collaboration"]
+    }
+  ],
+  "sourceLabels": {
+    "examtopics": "ExamTopics",
+    "marks4sure": "Marks4Sure",
+    "pass4success": "Pass4Success",
+    "dumpsbase": "DumpsBase",
+    "edusum": "Edusum"
+  }
+}

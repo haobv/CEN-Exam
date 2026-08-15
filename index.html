@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:,">
 <title>AB-730 Study</title>
 <style>
 :root {
@@ -29,6 +30,7 @@ body {
 }
 
 body.loading .card,
+body.loading .exam-picker,
 body.loading .lang-switch { visibility: hidden; }
 
 .lang-switch {
@@ -57,6 +59,25 @@ body.loading .lang-switch { visibility: hidden; }
   box-shadow: 0 4px 24px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04);
   border-top: 4px solid var(--y);
 }
+
+.exam-picker {
+  background: #fff;
+  border-radius: 20px;
+  padding: 40px;
+  width: 100%;
+  max-width: 720px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04);
+  border-top: 4px solid var(--y);
+}
+.picker-title { font-size: 1.7rem; font-weight: 800; margin-bottom: 6px; }
+.picker-sub { color: var(--muted); font-size: .88rem; line-height: 1.5; margin-bottom: 24px; }
+.exam-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.exam-choice { border: 1.5px solid var(--border); border-radius: 12px; background: #f9fafb; padding: 18px; text-align: left; cursor: pointer; font-family: inherit; transition: border-color .15s, background .15s, transform .1s; }
+.exam-choice:hover { border-color: var(--y); background: var(--y-light); }
+.exam-choice:active { transform: scale(.98); }
+.exam-choice-title { display: block; color: var(--text); font-size: 1.05rem; font-weight: 800; margin-bottom: 5px; }
+.exam-choice-sub { display: block; color: var(--muted); font-size: .78rem; line-height: 1.4; }
+.change-exam { border: 0; background: none; color: var(--y-text); font: inherit; font-size: .76rem; font-weight: 700; cursor: pointer; margin-bottom: 14px; padding: 0; }
 
 /* ── Home ── */
 .home-title { font-size: 1.7rem; font-weight: 800; margin-bottom: 6px; }
@@ -230,6 +251,8 @@ button.btn:active { transform: scale(.97); }
     min-height: 100svh; padding: 20px 20px 32px;
     display: flex; flex-direction: column;
   }
+  .exam-picker { border-radius: 0; box-shadow: none; min-height: 100svh; padding: 72px 20px 32px; }
+  .exam-list { grid-template-columns: 1fr; }
   .fb { flex: 1; }
   .actions { margin-top: auto; padding-top: 16px; }
 }
@@ -239,8 +262,16 @@ button.btn:active { transform: scale(.97); }
 
 <button class="lang-switch" id="langSwitch" onclick="switchLang()">日本語</button>
 
+<!-- Exam picker -->
+<div class="exam-picker" id="examPicker" style="display:none">
+  <div class="picker-title" id="pickerTitle">Chọn bộ đề</div>
+  <div class="picker-sub" id="pickerSub">Tiến trình học được lưu riêng cho từng chứng chỉ.</div>
+  <div class="exam-list" id="examList"></div>
+</div>
+
 <!-- Home -->
 <div class="card" id="home">
+  <button class="change-exam" id="changeExamBtn" onclick="changeExam()">← Đổi bộ đề</button>
   <div class="home-title" id="homeTitle">AB-730 Study</div>
   <div class="home-sub" id="homeSub">Microsoft AI Business Professional · — câu</div>
   <div class="stats-hint" id="statsHint"></div>
@@ -311,7 +342,7 @@ button.btn:active { transform: scale(.97); }
 
 <script>
 let Q=[], queue=[], cur=0, ok=0, bad=0, answered=false, sess=[],QUESTION_TRANSLATIONS={};
-const KEY='ab730v3';
+let EXAMS=[],EXAM_CONFIG=null,CURRENT_EXAM='',KEY='',TOPIC_GROUPS=[];
 const LANG_KEY='ab730lang';
 const KEYS=['A','B','C','D','E','F'];
 const langParam=new URLSearchParams(location.search).get('lang');
@@ -320,9 +351,9 @@ let LANG=langParam==='ja'?'ja':langParam==='vi'?'vi':localStorage.getItem(LANG_K
 const VI_LOCALE={
   lang:'vi',
   strings:{
-    pageTitle:'AB-730 Study',homeTitle:'AB-730 Study',homeSubtitle:'Microsoft AI Business Professional · {count} câu',
+    pageTitle:'Study',homeTitle:'Study',homeSubtitle:'{subtitle} · {count} câu',
     stats:'Đã làm: {seen}/{total} · Câu sai: {wrong}',translationPreview:'Bản dịch mẫu: {translated}/{total} câu',
-    practice:'Luyện tập',all:'Tất cả',unseen:'Chưa làm',wrong:'Câu sai',mockExam:'📝 Thi thử',mockExamSub:'50 câu · random theo tỉ trọng',
+    practice:'Luyện tập',all:'Tất cả',unseen:'Chưa làm',wrong:'Câu sai',mockExam:'📝 Thi thử',mockExamSub:'{count} câu · chọn ngẫu nhiên',
     studyByTopic:'Ôn theo topic',resetProgress:'Xóa tiến trình',exit:'✕ Thoát',check:'Kiểm tra',viewAnswer:'Xem đáp án',next:'Tiếp →',viewResults:'Xem kết quả →',
     hintMultiple:'Chọn nhiều đáp án',hintYesNo:'Chọn Yes / No cho từng câu',hintComplex:'Đọc và xem đáp án',selectPlaceholder:'— chọn —',
     yes:'Yes',no:'No',correct:'✅ Chính xác!',incorrect:'❌ Sai. Đáp án: {answer}',answerShown:'📋 Đáp án đã hiển thị (các mục được tô xanh)',
@@ -353,13 +384,18 @@ function localizeQuestion(q){
 }
 function setText(id,value){const el=document.getElementById(id);if(el)el.textContent=value;}
 function applyLocale(){
-  document.documentElement.lang=LOCALE.lang;
-  document.title=t('pageTitle');
-  setText('homeTitle',t('homeTitle'));setText('practiceLabel',t('practice'));setText('allLabel',t('all'));
+  document.documentElement.lang=EXAM_CONFIG?LOCALE.lang:(LANG==='ja'?'ja-JP':'vi');
+  document.title=EXAM_CONFIG?(LANG==='ja'?t('pageTitle'):EXAM_CONFIG.title):'Exam Study';
+  setText('homeTitle',EXAM_CONFIG?(LANG==='ja'?t('homeTitle'):EXAM_CONFIG.title):'Exam Study');setText('practiceLabel',t('practice'));setText('allLabel',t('all'));
   setText('unseenLabel',t('unseen'));setText('wrongLabel',t('wrong'));setText('examLabel',t('mockExam'));
-  setText('examSub',t('mockExamSub'));setText('topicLabel',t('studyByTopic'));setText('resetLink',t('resetProgress'));
+  setText('examSub',t('mockExamSub',{count:EXAM_CONFIG?.mockExam.questionCount||50}));setText('topicLabel',t('studyByTopic'));setText('resetLink',t('resetProgress'));
   setText('exitBtn',t('exit'));setText('domLabel',t('domainThreshold'));setText('retryBtn',t('retry'));setText('homeBtn',t('home'));
-  const sw=document.getElementById('langSwitch');sw.textContent=t('switchLabel');sw.setAttribute('aria-label',t('switchAria'));
+  setText('changeExamBtn',LANG==='ja'?'← 試験を変更':'← Đổi bộ đề');
+  setText('pickerTitle',LANG==='ja'?'試験を選択':'Chọn bộ đề');
+  setText('pickerSub',LANG==='ja'?'学習進捗は試験ごとに保存されます。':'Tiến trình học được lưu riêng cho từng chứng chỉ.');
+  const sw=document.getElementById('langSwitch');
+  sw.textContent=EXAM_CONFIG?t('switchLabel'):(LANG==='ja'?'VI':'日本語');
+  sw.setAttribute('aria-label',EXAM_CONFIG?t('switchAria'):(LANG==='ja'?'Chuyển sang tiếng Việt':'日本語に切り替える'));
 }
 function switchLang(){
   const next=LANG==='ja'?'vi':'ja';localStorage.setItem(LANG_KEY,next);
@@ -380,31 +416,51 @@ function pruneProgress(){
   save(p);
 }
 
-const TOPIC_GROUPS=[
-  {label:'Understand generative AI fundamentals',     topics:['AI Fundamentals','Responsible AI','Data Privacy & Compliance','Data Security','M365 Copilot Versions','Agents & Licensing','Copilot Settings & Customization','AI Fundamentals & Security']},
-  {label:'Manage prompts and conversations by using AI', topics:['Prompt Gallery & Management','Prompt Grounding','Prompt Errors & Troubleshooting','Conversation & Activity Management','Prompts & Conversations']},
-  {label:'Draft and analyze business content by using AI', topics:['Copilot in M365 Apps','Notebook & Pages','Copilot Features & Tools','Agents — Creation & Configuration','Business Content & Collaboration']},
-];
-
 async function init(){
-  const tasks=[fetchJson('questions.json')];
-  if(LANG==='ja')tasks.push(fetchJson('i18n/ja.json'),fetchJson('i18n/questions.ja.json'));
-  const [data,locale,translations]=await Promise.all(tasks);
-  if(locale)LOCALE=locale;if(translations)QUESTION_TRANSLATIONS=translations;
-  Q=data.questions.map(localizeQuestion);pruneProgress();applyLocale();show('home');refresh();buildTopics();
+  const manifest=await fetchJson('exams/manifest.json');EXAMS=manifest.exams;
+  const requested=new URLSearchParams(location.search).get('exam');
+  applyLocale();renderExamPicker();
+  if(EXAMS.some(exam=>exam.id===requested))await selectExam(requested,false);else show('examPicker');
   document.body.classList.remove('loading');
 }
 init().catch(error=>{console.error(error);applyLocale();show('home');setText('homeSub',t('loadError'));document.body.classList.remove('loading');});
+
+function renderExamPicker(){
+  document.getElementById('examList').innerHTML=EXAMS.map(exam=>{
+    const title=LANG==='ja'?(exam.title_ja||exam.title):exam.title;
+    const subtitle=LANG==='ja'?(exam.subtitle_ja||exam.subtitle):exam.subtitle;
+    return `<button class="exam-choice" onclick="selectExam('${exam.id}')"><span class="exam-choice-title">${title}</span><span class="exam-choice-sub">${subtitle}</span></button>`;
+  }).join('');
+}
+
+async function selectExam(id,updateUrl=true){
+  CURRENT_EXAM=id;QUESTION_TRANSLATIONS={};LOCALE=VI_LOCALE;
+  const base=`exams/${id}`;
+  const tasks=[fetchJson(`${base}/config.json`),fetchJson(`${base}/questions.json`)];
+  if(LANG==='ja')tasks.push(fetchJson(`${base}/i18n/ja.json`),fetchJson(`${base}/i18n/questions.ja.json`));
+  const [config,data,locale,translations]=await Promise.all(tasks);
+  EXAM_CONFIG=config;KEY=config.progressKey;TOPIC_GROUPS=config.topicGroups||[];
+  if(config.legacyProgressKey&&!localStorage.getItem(KEY)&&localStorage.getItem(config.legacyProgressKey))localStorage.setItem(KEY,localStorage.getItem(config.legacyProgressKey));
+  if(locale)LOCALE=locale;if(translations)QUESTION_TRANSLATIONS=translations;
+  Q=data.questions.map(localizeQuestion);pruneProgress();applyLocale();refresh();buildTopics();show('home');
+  if(updateUrl){const url=new URL(location.href);url.searchParams.set('exam',id);history.replaceState({},'',url);}
+}
+
+function changeExam(){
+  CURRENT_EXAM='';EXAM_CONFIG=null;Q=[];QUESTION_TRANSLATIONS={};LOCALE=VI_LOCALE;
+  const url=new URL(location.href);url.searchParams.delete('exam');history.replaceState({},'',url);
+  applyLocale();renderExamPicker();show('examPicker');
+}
 
 function refresh(){
   const p=load();
   const nW=Object.keys(p.wrong).length, nS=Object.keys(p.seen).length;
   const nUnseen=Math.max(Q.length-nS,0);
-  setText('homeSub',t('homeSubtitle',{count:Q.length}));
+  setText('homeSub',t('homeSubtitle',{count:Q.length,subtitle:EXAM_CONFIG.subtitle}));
   const ac=document.getElementById('allCount');  if(ac) ac.textContent=Q.length;
   setText('statsHint',t('stats',{seen:nS,total:Q.length,wrong:nW}));
   const ts=document.getElementById('translationStatus'),translated=Object.keys(QUESTION_TRANSLATIONS).length;
-  ts.style.display=LANG==='ja'&&translated<Q.length?'':'none';
+  ts.style.display=LANG==='ja'&&translated>0&&translated<Q.length?'':'none';
   ts.textContent=t('translationPreview',{translated,total:Q.length});
   const wu=document.getElementById('unseenCount'); if(wu) wu.textContent=nUnseen;
   const ww=document.getElementById('wrongCount');  if(ww) ww.textContent=nW;
@@ -432,10 +488,13 @@ function startTranslationPreview(){
 }
 
 function startExam(){
-  // 50 câu random theo tỉ trọng: Fundamentals 30%, Prompts 40%, Business 30%
-  const quota=[15,20,15];
-  const pick=(g,n)=>shuffle(Q.filter(q=>TOPIC_GROUPS[g].topics.includes(q.topic))).slice(0,n);
-  queue=shuffle([...pick(0,quota[0]),...pick(1,quota[1]),...pick(2,quota[2])]);
+  const quotas=EXAM_CONFIG.mockExam.quotas;
+  if(quotas?.length===TOPIC_GROUPS.length){
+    const pick=(g,n)=>shuffle(Q.filter(q=>TOPIC_GROUPS[g].topics.includes(q.topic))).slice(0,n);
+    queue=shuffle(quotas.flatMap((n,g)=>pick(g,n)));
+  }else{
+    queue=shuffle([...Q]).slice(0,Math.min(EXAM_CONFIG.mockExam.questionCount,Q.length));
+  }
   cur=0;ok=0;bad=0;sess=[];show('quiz');render();
 }
 
@@ -461,7 +520,7 @@ function render(){
   document.getElementById('qNum').textContent=`${cur+1} / ${queue.length}`;
   document.getElementById('qScore').textContent=`✓ ${ok}`;
   document.getElementById('qTopic').textContent=topicName(q.topic);
-  const srcMap={examtopics:'ExamTopics',marks4sure:'Marks4Sure',pass4success:'Pass4Success',dumpsbase:'DumpsBase',edusum:'Edusum'};
+  const srcMap=EXAM_CONFIG.sourceLabels||{};
   const srcEl=document.getElementById('qSource');
   let pills=`<span class="src-pill src-primary">${srcMap[q.source]||q.source}</span>`;
   if(q.also_in&&q.also_in.length) pills+=q.also_in.map(s=>`<span class="src-pill src-also">${srcMap[s]||s}</span>`).join('');
@@ -657,7 +716,7 @@ function exitQuiz(){if(confirm(t('exitConfirm')))goHome();}
 function showResults(){
   show('results');
   const total=ok+bad,pct=Math.round(ok/total*100);
-  const PASS=80, passed=pct>=PASS;
+  const PASS=EXAM_CONFIG.mockExam.passPercent||80, passed=pct>=PASS;
   const pctEl=document.getElementById('resPct');
   pctEl.textContent=pct+'%';
   pctEl.style.color=passed?'#16a34a':'#dc2626';
@@ -666,7 +725,7 @@ function showResults(){
   badge.textContent=passed?t('passed'):t('failed');
   document.getElementById('resSub').textContent=t('resultSub',{correct:ok,total,pass:PASS});
   const labels=LOCALE.domains;
-  const dom=[[0,0],[0,0],[0,0]];
+  const dom=TOPIC_GROUPS.map(()=>[0,0]);
   sess.forEach(r=>{const gi=TOPIC_GROUPS.findIndex(g=>g.topics.includes(r.topic));if(gi<0)return;dom[gi][1]++;if(r.ok)dom[gi][0]++;});
   document.getElementById('domLabel').style.display=dom.some(s=>s[1])?'':'none';
   document.getElementById('resDomains').innerHTML=dom.map((s,i)=>{
@@ -680,6 +739,9 @@ function showResults(){
 }
 
 function buildTopics(){
+  const topicLabel=document.getElementById('topicLabel'),topicChips=document.getElementById('topicChips');
+  topicLabel.style.display=TOPIC_GROUPS.length?'':'none';topicChips.style.display=TOPIC_GROUPS.length?'':'none';
+  if(!TOPIC_GROUPS.length){topicChips.innerHTML='';return;}
   const p=load();
   const wrongIds=new Set(Object.keys(p.wrong).map(Number));
   document.getElementById('topicChips').innerHTML=TOPIC_GROUPS.map((g,i)=>{
@@ -699,7 +761,7 @@ function startTopic(btn){
   cur=0;ok=0;bad=0;sess=[];show('quiz');render();
 }
 function goHome(){ show('home'); refresh(); buildTopics(); }
-function show(s){ ['home','quiz','results'].forEach(id=>document.getElementById(id).style.display=id===s?'block':'none'); }
+function show(s){ ['examPicker','home','quiz','results'].forEach(id=>document.getElementById(id).style.display=id===s?'block':'none'); }
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 function resetProgress(){if(confirm(t('resetConfirm'))){localStorage.removeItem(KEY);refresh();buildTopics();}}
 </script>
