@@ -4,7 +4,7 @@
   "subtitle": "Cognitive Project Management in AI",
   "progressKey": "exam:cpmai:progress:v1",
   "mockExam": {
-    "questionCount": 50,
+    "questionCount": 120,
     "passPercent": 80
   },
   "topicGroups": [],
