@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:,">
+<title>B-Exam · Thống kê</title>
+<style>
+:root {
+  --canvas: #F5F7FA; --surface: #FFFFFF; --ink: #161719; --muted: #5C626C;
+  --hairline: #C7CCD4; --control: #8A9099; --action: #0066CC; --accent: #0A84FF;
+  --success: #1D7F38; --danger: #C4001A;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Arial, sans-serif;
+  font-size: 15px; line-height: 1.5; color: var(--ink); background: var(--canvas);
+  -webkit-font-smoothing: antialiased;
+}
+.showcase { position: absolute; inset: 0 0 auto 0; height: 420px; opacity: .45; overflow: hidden; pointer-events: none; z-index: 0;
+  -webkit-mask-image: linear-gradient(#000 55%, transparent); mask-image: linear-gradient(#000 55%, transparent); }
+.blob { position: absolute; border-radius: 50%; filter: blur(60px); animation: drift 72s ease-in-out infinite alternate; }
+.b1 { width: 52vw; height: 52vw; max-width: 640px; max-height: 640px; left: -10vw; top: -18vw; background: #4F8DFF; opacity: .85; }
+.b2 { width: 44vw; height: 44vw; max-width: 560px; max-height: 560px; left: 30vw; top: -16vw; background: #9B7BFF; opacity: .8; animation-duration: 84s; }
+.b3 { width: 40vw; height: 40vw; max-width: 520px; max-height: 520px; right: -8vw; top: -10vw; background: #FF7FB0; opacity: .75; animation-duration: 96s; }
+.b4 { width: 34vw; height: 34vw; max-width: 440px; max-height: 440px; left: 14vw; top: 6vw; background: #3FD1C0; opacity: .7; animation-duration: 78s; }
+.b5 { width: 30vw; height: 30vw; max-width: 400px; max-height: 400px; right: 12vw; top: 8vw; background: #FFB067; opacity: .75; animation-duration: 90s; }
+@keyframes drift { 0% { transform: translate3d(0,0,0) scale(1); } 50% { transform: translate3d(4vw,2vw,0) scale(1.08); } 100% { transform: translate3d(-3vw,3vw,0) scale(.96); } }
+
+.scroll-edge { position: fixed; inset: 0 0 auto 0; height: 94px; z-index: 19; pointer-events: none; opacity: 0; transition: opacity .25s;
+  background: linear-gradient(rgba(245,247,250,.92) 55%, rgba(245,247,250,0)); }
+body.scrolled .scroll-edge { opacity: 1; }
+.nav {
+  position: fixed; top: 14px; left: 50%; transform: translateX(-50%); z-index: 20;
+  width: min(1100px, calc(100% - 28px)); min-height: 56px; padding: 6px 6px 6px 8px;
+  display: flex; align-items: center; gap: 4px; border-radius: 999px;
+  background: rgba(255,255,255,.4);
+  -webkit-backdrop-filter: blur(8px) saturate(180%) brightness(1.1); backdrop-filter: blur(8px) saturate(180%) brightness(1.1);
+  border: 1px solid rgba(255,255,255,.75);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.85), inset 0 -1px 0 rgba(255,255,255,.3), inset 0 0 0 1px rgba(255,255,255,.15), 0 0 0 .5px rgba(22,23,25,.1), 0 8px 24px rgba(22,23,25,.12);
+  transition: min-height .35s cubic-bezier(0.32,0.72,0,1), padding .35s cubic-bezier(0.32,0.72,0,1);
+}
+body.nav-min .nav { min-height: 46px; padding: 3px 3px 3px 5px; }
+.nav-btn { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 16px; border-radius: 999px;
+  color: var(--ink); font-size: 15px; font-weight: 600; text-decoration: none; transition: background .15s, transform .35s cubic-bezier(0.34,1.56,0.64,1); }
+.nav-btn:hover { background: rgba(22,23,25,.06); }
+.nav-btn:active { transform: scale(.96); transition-duration: .1s; }
+.nav-title { flex: 1; padding: 0 8px; font-size: 15px; font-weight: 700; }
+.ic { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+.page { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 108px 20px 80px; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+.charts { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.chart-title { font-size: 15px; font-weight: 600; margin-bottom: 2px; }
+.chart-sub { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
+.chart { position: relative; height: 200px; }
+.chart svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.chart .grid { stroke: #E6E9EE; stroke-width: 1; }
+.chart .axis { fill: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.chart .line { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.chart .area { fill: var(--accent); opacity: .1; }
+.chart .dot { fill: var(--accent); stroke: var(--surface); stroke-width: 2; }
+.chart .end-label { fill: var(--ink); font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.chart .cross { stroke: var(--control); stroke-width: 1; }
+.tip {
+  position: absolute; top: 0; pointer-events: none; white-space: nowrap; z-index: 2;
+  padding: 6px 12px; border-radius: 12px; font-size: 13px; font-weight: 600; color: var(--ink);
+  background: rgba(255,255,255,.6); -webkit-backdrop-filter: blur(8px) saturate(180%); backdrop-filter: blur(8px) saturate(180%);
+  border: 1px solid rgba(255,255,255,.75); box-shadow: inset 0 1px 0 rgba(255,255,255,.85), 0 0 0 .5px rgba(22,23,25,.1), 0 8px 24px rgba(22,23,25,.12);
+  opacity: 0; transform: translate(-50%, -4px) scale(.96); transition: opacity .15s, transform .25s cubic-bezier(0.32,0.72,0,1);
+}
+.tip.on { opacity: 1; transform: translate(-50%, 0) scale(1); }
+.tip b { font-variant-numeric: tabular-nums; }
+details { margin-top: 16px; }
+summary { display: inline-flex; align-items: center; min-height: 44px; color: var(--action); font-weight: 600; cursor: pointer; }
+summary:hover { text-decoration: underline; }
+.dist { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px 40px; }
+.bars { display: flex; flex-direction: column; gap: 10px; }
+.bar-row { display: grid; grid-template-columns: minmax(90px, 38%) 1fr; align-items: center; gap: 12px; font-size: 14px; }
+.bar-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bar-track { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.bar { height: 16px; min-width: 4px; border-radius: 0 4px 4px 0; background: var(--accent); }
+.bar-val { font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+@media (max-width: 700px) { .charts, .dist { grid-template-columns: 1fr; } .card { padding: 20px; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition-duration: .15s !important; } }
+@media (prefers-reduced-transparency: reduce) { .nav, .tip { background: rgba(255,255,255,.92); -webkit-backdrop-filter: none; backdrop-filter: none; } }
+h1 { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Arial, sans-serif; font-size: 30px; font-weight: 700; letter-spacing: -0.02em; }
+.sub { color: var(--muted); margin: 4px 0 24px; }
+.card { background: var(--surface); border: 1px solid rgba(199,204,212,.7); border-radius: 24px; padding: 24px 28px; margin-bottom: 20px; box-shadow: 0 1px 2px rgba(22,23,25,.06); }
+.card h2 { font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+.scroll { overflow-x: auto; margin: 0 -8px; }
+table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+th, td { padding: 10px 8px; text-align: left; white-space: nowrap; }
+th { font-size: 13px; font-weight: 600; color: var(--muted); border-bottom: 1px solid var(--hairline); }
+td { border-bottom: 1px solid rgba(199,204,212,.5); }
+tr:last-child td { border-bottom: 0; }
+td.num, th.num { text-align: right; }
+td.q { white-space: normal; min-width: 260px; color: var(--muted); }
+.uid { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; color: var(--muted); }
+.scroll.list { max-height: 440px; overflow-y: auto; overscroll-behavior: contain; }
+.scroll.list th { position: sticky; top: 0; z-index: 1; background: var(--surface); }
+.empty { color: var(--muted); padding: 8px 0; }
+.err { color: var(--danger); font-weight: 600; }
+form { display: flex; gap: 12px; flex-wrap: wrap; }
+input { flex: 1; min-width: 220px; min-height: 44px; padding: 0 14px; border: 1px solid var(--control); border-radius: 14px; font: inherit; font-size: 17px; }
+input:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+button { min-height: 44px; padding: 0 24px; border: 0; border-radius: 999px; background: var(--action); color: #fff; font: inherit; font-weight: 600; cursor: pointer; }
+button:active { transform: scale(.96); }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+</svg>
+<div class="scroll-edge" aria-hidden="true"></div>
+<nav class="nav">
+  <a class="nav-btn" href="index.html"><svg class="ic" aria-hidden="true"><use href="#i-back"/></svg>B-Exam</a>
+  <span class="nav-title">Thống kê</span>
+</nav>
+<div class="showcase" aria-hidden="true"><i class="blob b1"></i><i class="blob b2"></i><i class="blob b3"></i><i class="blob b4"></i><i class="blob b5"></i></div>
+<main class="page">
+  <h1>Thống kê B-Exam</h1>
+  <p class="sub" id="sub">Dữ liệu ẩn danh, mỗi trình duyệt là một người dùng.</p>
+
+  <div class="card" id="login" hidden>
+    <h2>Nhập mã xem thống kê</h2>
+    <form onsubmit="event.preventDefault();sessionStorage.setItem('statsKey',this.key.value.trim());load();">
+      <input name="key" type="password" autocomplete="current-password" required>
+      <button type="submit">Xem</button>
+    </form>
+    <p class="err" id="loginErr" hidden>Mã không đúng.</p>
+  </div>
+
+  <div id="data" hidden>
+    <div class="card"><h2>Theo bộ đề</h2><div class="scroll" id="exams"></div></div>
+    <div class="card">
+      <h2>30 ngày gần nhất</h2>
+      <div class="charts">
+        <div><div class="chart-title">Người dùng mỗi ngày</div><div class="chart-sub">Số trình duyệt có hoạt động</div><div class="chart" id="chartUsers"></div></div>
+        <div><div class="chart-title">Lượt trả lời mỗi ngày</div><div class="chart-sub">Gồm luyện tập và thi thử</div><div class="chart" id="chartAnswers"></div></div>
+      </div>
+      <details><summary>Xem dạng bảng</summary><div class="scroll" id="daily"></div></details>
+    </div>
+    <div class="card">
+      <h2>Phân bố người dùng</h2>
+      <div class="dist">
+        <div><div class="chart-title">Loại thiết bị</div><div class="chart-sub">Số người dùng</div><div class="bars" id="distDevices"></div></div>
+        <div><div class="chart-title">Hệ điều hành</div><div class="chart-sub">Số người dùng</div><div class="bars" id="distSystems"></div></div>
+        <div><div class="chart-title">Thành phố</div><div class="chart-sub">Ước lượng theo nhà mạng</div><div class="bars" id="distCities"></div></div>
+        <div><div class="chart-title">Mạng truy cập</div><div class="chart-sub">Nhà mạng hoặc mạng công ty</div><div class="bars" id="distNetworks"></div></div>
+      </div>
+    </div>
+    <div class="card"><h2>Người dùng (500 lượt gần nhất)</h2><div class="scroll list" id="users"></div></div>
+  </div>
+</main>
+<script>
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const fmt = (v, suffix = '') => v === null || v === undefined ? '—' : v + suffix;
+const deviceName = r => r.os ? `${r.os} · ${r.browser}` : 'Không rõ thiết bị';
+const DEVICE = { mobile: 'Điện thoại', tablet: 'Máy tính bảng', desktop: 'Máy tính' };
+function bars(id, rows, label = v => v) {
+  const el = document.getElementById(id);
+  let list = rows.map(r => ({ name: r.value == null ? 'Không rõ' : label(r.value), users: r.users }));
+  if (list.length > 6) list = [...list.slice(0, 5), { name: 'Khác', users: list.slice(5).reduce((n, r) => n + r.users, 0) }];
+  if (!list.length) { el.innerHTML = '<p class="empty">Chưa có dữ liệu.</p>'; return; }
+  const max = Math.max(...list.map(r => r.users));
+  el.innerHTML = list.map(r => `<div class="bar-row" title="${esc(r.name)}: ${r.users} người dùng">
+    <span class="bar-label">${esc(r.name)}</span>
+    <span class="bar-track"><span class="bar" style="width:calc((100% - 48px) * ${r.users / max})"></span><span class="bar-val">${r.users}</span></span>
+  </div>`).join('');
+}
+const time = ms => new Date(ms).toLocaleString('vi-VN', { dateStyle: 'short', timeStyle: 'short' });
+
+function table(id, cols, rows) {
+  const el = document.getElementById(id);
+  if (!rows.length) { el.innerHTML = '<p class="empty">Chưa có dữ liệu.</p>'; return; }
+  el.innerHTML = `<table><thead><tr>${cols.map(c => `<th class="${c.num ? 'num' : ''}">${c.label}</th>`).join('')}</tr></thead><tbody>${
+    rows.map(r => `<tr>${cols.map(c => `<td class="${c.cls || (c.num ? 'num' : '')}">${c.html ? c.html(r) : esc(c.get(r))}</td>`).join('')}</tr>`).join('')
+  }</tbody></table>`;
+}
+
+function last30(daily) {
+  const byDay = Object.fromEntries(daily.map(r => [r.day, r]));
+  const out = [];
+  for (let i = 29; i >= 0; i--) {
+    const day = new Date(Date.now() - i * 86400000).toISOString().slice(0, 10);
+    out.push({ day, users: byDay[day]?.users || 0, answers: byDay[day]?.answers || 0 });
+  }
+  return out;
+}
+const dm = day => `${day.slice(8, 10)}/${day.slice(5, 7)}`;
+function niceMax(v) {
+  const pow = 10 ** Math.floor(Math.log10(Math.max(v, 4)));
+  return [2, 4, 6, 8, 10].map(m => m * pow).find(m => m >= v);
+}
+
+function lineChart(id, rows, key, unit) {
+  const el = document.getElementById(id);
+  const W = el.clientWidth, H = el.clientHeight, m = { t: 14, r: 40, b: 26, l: 40 };
+  const max = niceMax(Math.max(4, ...rows.map(r => r[key])));
+  const x = i => m.l + i * (W - m.l - m.r) / (rows.length - 1);
+  const y = v => m.t + (H - m.t - m.b) * (1 - v / max);
+  const pts = rows.map((r, i) => `${x(i).toFixed(1)},${y(r[key]).toFixed(1)}`);
+  const last = rows.length - 1;
+  const ticks = [0, max / 2, max];
+  const xTicks = [0, Math.round(last / 2), last];
+  el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${unit} mỗi ngày trong 30 ngày">
+    ${ticks.map(t => `<line class="grid" x1="${m.l}" x2="${W - m.r}" y1="${y(t)}" y2="${y(t)}"/><text class="axis" x="${m.l - 8}" y="${y(t) + 4}" text-anchor="end">${t.toLocaleString('vi-VN')}</text>`).join('')}
+    ${xTicks.map(i => `<text class="axis" x="${x(i)}" y="${H - 6}" text-anchor="${i === 0 ? 'start' : i === last ? 'end' : 'middle'}">${dm(rows[i].day)}</text>`).join('')}
+    <path class="area" d="M${x(0)},${y(0)} L${pts.join(' L')} L${x(last)},${y(0)} Z"/>
+    <path class="line" d="M${pts.join(' L')}"/>
+    <circle class="dot" cx="${x(last)}" cy="${y(rows[last][key])}" r="4"/>
+    <text class="end-label" x="${x(last) + 8}" y="${y(rows[last][key]) + 4}">${rows[last][key].toLocaleString('vi-VN')}</text>
+    <g class="hover" style="display:none"><line class="cross" y1="${m.t}" y2="${y(0)}"/><circle class="dot" r="4"/></g>
+    <rect x="${m.l}" y="0" width="${W - m.l - m.r}" height="${H}" fill="transparent"/>
+  </svg><div class="tip"></div>`;
+  const svg = el.querySelector('svg'), hover = svg.querySelector('.hover'), tip = el.querySelector('.tip');
+  svg.addEventListener('pointermove', e => {
+    const px = e.clientX - svg.getBoundingClientRect().left;
+    const i = Math.max(0, Math.min(last, Math.round((px - m.l) / ((W - m.l - m.r) / last))));
+    const r = rows[i];
+    hover.style.display = '';
+    hover.querySelector('line').setAttribute('x1', x(i)); hover.querySelector('line').setAttribute('x2', x(i));
+    hover.querySelector('circle').setAttribute('cx', x(i)); hover.querySelector('circle').setAttribute('cy', y(r[key]));
+    tip.innerHTML = `${dm(r.day)} · <b>${r[key].toLocaleString('vi-VN')}</b> ${unit.toLowerCase()}`;
+    tip.style.left = Math.max(70, Math.min(W - 70, x(i))) + 'px'; tip.style.top = Math.max(0, y(r[key]) - 44) + 'px';
+    tip.classList.add('on');
+  });
+  svg.addEventListener('pointerleave', () => { hover.style.display = 'none'; tip.classList.remove('on'); });
+}
+
+async function load() {
+  const params = new URLSearchParams(location.search);
+  if (params.get('key')) { sessionStorage.setItem('statsKey', params.get('key')); history.replaceState({}, '', location.pathname); }
+  const key = sessionStorage.getItem('statsKey');
+  const login = document.getElementById('login');
+  if (!key) { login.hidden = false; return; }
+
+  const res = await fetch(`api/stats?key=${encodeURIComponent(key)}`);
+  if (res.status === 401) {
+    sessionStorage.removeItem('statsKey'); login.hidden = false;
+    document.getElementById('loginErr').hidden = false; return;
+  }
+  if (!res.ok) { document.getElementById('sub').innerHTML = `<span class="err">Lỗi tải dữ liệu (${res.status}).</span>`; return; }
+  const d = await res.json();
+  login.hidden = true; document.getElementById('data').hidden = false;
+
+  table('exams', [
+    { label: 'Bộ đề', get: r => r.exam },
+    { label: 'Người dùng', num: 1, get: r => r.users },
+    { label: 'Lượt trả lời', num: 1, get: r => r.answers },
+    { label: 'Tỉ lệ đúng', num: 1, get: r => fmt(r.accuracy, '%') },
+    { label: 'Lượt thi thử', num: 1, get: r => r.mock_attempts },
+    { label: 'Điểm TB thi thử', num: 1, get: r => fmt(r.mock_avg, '%') },
+    { label: 'Tỉ lệ đạt', num: 1, get: r => fmt(r.mock_pass_rate, '%') },
+  ], d.exams);
+
+  table('daily', [
+    { label: 'Ngày', get: r => r.day },
+    { label: 'Người dùng', num: 1, get: r => r.users },
+    { label: 'Lượt trả lời', num: 1, get: r => r.answers },
+  ], d.daily);
+  const days = last30(d.daily);
+  const drawCharts = () => { lineChart('chartUsers', days, 'users', 'Người dùng'); lineChart('chartAnswers', days, 'answers', 'Lượt trả lời'); };
+  drawCharts(); addEventListener('resize', drawCharts);
+
+  bars('distDevices', d.dist.devices, v => DEVICE[v] || v);
+  bars('distSystems', d.dist.systems);
+  bars('distCities', d.dist.cities);
+  bars('distNetworks', d.dist.networks);
+
+  table('users', [
+    { label: 'Người dùng', html: r => `${esc(deviceName(r))} <span class="uid" title="${esc(r.uid)}">#${esc(r.uid.slice(0, 4))}</span>` },
+    { label: 'Khu vực', get: r => [r.city, r.network].filter(Boolean).join(' · ') || '—' },
+    { label: 'Bộ đề', get: r => r.exam },
+    { label: 'Số câu đã làm', num: 1, get: r => r.questions },
+    { label: 'Lượt trả lời', num: 1, get: r => r.answers },
+    { label: 'Tỉ lệ đúng', num: 1, get: r => fmt(r.accuracy, '%') },
+    { label: 'Lượt thi thử', num: 1, get: r => r.mock_attempts },
+    { label: 'Điểm thi cao nhất', num: 1, get: r => fmt(r.mock_best, '%') },
+    { label: 'Lần đầu', get: r => time(r.first_seen) },
+    { label: 'Gần nhất', get: r => time(r.last_seen) },
+  ], d.users);
+
+}
+load();
+let lastY = 0;
+addEventListener('scroll', () => {
+  const yy = scrollY; document.body.classList.toggle('scrolled', yy > 8);
+  if (Math.abs(yy - lastY) > 6) { document.body.classList.toggle('nav-min', yy > lastY && yy > 80); lastY = yy; }
+}, { passive: true });
+</script>
+</body>
+</html>

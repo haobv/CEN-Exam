@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="data:,">
-<title>Mock Test</title>
+<title>B-Exam</title>
 <style>
 :root {
   --canvas:   #F5F7FA;
@@ -439,7 +439,7 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 
 <!-- Floating navigation -->
 <nav class="nav" id="nav">
-  <span class="nav-title" data-on="picker">Mock Test</span>
+  <span class="nav-title" data-on="picker">B-Exam</span>
   <button class="nav-btn" id="changeExamBtn" data-on="home" onclick="changeExam()"><svg class="ic" aria-hidden="true"><use href="#i-back"/></svg><span class="lbl" id="changeExamLbl">Đổi bộ đề</span></button>
   <span class="nav-title" id="navTitle" data-on="home results"></span>
   <button class="nav-btn" id="exitBtn" data-on="quiz" onclick="exitQuiz()"><svg class="ic" aria-hidden="true"><use href="#i-close"/></svg><span class="lbl opt-lbl" id="exitLbl">Thoát</span></button>
@@ -468,7 +468,7 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 <!-- Home -->
 <section class="screen card" id="home">
   <div class="head">
-    <h1 class="title" id="homeTitle">Mock Test</h1>
+    <h1 class="title" id="homeTitle">B-Exam</h1>
     <p class="sub" id="homeSub">Microsoft AI Business Professional · — câu</p>
     <div class="stats-hint" id="statsHint"></div>
     <button class="translation-status" id="translationStatus" onclick="startTranslationPreview()" style="display:none"></button>
@@ -548,7 +548,7 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 
 <script>
 let Q=[], queue=[], cur=0, ok=0, bad=0, answered=false, sess=[],QUESTION_TRANSLATIONS={};
-let EXAMS=[],EXAM_CONFIG=null,CURRENT_EXAM='',KEY='',TOPIC_GROUPS=[];
+let EXAMS=[],EXAM_CONFIG=null,CURRENT_EXAM='',KEY='',TOPIC_GROUPS=[],MODE='practice';
 const LANG_KEY='ab730lang';
 const KEYS=['A','B','C','D','E','F'];
 const langParam=new URLSearchParams(location.search).get('lang');
@@ -591,8 +591,8 @@ function localizeQuestion(q){
 function setText(id,value){const el=document.getElementById(id);if(el)el.textContent=value;}
 function applyLocale(){
   document.documentElement.lang=EXAM_CONFIG?LOCALE.lang:(LANG==='ja'?'ja-JP':'vi');
-  document.title=EXAM_CONFIG?(LANG==='ja'?t('pageTitle'):EXAM_CONFIG.title):'Mock Test';
-  setText('homeTitle',EXAM_CONFIG?(LANG==='ja'?t('homeTitle'):EXAM_CONFIG.title):'Mock Test');setText('navTitle',document.getElementById('homeTitle').textContent);setText('practiceLabel',t('practice'));setText('allLabel',t('all'));
+  document.title=EXAM_CONFIG?(LANG==='ja'?t('pageTitle'):EXAM_CONFIG.title):'B-Exam';
+  setText('homeTitle',EXAM_CONFIG?(LANG==='ja'?t('homeTitle'):EXAM_CONFIG.title):'B-Exam');setText('navTitle',document.getElementById('homeTitle').textContent);setText('practiceLabel',t('practice'));setText('allLabel',t('all'));
   setText('unseenLabel',t('unseen'));setText('wrongLabel',t('wrong'));setText('examLabel',t('mockExam'));
   setText('examSub',t('mockExamSub',{count:EXAM_CONFIG?.mockExam.questionCount||50}));setText('topicLabel',t('studyByTopic'));setText('resetLink',t('resetProgress'));
   setText('exitLbl',t('exit'));setText('domLabel',t('domainThreshold'));setText('retryBtn',t('retry'));setText('homeBtn',t('home'));
@@ -607,6 +607,14 @@ function switchLang(){
   const next=LANG==='ja'?'vi':'ja';localStorage.setItem(LANG_KEY,next);
   const url=new URL(location.href);if(next==='ja')url.searchParams.set('lang','ja');else url.searchParams.delete('lang');
   location.href=url.toString();
+}
+function userId(){
+  let id=localStorage.getItem('cenExamUid');
+  if(!id){id=crypto.randomUUID?.()||Date.now().toString(36)+Math.random().toString(36).slice(2);localStorage.setItem('cenExamUid',id);}
+  return id;
+}
+function track(type,data={}){
+  try{navigator.sendBeacon('api/track',new Blob([JSON.stringify({uid:userId(),exam:CURRENT_EXAM,type,lang:LANG,...data})],{type:'application/json'}));}catch{}
 }
 async function fetchJson(path){const r=await fetch(path);if(!r.ok)throw new Error(`${path}: ${r.status}`);return r.json();}
 
@@ -649,6 +657,7 @@ async function selectExam(id,updateUrl=true){
   if(config.legacyProgressKey&&!localStorage.getItem(KEY)&&localStorage.getItem(config.legacyProgressKey))localStorage.setItem(KEY,localStorage.getItem(config.legacyProgressKey));
   if(locale)LOCALE=locale;if(translations)QUESTION_TRANSLATIONS=translations;
   Q=data.questions.map(localizeQuestion);pruneProgress();applyLocale();refresh();buildTopics();show('home');
+  track('open');
   if(updateUrl){const url=new URL(location.href);url.searchParams.set('exam',id);history.replaceState({},'',url);}
 }
 
@@ -684,13 +693,13 @@ function startAll(){
   const unseen=shuffle(Q.filter(q=>!seenIds.has(q.id)));
   const done=shuffle(Q.filter(q=>seenIds.has(q.id)&&!wrongIds.has(q.id)));
   queue=[...wrong,...unseen,...done];
-  cur=0;ok=0;bad=0;sess=[];show('quiz');render();
+  cur=0;ok=0;bad=0;sess=[];MODE='practice';show('quiz');render();
 }
 
 function startTranslationPreview(){
   queue=Q.filter(q=>QUESTION_TRANSLATIONS[q.id]);
   if(!queue.length)return;
-  cur=0;ok=0;bad=0;sess=[];show('quiz');render();
+  cur=0;ok=0;bad=0;sess=[];MODE='practice';show('quiz');render();
 }
 
 function startExam(){
@@ -701,7 +710,7 @@ function startExam(){
   }else{
     queue=shuffle([...Q]).slice(0,Math.min(EXAM_CONFIG.mockExam.questionCount,Q.length));
   }
-  cur=0;ok=0;bad=0;sess=[];show('quiz');render();
+  cur=0;ok=0;bad=0;sess=[];MODE='exam';show('quiz');render();
 }
 
 function startMode(mode){
@@ -715,7 +724,7 @@ function startMode(mode){
     queue=shuffle(Q.filter(q=>!seenIds.has(q.id)));
     if(!queue.length)return;
   }
-  cur=0;ok=0;bad=0;sess=[];show('quiz');render();
+  cur=0;ok=0;bad=0;sess=[];MODE='practice';show('quiz');render();
 }
 
 function render(){
@@ -901,6 +910,7 @@ function record(q,isOk){
   if(isOk){p.correct[q.id]=true;delete p.wrong[q.id];ok++;}
   else{p.wrong[q.id]=true;delete p.correct[q.id];bad++;}
   save(p);document.getElementById('qScore').textContent=`${ok}`;
+  track('answer',{mode:MODE,qid:q.id,correct:isOk?1:0});
 }
 
 function next(){cur++;if(cur>=queue.length)showResults();else render();}
@@ -918,6 +928,7 @@ function showResults(){
   badge.className='res-badge '+(passed?'pass':'fail');
   badge.textContent=passed?t('passed'):t('failed');
   document.getElementById('resSub').textContent=t('resultSub',{correct:ok,total,pass:PASS});
+  track('finish',{mode:MODE,correct:ok,total,score:pct,passed:passed?1:0});
   const labels=LOCALE.domains;
   const dom=TOPIC_GROUPS.map(()=>[0,0]);
   sess.forEach(r=>{const gi=TOPIC_GROUPS.findIndex(g=>g.topics.includes(r.topic));if(gi<0)return;dom[gi][1]++;if(r.ok)dom[gi][0]++;});
@@ -952,7 +963,7 @@ function buildTopics(){
 function startTopic(btn){
   const topics=JSON.parse(btn.dataset.topics);
   queue=shuffle(Q.filter(q=>topics.includes(q.topic)));
-  cur=0;ok=0;bad=0;sess=[];show('quiz');render();
+  cur=0;ok=0;bad=0;sess=[];MODE='practice';show('quiz');render();
 }
 function goHome(){ show('home'); refresh(); buildTopics(); }
 function show(s){ ['examPicker','home','quiz','results'].forEach(id=>document.getElementById(id).style.display=id===s?'block':'none');document.body.dataset.screen=s; }
