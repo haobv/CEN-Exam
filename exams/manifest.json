@@ -1,11 +1,11 @@
 {
   "exams": [
     {
-      "id": "ab-730",
-      "title": "AB-730",
-      "subtitle": "Microsoft AI Business Professional",
-      "title_ja": "AB-730",
-      "subtitle_ja": "Microsoft AI Business Professional"
+      "id": "ccarp",
+      "title": "CCAR-P",
+      "subtitle": "Claude Certified Architect – Professional",
+      "title_ja": "CCAR-P",
+      "subtitle_ja": "Claude Certified Architect – Professional"
     },
     {
       "id": "cpmai",
@@ -15,11 +15,11 @@
       "subtitle_ja": "AI認定プロフェッショナル"
     },
     {
-      "id": "ccarp",
-      "title": "CCAR-P",
-      "subtitle": "Claude Certified Architect – Professional",
-      "title_ja": "CCAR-P",
-      "subtitle_ja": "Claude Certified Architect – Professional"
+      "id": "ab-730",
+      "title": "AB-730",
+      "subtitle": "Microsoft AI Business Professional",
+      "title_ja": "AB-730",
+      "subtitle_ja": "Microsoft AI Business Professional"
     }
   ]
 }
