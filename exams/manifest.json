@@ -13,6 +13,13 @@
       "subtitle": "Cognitive Project Management in AI",
       "title_ja": "PMI-CPMAI",
       "subtitle_ja": "AI認定プロフェッショナル"
+    },
+    {
+      "id": "ccarp",
+      "title": "CCAR-P",
+      "subtitle": "Claude Certified Architect – Professional",
+      "title_ja": "CCAR-P",
+      "subtitle_ja": "Claude Certified Architect – Professional"
     }
   ]
 }
