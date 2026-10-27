@@ -3,7 +3,7 @@
   "strings": {
     "pageTitle": "AB-730 模擬試験",
     "homeTitle": "AB-730 模擬試験",
-    "homeSubtitle": "Microsoft AI Business Professional · {count} 問",
+    "homeSubtitle": "Microsoft AI Business Professional",
     "stats": "回答済み: {seen}/{total} · 不正解: {wrong}",
     "translationPreview": "日本語訳プレビュー: {translated}/{total} 問",
     "practice": "学習",

@@ -134,6 +134,7 @@ body.nav-min .nav-btn { padding: 0 12px; min-height: 40px; min-width: 40px; }
   display: flex; align-items: center; justify-content: center; gap: 4px;
   font-size: 15px; font-weight: 600; font-variant-numeric: tabular-nums;
 }
+body[data-screen="quiz"] .nav-quiz { padding-right: 44px; }
 .nav-pill { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; padding: 6px 12px; border-radius: 999px; background: rgba(22,23,25,.07); }
 .nav-pill.score { color: var(--success); }
 .nav-div { width: 1px; height: 22px; margin-left: auto; background: rgba(22,23,25,.12); flex-shrink: 0; }
@@ -161,7 +162,6 @@ body[data-screen="results"]    .nav-title[data-on~="results"] { display: block; 
 .head { margin-bottom: 8px; }
 .title { font-family: var(--font-display); font-size: 30px; font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; }
 .sub { margin-top: 6px; font-size: 15px; line-height: 1.5; color: var(--muted); }
-.stats-hint { margin-top: 6px; font-size: 15px; font-weight: 600; color: var(--ink); min-height: 24px; font-variant-numeric: tabular-nums; }
 .translation-status {
   display: inline-flex; align-items: center; min-height: 44px; padding: 0;
   border: 0; background: none; font-size: 15px; font-weight: 600; color: var(--action); cursor: pointer;
@@ -174,16 +174,15 @@ body[data-screen="results"]    .nav-title[data-on~="results"] { display: block; 
 /* exam picker */
 .exam-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .exam-choice {
-  display: flex; flex-direction: column; align-items: flex-start; gap: 6px;
-  min-height: 120px; padding: 20px; text-align: left; cursor: pointer;
+  display: grid; grid-template-columns: 1fr auto; column-gap: 12px; row-gap: 2px; align-items: center;
+  padding: 18px 20px; text-align: left; cursor: pointer;
   background: var(--canvas); border: 1px solid transparent; border-radius: 16px;
-  transition: box-shadow .15s, border-color .15s, transform .35s var(--bounce);
+  transition: box-shadow .15s, border-color .15s, background .15s, transform .35s var(--bounce);
 }
 .exam-choice:hover { border-color: var(--hairline); background: var(--surface); }
 .exam-choice:active { transform: scale(.96); transition-duration: .1s; }
 .exam-choice-title { font-family: var(--font-display); font-size: 20px; font-weight: 700; letter-spacing: -0.01em; color: var(--ink); }
 .exam-choice-sub { font-size: 15px; line-height: 1.45; color: var(--muted); }
-.exam-choice-go { margin-top: auto; display: inline-flex; align-items: center; gap: 4px; padding-top: 12px; font-size: 15px; font-weight: 600; color: var(--action); }
 
 /* home: practice tiles */
 .quick-btns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
@@ -261,12 +260,9 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 }
 .progress-fill { height: 100%; background: var(--accent); border-radius: 999px; transition: width .45s var(--spring); }
 .q-meta-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 16px; }
-.q-topic { font-size: 13px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
-.q-source { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
-.src-pill { font-size: 13px; font-weight: 600; padding: 3px 10px; border-radius: 999px; white-space: nowrap; background: var(--canvas); }
-.src-primary { color: var(--ink); }
-.src-also { color: var(--muted); }
-.q-text { font-family: var(--font-display); font-size: 21px; font-weight: 600; line-height: 1.5; margin-bottom: 20px; }
+.q-topic { min-width: 0; font-size: 13px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.q-meta-row:has(.q-topic:empty) { display: none; }
+.q-text { font-family: var(--font-display); font-size: 20px; font-weight: 500; line-height: 1.5; margin-bottom: 20px; }
 .q-hint { font-size: 15px; font-weight: 600; color: var(--muted); margin-bottom: 12px; }
 .q-hint:empty { display: none; }
 .q-img { display: block; max-width: 100%; height: auto; margin: 12px 0; border: 1px solid var(--hairline); border-radius: 14px; cursor: zoom-in; }
@@ -356,7 +352,7 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 .fb.ok  { background: rgba(29,127,56,.08); color: var(--success); }
 .fb.bad { background: rgba(196,0,26,.06); color: var(--danger); }
 .fb.ok::before, .fb.bad::before { margin-top: 3px; }
-.fb-body { flex: 1; min-width: 0; }
+.fb-body { flex: 1; min-width: 0; color: var(--ink); }
 .fb .note { color: var(--ink); font-size: 15px; }
 .fb-body > div + .note { margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(22,23,25,.1); }
 
@@ -382,7 +378,7 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 .res-actions { display: flex; flex-direction: column; gap: 12px; margin-top: 28px; }
 
 #topicPanel:has(#topicChips:empty), #domPanel:has(#resDomains:empty) { display: none; }
-.exam-choice-go { width: 22px; height: 22px; padding: 0; margin-top: auto; color: var(--action); align-self: flex-end; }
+.exam-choice-go { width: 22px; height: 22px; grid-column: 2; grid-row: 1 / 3; color: var(--action); }
 
 /* ── Mobile ── */
 @media (max-width: 600px) {
@@ -393,8 +389,10 @@ button:disabled { opacity: .45; cursor: not-allowed; }
   .quick-btns { gap: 8px; }
   .quick-btn { min-height: 92px; padding: 14px; }
   .quick-btn .qb-num { font-size: 30px; }
-  .q-text { font-size: 19px; }
+  .q-text { font-size: 18px; }
   .match-row { flex-direction: column; align-items: stretch; }
+  .yn-row { flex-direction: column; align-items: stretch; gap: 10px; }
+  .yn-btns { align-self: flex-start; }
   .match-sel { max-width: none; }
   .nav-btn .lbl.opt-lbl { display: none; }
   body[data-screen="home"] #navTitle { display: none; }
@@ -447,8 +445,8 @@ button:disabled { opacity: .45; cursor: not-allowed; }
     <span class="nav-pill" id="qNum">1 / 58</span>
     <span class="nav-pill score"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span id="qScore">0</span></span>
   </div>
-  <span class="nav-div" aria-hidden="true"></span>
-  <button class="nav-btn lang" id="langSwitch" onclick="switchLang()"><svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg><span class="lbl" id="langLbl">日本語</span></button>
+  <span class="nav-div" data-on="picker home results" aria-hidden="true"></span>
+  <button class="nav-btn lang" id="langSwitch" data-on="picker home results" onclick="switchLang()"><svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg><span class="lbl" id="langLbl">日本語</span></button>
   <div class="nav-progress" data-on="quiz" aria-hidden="true"><div class="progress-fill" id="progFill" style="width:0%"></div></div>
 </nav>
 
@@ -460,7 +458,6 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 <section class="screen card" id="examPicker">
   <div class="head">
     <h1 class="title" id="pickerTitle">Chọn bộ đề</h1>
-    <p class="sub" id="pickerSub">Tiến trình học được lưu riêng cho từng chứng chỉ.</p>
   </div>
   <div class="exam-list" id="examList"></div>
 </section>
@@ -470,7 +467,6 @@ button:disabled { opacity: .45; cursor: not-allowed; }
   <div class="head">
     <h1 class="title" id="homeTitle">B-Exam</h1>
     <p class="sub" id="homeSub">Microsoft AI Business Professional · — câu</p>
-    <div class="stats-hint" id="statsHint"></div>
     <button class="translation-status" id="translationStatus" onclick="startTranslationPreview()" style="display:none"></button>
   </div>
 
@@ -509,7 +505,6 @@ button:disabled { opacity: .45; cursor: not-allowed; }
   <div>
     <div class="q-meta-row">
       <div class="q-topic" id="qTopic"></div>
-      <div class="q-source" id="qSource"></div>
     </div>
     <div class="q-text"  id="qText"></div>
     <div class="q-hint"  id="qHint"></div>
@@ -557,7 +552,7 @@ let LANG=langParam==='ja'?'ja':langParam==='vi'?'vi':localStorage.getItem(LANG_K
 const VI_LOCALE={
   lang:'vi',
   strings:{
-    pageTitle:'Study',homeTitle:'Study',homeSubtitle:'{subtitle} · {count} câu',
+    pageTitle:'Study',homeTitle:'Study',homeSubtitle:'{subtitle}',
     stats:'Đã làm: {seen}/{total} · Câu sai: {wrong}',translationPreview:'Bản dịch mẫu: {translated}/{total} câu',
     practice:'Luyện tập',all:'Tất cả',unseen:'Chưa làm',wrong:'Câu sai',mockExam:'Thi thử',mockExamSub:'{count} câu · chọn ngẫu nhiên',
     studyByTopic:'Ôn theo topic',resetProgress:'Xóa tiến trình',exit:'Thoát',check:'Kiểm tra',viewAnswer:'Xem đáp án',next:'Tiếp →',viewResults:'Xem kết quả →',
@@ -598,7 +593,6 @@ function applyLocale(){
   setText('exitLbl',t('exit'));setText('domLabel',t('domainThreshold'));setText('retryBtn',t('retry'));setText('homeBtn',t('home'));
   setText('changeExamLbl',LANG==='ja'?'試験を変更':'Đổi bộ đề');
   setText('pickerTitle',LANG==='ja'?'試験を選択':'Chọn bộ đề');
-  setText('pickerSub',LANG==='ja'?'学習進捗は試験ごとに保存されます。':'Tiến trình học được lưu riêng cho từng chứng chỉ.');
   const sw=document.getElementById('langSwitch');
   setText('langLbl',EXAM_CONFIG?t('switchLabel'):(LANG==='ja'?'VI':'日本語'));
   sw.setAttribute('aria-label',EXAM_CONFIG?t('switchAria'):(LANG==='ja'?'Chuyển sang tiếng Việt':'日本語に切り替える'));
@@ -673,7 +667,6 @@ function refresh(){
   const nUnseen=Math.max(Q.length-nS,0);
   setText('homeSub',t('homeSubtitle',{count:Q.length,subtitle:EXAM_CONFIG.subtitle}));
   const ac=document.getElementById('allCount');  if(ac) ac.textContent=Q.length;
-  setText('statsHint',t('stats',{seen:nS,total:Q.length,wrong:nW}));
   const ts=document.getElementById('translationStatus'),translated=Object.keys(QUESTION_TRANSLATIONS).length;
   ts.style.display=LANG==='ja'&&translated>0&&translated<Q.length?'':'none';
   ts.textContent=t('translationPreview',{translated,total:Q.length});
@@ -734,12 +727,7 @@ function render(){
   document.getElementById('progFill').style.width=(cur/queue.length*100)+'%';
   document.getElementById('qNum').textContent=`${cur+1} / ${queue.length}`;
   document.getElementById('qScore').textContent=`${ok}`;
-  document.getElementById('qTopic').textContent=topicName(q.topic);
-  const srcMap=EXAM_CONFIG.sourceLabels||{};
-  const srcEl=document.getElementById('qSource');
-  let pills=`<span class="src-pill src-primary">${srcMap[q.source]||q.source}</span>`;
-  if(q.also_in&&q.also_in.length) pills+=q.also_in.map(s=>`<span class="src-pill src-also">${srcMap[s]||s}</span>`).join('');
-  srcEl.innerHTML=pills;
+  document.getElementById('qTopic').textContent=q.topic==='All Questions'?'':topicName(q.topic);
   let qHtml=q.question.replace(/\[BLANK\d?\]/g,'<span class="blank">[.....]</span>');
   qHtml=qHtml.includes('blank')?qHtml.replace(/<br\s*\/?>/gi,' '):qHtml;
   const imgTag=q.image?`<img class="q-img" src="${q.image}" alt="${t('imageAlt')}" onclick="window.open(this.src)">`:'';
@@ -892,7 +880,8 @@ function check(){
 function showFb(q,isOk){
   const fb=document.getElementById('fb');
   fb.className='fb';fb.innerHTML='';
-  const ans=!isOk&&q.type==='matching'?`<div>${t('incorrect',{answer:'<br>'+q.options.map((s,i)=>`${s} → <b>${answerLabel(q,q.correct[i])}</b>`).join('<br>')})}</div>`:'';
+  const sels=[...document.querySelectorAll('.match-sel')];
+  const ans=!isOk&&q.type==='matching'?`<div>${t('incorrect',{answer:'<br>'+q.options.map((s,i)=>sels[i]?.value===q.correct[i]?'':`${s} → <b>${answerLabel(q,q.correct[i])}</b>`).filter(Boolean).join('<br>')})}</div>`:'';
   if(!q.note&&!ans)return;
   fb.className='fb '+(isOk?'ok':'bad');
   fb.innerHTML=`<div class="fb-body">${ans}${q.note?`<div class="note">${q.note}</div>`:''}</div>`;

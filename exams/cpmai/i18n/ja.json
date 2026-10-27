@@ -3,7 +3,7 @@
   "strings": {
     "pageTitle": "PMI-CPMAI 模擬試験",
     "homeTitle": "PMI-CPMAI 模擬試験",
-    "homeSubtitle": "AI認定プロフェッショナル · {count} 問",
+    "homeSubtitle": "AI認定プロフェッショナル",
     "stats": "回答済み: {seen}/{total} · 不正解: {wrong}",
     "translationPreview": "日本語訳: {translated}/{total} 問",
     "practice": "学習",
