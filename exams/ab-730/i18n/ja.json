@@ -22,6 +22,7 @@
     "hintMultiple": "複数の回答を選択",
     "hintYesNo": "各項目で「はい」または「いいえ」を選択",
     "hintComplex": "内容を確認して回答",
+    "hintSelectEach": "各項目の答えを選択してください",
     "selectPlaceholder": "— 選択してください —",
     "yes": "はい",
     "no": "いいえ",

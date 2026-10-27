@@ -348,6 +348,7 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 .hc-opt:has(input:checked) { border-color: var(--accent); background: rgba(10,132,255,.07); }
 .hc-opt input { accent-color: var(--accent); width: 18px; height: 18px; }
 .hc-opt.correct { border-color: var(--success); background: rgba(29,127,56,.08); color: var(--success); font-weight: 600; }
+.hc-opt.wrong, .hc-opt.wrong:has(input:checked) { border-color: var(--danger); background: rgba(196,0,26,.06); color: var(--danger); font-weight: 600; text-decoration: line-through; }
 
 /* feedback */
 .fb { font-size: 17px; line-height: 1.55; }
@@ -560,7 +561,7 @@ const VI_LOCALE={
     stats:'Đã làm: {seen}/{total} · Câu sai: {wrong}',translationPreview:'Bản dịch mẫu: {translated}/{total} câu',
     practice:'Luyện tập',all:'Tất cả',unseen:'Chưa làm',wrong:'Câu sai',mockExam:'Thi thử',mockExamSub:'{count} câu · chọn ngẫu nhiên',
     studyByTopic:'Ôn theo topic',resetProgress:'Xóa tiến trình',exit:'Thoát',check:'Kiểm tra',viewAnswer:'Xem đáp án',next:'Tiếp →',viewResults:'Xem kết quả →',
-    hintMultiple:'Chọn nhiều đáp án',hintYesNo:'Chọn Yes / No cho từng câu',hintComplex:'Đọc và xem đáp án',selectPlaceholder:'— chọn —',
+    hintMultiple:'Chọn nhiều đáp án',hintYesNo:'Chọn Yes / No cho từng câu',hintComplex:'Đọc và xem đáp án',hintSelectEach:'Chọn đáp án cho từng mục',selectPlaceholder:'— chọn —',
     yes:'Yes',no:'No',correct:'Chính xác!',incorrect:'Sai. Đáp án: {answer}',answerShown:'Đáp án đã hiển thị (các mục được tô xanh)',
     passed:'Đạt',failed:'Chưa đạt',resultSub:'{correct}/{total} câu đúng · mức đạt {pass}%',domainThreshold:'Theo domain · đạt khi ≥ 80%',
     retryWrong:'Ôn {count} câu sai',retry:'Làm lại →',home:'← Trang chủ',topicCount:'{count} câu',topicWrong:'{count} sai',
@@ -735,7 +736,7 @@ function render(){
   const imgTag=q.image?`<img class="q-img" src="${q.image}" alt="${t('imageAlt')}" onclick="window.open(this.src)">`:'';
   qHtml=qHtml.replace(/\/\/IMG\/\//g,imgTag);
   document.getElementById('qText').innerHTML=qHtml;
-  const hintMap={'multiple-select':t('hintMultiple'),'hotspot-yesno':t('hintYesNo'),'hotspot-complex':t('hintComplex')};
+  const hintMap={'multiple-select':t('hintMultiple'),'hotspot-yesno':t('hintYesNo'),'hotspot-complex':q.subtype?t('hintSelectEach'):t('hintComplex')};
   document.getElementById('qHint').textContent=hintMap[q.type]||'';
   document.getElementById('btnCheck').textContent=(q.type==='hotspot-complex'&&!q.subtype)?t('viewAnswer'):t('check');
   document.getElementById('fb').className='fb';
@@ -863,7 +864,7 @@ function check(){
         const ok2=parseInt(sel.dataset.v)===q.correct[i];
         const row=document.querySelector(`.hc-match-row[data-i="${i}"]`);
         row.classList.add(ok2?'correct':'wrong');
-        if(!ok2){all=false;row.querySelector(`input[data-v="${q.correct[i]}"]`).closest('label').classList.add('correct');}
+        if(!ok2){all=false;sel.closest('label').classList.add('wrong');row.querySelector(`input[data-v="${q.correct[i]}"]`).closest('label').classList.add('correct');}
         row.querySelectorAll('input').forEach(r=>r.disabled=true);
       }
       isOk=all;
