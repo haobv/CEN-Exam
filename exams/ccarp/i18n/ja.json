@@ -1,8 +1,8 @@
 {
   "lang": "ja-JP",
   "strings": {
-    "pageTitle": "CCAR-P 模擬試験",
-    "homeTitle": "CCAR-P 模擬試験",
+    "pageTitle": "CCAR-P",
+    "homeTitle": "CCAR-P",
     "homeSubtitle": "Claude Certified Architect – Professional",
     "stats": "回答済み: {seen}/{total} · 不正解: {wrong}",
     "translationPreview": "日本語訳: {translated}/{total} 問",

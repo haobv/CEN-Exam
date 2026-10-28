@@ -1,8 +1,8 @@
 {
   "lang": "ja-JP",
   "strings": {
-    "pageTitle": "PMI-CPMAI 模擬試験",
-    "homeTitle": "PMI-CPMAI 模擬試験",
+    "pageTitle": "PMI-CPMAI",
+    "homeTitle": "PMI-CPMAI",
     "homeSubtitle": "AI認定プロフェッショナル",
     "stats": "回答済み: {seen}/{total} · 不正解: {wrong}",
     "translationPreview": "日本語訳: {translated}/{total} 問",

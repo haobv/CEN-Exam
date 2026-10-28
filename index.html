@@ -90,11 +90,10 @@ body.nav-min .topbar { transform: translateY(-4px) scale(.94); }
 .tb-right { justify-self: end; display: flex; }
 .tb-center { min-width: 0; display: flex; justify-content: center; }
 .tb-title {
-  font-family: var(--font-display); font-size: 17px; font-weight: 600; letter-spacing: -0.01em;
+  align-items: center; height: 44px; max-width: 100%; padding: 0 20px; border-radius: 999px;
+  font-family: var(--font-display); font-size: 16px; font-weight: 600; letter-spacing: -0.01em;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  transition: opacity .3s;
 }
-body.nav-min .tb-title { opacity: .7; }
 
 .glass {
   background: rgba(255,255,255,.45);
@@ -408,8 +407,8 @@ button:disabled { opacity: .45; cursor: not-allowed; }
     <button class="gbtn icon glass" id="resultsHomeBtn" data-on="results" onclick="goHome()"><svg class="ic" aria-hidden="true"><use href="#i-back"/></svg></button>
   </div>
   <div class="tb-center">
-    <span class="tb-title" data-on="picker">B-Exam</span>
-    <span class="tb-title" id="navTitle" data-on="home results"></span>
+    <span class="tb-title glass" data-on="picker">B-Exam</span>
+    <span class="tb-title glass" id="navTitle" data-on="home results"></span>
     <div class="gbtn glass tb-quiz" data-on="quiz">
       <span id="qNum">1 / 58</span>
       <div class="nav-progress" aria-hidden="true"><div class="progress-fill" id="progFill" style="width:0%"></div></div>
