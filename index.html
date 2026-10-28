@@ -44,7 +44,7 @@ button { -webkit-appearance: none; appearance: none; }
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 
 body.loading .screen,
-body.loading .nav { visibility: hidden; }
+body.loading .topbar { visibility: hidden; }
 
 .ic { width: 20px; height: 20px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
 
@@ -70,88 +70,64 @@ body.loading .nav { visibility: hidden; }
   100% { transform: translate3d(-3vw, 3vw, 0) scale(.96); }
 }
 
-/* ── Floating navigation (the only glass) ── */
+/* ── Top bar: separate glass buttons, title in the middle (the only glass) ── */
 .scroll-edge {
-  position: fixed; inset: 0 0 auto 0; height: calc(var(--nav-top) + 56px + 24px); z-index: 19;
-  background: linear-gradient(rgba(245,247,250,.92) 55%, rgba(245,247,250,0));
+  position: fixed; inset: 0 0 auto 0; height: calc(var(--nav-top) + 44px + 24px); z-index: 19;
+  background: linear-gradient(rgba(245,247,250,.94) 60%, rgba(245,247,250,0));
   pointer-events: none; opacity: 0; transition: opacity .25s;
 }
 body.scrolled .scroll-edge { opacity: 1; }
 
-.nav {
-  position: fixed; top: var(--nav-top); left: 50%; z-index: 20;
-  transform: translateX(-50%);
-  width: min(720px, calc(100% - 28px));
-  min-height: 56px; padding: 6px;
-  display: flex; align-items: center; gap: 4px;
-  border-radius: 999px;
-  background: rgba(255,255,255,.4);
+.topbar {
+  position: fixed; top: var(--nav-top); left: 0; right: 0; z-index: 20;
+  width: min(760px, 100%); margin: 0 auto; padding: 0 20px;
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px;
+  transform-origin: 50% 0;
+  transition: transform .4s var(--spring);
+}
+body.nav-min .topbar { transform: translateY(-4px) scale(.94); }
+.tb-left { justify-self: start; display: flex; }
+.tb-right { justify-self: end; display: flex; }
+.tb-center { min-width: 0; display: flex; justify-content: center; }
+.tb-title {
+  font-family: var(--font-display); font-size: 17px; font-weight: 600; letter-spacing: -0.01em;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  transition: opacity .3s;
+}
+body.nav-min .tb-title { opacity: .7; }
+
+.glass {
+  background: rgba(255,255,255,.45);
   -webkit-backdrop-filter: blur(8px) saturate(180%) brightness(1.1);
           backdrop-filter: blur(8px) saturate(180%) brightness(1.1);
   border: 1px solid rgba(255,255,255,.75);
   box-shadow: inset 0 1px 0 rgba(255,255,255,.85), inset 0 -1px 0 rgba(255,255,255,.3),
-              inset 0 0 0 1px rgba(255,255,255,.15), 0 0 0 .5px rgba(22,23,25,.1), 0 8px 24px rgba(22,23,25,.12);
-  interpolate-size: allow-keywords;
-  transition: min-height .35s var(--spring), width .35s var(--spring), padding .35s var(--spring), box-shadow .25s;
+              inset 0 0 0 1px rgba(255,255,255,.15), 0 0 0 .5px rgba(22,23,25,.1), 0 6px 18px rgba(22,23,25,.12);
 }
-.nav.lens {
-  backdrop-filter: url(#lens) blur(8px) saturate(180%) brightness(1.1);
-}
-body.scrolled .nav { box-shadow: inset 0 1px 0 rgba(255,255,255,.85), inset 0 -1px 0 rgba(255,255,255,.3),
-              inset 0 0 0 1px rgba(255,255,255,.15), 0 0 0 .5px rgba(22,23,25,.1), 0 10px 30px rgba(22,23,25,.16); }
-.nav::after {
-  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
-  background: radial-gradient(160px circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,.55), transparent 70%);
-  opacity: 0; transition: opacity .15s;
-}
-.nav:hover::after { opacity: 1; }
-body.nav-min .nav { min-height: 46px; padding: 3px; width: fit-content; max-width: calc(100% - 28px); }
-body.nav-min .nav-title, body.nav-min .nav-quiz { flex: 0 1 auto; }
-
-.nav-btn {
-  position: relative; z-index: 1;
+.gbtn {
   display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-  min-height: 44px; min-width: 44px; padding: 0 16px;
-  border: 0; border-radius: 999px; background: transparent;
+  min-width: 44px; height: 44px; padding: 0 12px; border-radius: 999px;
   color: var(--ink); font-size: 15px; font-weight: 600; line-height: 1; white-space: nowrap;
-  cursor: pointer;
+  font-variant-numeric: tabular-nums; cursor: pointer;
   transition: background .15s, transform .35s var(--bounce);
 }
-.nav-btn:hover { background: rgba(22,23,25,.06); }
-.nav-btn:active { transform: scale(.96); transition-duration: .1s; }
-.nav-btn .lbl { display: inline-block; overflow: hidden; max-width: 160px; transition: max-width .35s var(--spring), opacity .25s; }
-body.nav-min .nav-btn .lbl { max-width: 0; opacity: 0; }
-body.nav-min .nav-btn { padding: 0 12px; min-height: 40px; min-width: 40px; }
-.nav-btn.lang .lbl { max-width: none; opacity: 1; }
+.gbtn:hover { background: rgba(255,255,255,.65); }
+button.gbtn:active { transform: scale(.94); transition-duration: .1s; }
+.gbtn.icon { width: 44px; padding: 0; }
+.gbtn.score { color: var(--success); cursor: default; }
+.tb-quiz { flex-direction: column; gap: 4px; height: 44px; padding: 0 18px; justify-content: center; }
+.tb-quiz #qNum { font-size: 15px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.nav-progress { width: 72px; height: 3px; border-radius: 999px; background: rgba(22,23,25,.1); overflow: hidden; }
 
-.nav-title {
-  position: relative; z-index: 1; flex: 1; min-width: 0;
-  padding: 0 12px; font-family: var(--font-display); font-size: 15px; font-weight: 700;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-}
-.nav-quiz {
-  position: relative; z-index: 1; flex: 1; min-width: 0;
-  display: flex; align-items: center; justify-content: center; gap: 4px;
-  font-size: 15px; font-weight: 600; font-variant-numeric: tabular-nums;
-}
-body[data-screen="quiz"] .nav-quiz { padding-right: 44px; }
-.nav-pill { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; padding: 6px 12px; border-radius: 999px; background: rgba(22,23,25,.07); }
-.nav-pill.score { color: var(--success); }
-.nav-div { width: 1px; height: 22px; margin-left: auto; background: rgba(22,23,25,.12); flex-shrink: 0; }
-
-/* which nav items each screen shows */
-.nav [data-on] { display: none; }
-body[data-screen="examPicker"] .nav [data-on~="picker"],
-body[data-screen="home"]       .nav [data-on~="home"],
-body[data-screen="quiz"]       .nav [data-on~="quiz"],
-body[data-screen="results"]    .nav [data-on~="results"] { display: inline-flex; }
-body[data-screen="quiz"] .nav .nav-progress[data-on~="quiz"] { display: block; }
-body[data-screen="examPicker"] .nav-title[data-on~="picker"],
-body[data-screen="home"]       .nav-title[data-on~="home"],
-body[data-screen="results"]    .nav-title[data-on~="results"] { display: block; }
+/* which top bar items each screen shows */
+.topbar [data-on] { display: none !important; }
+body[data-screen="examPicker"] .topbar [data-on~="picker"],
+body[data-screen="home"]       .topbar [data-on~="home"],
+body[data-screen="quiz"]       .topbar [data-on~="quiz"],
+body[data-screen="results"]    .topbar [data-on~="results"] { display: inline-flex !important; }
 
 /* ── Page & screens ── */
-.page { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; padding: calc(var(--nav-top) + 56px + 32px) 20px 64px; }
+.page { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; padding: calc(var(--nav-top) + 44px + 28px) 20px 64px; }
 .screen { display: none; }
 
 .card {
@@ -254,10 +230,6 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 .reset-link:hover { color: var(--danger); text-decoration: underline; }
 
 /* ── Quiz ── */
-.nav-progress {
-  position: absolute; left: 22px; right: 22px; bottom: 4px; z-index: 1;
-  height: 3px; border-radius: 999px; background: rgba(22,23,25,.08); overflow: hidden;
-}
 .progress-fill { height: 100%; background: var(--accent); border-radius: 999px; transition: width .45s var(--spring); }
 .q-meta-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 16px; }
 .q-topic { min-width: 0; font-size: 13px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -382,8 +354,9 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 
 /* ── Mobile ── */
 @media (max-width: 600px) {
-  :root { --nav-top: 12px; }
-  .page { padding-left: 12px; padding-right: 12px; padding-top: calc(var(--nav-top) + 56px + 20px); }
+  :root { --nav-top: 10px; }
+  .topbar { padding: 0 12px; }
+  .page { padding-left: 12px; padding-right: 12px; padding-top: calc(var(--nav-top) + 44px + 20px); }
   .card { padding: 24px 20px; border-radius: 20px; }
   .exam-list { grid-template-columns: 1fr; }
   .quick-btns { gap: 8px; }
@@ -394,8 +367,6 @@ button:disabled { opacity: .45; cursor: not-allowed; }
   .yn-row { flex-direction: column; align-items: stretch; gap: 10px; }
   .yn-btns { align-self: flex-start; }
   .match-sel { max-width: none; }
-  .nav-btn .lbl.opt-lbl { display: none; }
-  body[data-screen="home"] #navTitle { display: none; }
   .blob { width: 85vw; height: 85vw; filter: blur(40px); }
   .b1 { left: -30vw; top: -20vw; } .b2 { left: 25vw; top: -30vw; } .b3 { right: -35vw; top: 10vw; }
   .b4 { left: -10vw; top: 45vw; } .b5 { right: -10vw; top: 60vw; }
@@ -404,13 +375,14 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 /* ── Accessibility preferences ── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition-duration: .15s !important; transition-timing-function: ease !important; }
-  .nav-btn:active, .exam-choice:active, .quick-btn:active, .btn-primary:active, .exam-btn:active, .btn-secondary:active, .opt:active, .yn-btn:active { transform: none; }
+  body.nav-min .topbar { transform: none; }
+  button.gbtn:active, .exam-choice:active, .quick-btn:active, .btn-primary:active, .exam-btn:active, .btn-secondary:active, .opt:active, .yn-btn:active { transform: none; }
 }
 @media (prefers-reduced-transparency: reduce) {
-  .nav, .nav.lens { background: rgba(255,255,255,.92); -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .glass { background: rgba(255,255,255,.92); -webkit-backdrop-filter: none; backdrop-filter: none; }
 }
 @media (prefers-contrast: more) {
-  .nav, .nav.lens { background: #fff; -webkit-backdrop-filter: none; backdrop-filter: none; border: 1px solid var(--ink); }
+  .glass { background: #fff; -webkit-backdrop-filter: none; backdrop-filter: none; border: 1px solid var(--ink); }
   .card, .exam-choice, .opt { border-color: var(--control); }
 }
 </style>
@@ -418,13 +390,6 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 <body class="loading" data-screen="examPicker">
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <defs>
-    <filter id="lens" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
-      <feImage x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" result="map"
-        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='x'%3E%3Cstop offset='0' stop-color='%23ff0000'/%3E%3Cstop offset='.06' stop-color='%23800000'/%3E%3Cstop offset='.94' stop-color='%23800000'/%3E%3Cstop offset='1' stop-color='%23000000'/%3E%3C/linearGradient%3E%3ClinearGradient id='y' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%2300ff00'/%3E%3Cstop offset='.3' stop-color='%23008000'/%3E%3Cstop offset='.7' stop-color='%23008000'/%3E%3Cstop offset='1' stop-color='%23000000'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='200' height='200' fill='url(%23x)'/%3E%3Crect width='200' height='200' fill='url(%23y)' style='mix-blend-mode:screen'/%3E%3C/svg%3E"/>
-      <feDisplacementMap in="SourceGraphic" in2="map" scale="40" xChannelSelector="R" yChannelSelector="G"/>
-    </filter>
-  </defs>
   <symbol id="i-back"  viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
   <symbol id="i-next"  viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
   <symbol id="i-close" viewBox="0 0 24 24"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/></symbol>
@@ -435,20 +400,26 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 
 <div class="scroll-edge" aria-hidden="true"></div>
 
-<!-- Floating navigation -->
-<nav class="nav" id="nav">
-  <span class="nav-title" data-on="picker">B-Exam</span>
-  <button class="nav-btn" id="changeExamBtn" data-on="home" onclick="changeExam()"><svg class="ic" aria-hidden="true"><use href="#i-back"/></svg><span class="lbl" id="changeExamLbl">Đổi bộ đề</span></button>
-  <span class="nav-title" id="navTitle" data-on="home results"></span>
-  <button class="nav-btn" id="exitBtn" data-on="quiz" onclick="exitQuiz()"><svg class="ic" aria-hidden="true"><use href="#i-close"/></svg><span class="lbl opt-lbl" id="exitLbl">Thoát</span></button>
-  <div class="nav-quiz" data-on="quiz">
-    <span class="nav-pill" id="qNum">1 / 58</span>
-    <span class="nav-pill score"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span id="qScore">0</span></span>
+<!-- Top bar -->
+<header class="topbar" id="nav">
+  <div class="tb-left">
+    <button class="gbtn icon glass" id="changeExamBtn" data-on="home" onclick="changeExam()"><svg class="ic" aria-hidden="true"><use href="#i-back"/></svg></button>
+    <button class="gbtn icon glass" id="exitBtn" data-on="quiz" onclick="exitQuiz()"><svg class="ic" aria-hidden="true"><use href="#i-close"/></svg></button>
+    <button class="gbtn icon glass" id="resultsHomeBtn" data-on="results" onclick="goHome()"><svg class="ic" aria-hidden="true"><use href="#i-back"/></svg></button>
   </div>
-  <span class="nav-div" data-on="picker home results" aria-hidden="true"></span>
-  <button class="nav-btn lang" id="langSwitch" data-on="picker home results" onclick="switchLang()"><svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg><span class="lbl" id="langLbl">日本語</span></button>
-  <div class="nav-progress" data-on="quiz" aria-hidden="true"><div class="progress-fill" id="progFill" style="width:0%"></div></div>
-</nav>
+  <div class="tb-center">
+    <span class="tb-title" data-on="picker">B-Exam</span>
+    <span class="tb-title" id="navTitle" data-on="home results"></span>
+    <div class="gbtn glass tb-quiz" data-on="quiz">
+      <span id="qNum">1 / 58</span>
+      <div class="nav-progress" aria-hidden="true"><div class="progress-fill" id="progFill" style="width:0%"></div></div>
+    </div>
+  </div>
+  <div class="tb-right">
+    <button class="gbtn glass" id="langSwitch" data-on="picker home results" onclick="switchLang()"><svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg><span id="langLbl">JA</span></button>
+    <span class="gbtn glass score" data-on="quiz"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span id="qScore">0</span></span>
+  </div>
+</header>
 
 <div class="showcase" aria-hidden="true"><i class="blob b1"></i><i class="blob b2"></i><i class="blob b3"></i><i class="blob b4"></i><i class="blob b5"></i></div>
 
@@ -587,14 +558,15 @@ function setText(id,value){const el=document.getElementById(id);if(el)el.textCon
 function applyLocale(){
   document.documentElement.lang=EXAM_CONFIG?LOCALE.lang:(LANG==='ja'?'ja-JP':'vi');
   document.title=EXAM_CONFIG?(LANG==='ja'?t('pageTitle'):EXAM_CONFIG.title):'B-Exam';
-  setText('homeTitle',EXAM_CONFIG?(LANG==='ja'?t('homeTitle'):EXAM_CONFIG.title):'B-Exam');setText('navTitle',document.getElementById('homeTitle').textContent);setText('practiceLabel',t('practice'));setText('allLabel',t('all'));
+  setText('homeTitle',EXAM_CONFIG?(LANG==='ja'?t('homeTitle'):EXAM_CONFIG.title):'B-Exam');setText('navTitle',EXAMS.find(e=>e.id===CURRENT_EXAM)?.[LANG==='ja'?'title_ja':'title']||'');setText('practiceLabel',t('practice'));setText('allLabel',t('all'));
   setText('unseenLabel',t('unseen'));setText('wrongLabel',t('wrong'));setText('examLabel',t('mockExam'));
   setText('examSub',t('mockExamSub',{count:EXAM_CONFIG?.mockExam.questionCount||50}));setText('topicLabel',t('studyByTopic'));setText('resetLink',t('resetProgress'));
-  setText('exitLbl',t('exit'));setText('domLabel',t('domainThreshold'));setText('retryBtn',t('retry'));setText('homeBtn',t('home'));
-  setText('changeExamLbl',LANG==='ja'?'試験を変更':'Đổi bộ đề');
+  document.getElementById('exitBtn').setAttribute('aria-label',t('exit'));setText('domLabel',t('domainThreshold'));setText('retryBtn',t('retry'));setText('homeBtn',t('home'));
+  document.getElementById('changeExamBtn').setAttribute('aria-label',LANG==='ja'?'試験を変更':'Đổi bộ đề');
+  document.getElementById('resultsHomeBtn').setAttribute('aria-label',t('home'));
   setText('pickerTitle',LANG==='ja'?'試験を選択':'Chọn bộ đề');
   const sw=document.getElementById('langSwitch');
-  setText('langLbl',EXAM_CONFIG?t('switchLabel'):(LANG==='ja'?'VI':'日本語'));
+  setText('langLbl',LANG==='ja'?(EXAM_CONFIG?t('switchLabel'):'VI'):'JA');
   sw.setAttribute('aria-label',EXAM_CONFIG?t('switchAria'):(LANG==='ja'?'Chuyển sang tiếng Việt':'日本語に切り替える'));
 }
 function switchLang(){
@@ -957,13 +929,14 @@ function startTopic(btn){
 function goHome(){ show('home'); refresh(); buildTopics(); }
 function show(s){ ['examPicker','home','quiz','results'].forEach(id=>document.getElementById(id).style.display=id===s?'block':'none');document.body.dataset.screen=s; }
 
-const navEl=document.getElementById('nav');let lastY=0;
-if(navigator.userAgentData?.brands?.some(b=>b.brand==='Chromium'))navEl.classList.add('lens');
+let lastY=0,scrollAcc=0;
 addEventListener('scroll',()=>{
-  const y=scrollY;document.body.classList.toggle('scrolled',y>8);
-  if(Math.abs(y-lastY)>6){document.body.classList.toggle('nav-min',y>lastY&&y>80);lastY=y;}
+  const y=Math.max(0,Math.min(scrollY,document.documentElement.scrollHeight-innerHeight)),d=y-lastY;lastY=y;
+  document.body.classList.toggle('scrolled',y>8);
+  if(y<40){scrollAcc=0;document.body.classList.remove('nav-min');return;}
+  scrollAcc=Math.sign(d)===Math.sign(scrollAcc)?scrollAcc+d:d;
+  if(scrollAcc>24)document.body.classList.add('nav-min');else if(scrollAcc<-24)document.body.classList.remove('nav-min');
 },{passive:true});
-navEl.addEventListener('pointermove',e=>{const r=navEl.getBoundingClientRect();navEl.style.setProperty('--mx',e.clientX-r.left+'px');navEl.style.setProperty('--my',e.clientY-r.top+'px');});
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 function resetProgress(){if(confirm(t('resetConfirm'))){localStorage.removeItem(KEY);refresh();buildTopics();}}
 </script>
