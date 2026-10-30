@@ -71,12 +71,6 @@ body.loading .topbar { visibility: hidden; }
 }
 
 /* ── Top bar: separate glass buttons, title in the middle (the only glass) ── */
-.scroll-edge {
-  position: fixed; inset: 0 0 auto 0; height: calc(var(--nav-top) + 44px + 24px); z-index: 19;
-  background: linear-gradient(var(--canvas) calc(100% - 22px), rgba(245,247,250,0));
-  pointer-events: none; opacity: 0; transition: opacity .25s;
-}
-body.scrolled .scroll-edge { opacity: 1; }
 
 .topbar {
   position: fixed; top: var(--nav-top); left: 0; right: 0; z-index: 20;
@@ -96,6 +90,7 @@ body.nav-min .topbar { transform: translateY(-4px) scale(.94); }
 }
 
 .glass {
+  position: relative; isolation: isolate;
   background: rgba(255,255,255,.45);
   -webkit-backdrop-filter: blur(8px) saturate(180%) brightness(1.1);
           backdrop-filter: blur(8px) saturate(180%) brightness(1.1);
@@ -111,20 +106,33 @@ body.nav-min .topbar { transform: translateY(-4px) scale(.94); }
   transition: background .15s, transform .35s var(--bounce);
 }
 .gbtn:hover { background: rgba(255,255,255,.65); }
-button.gbtn:active { transform: scale(.94); transition-duration: .1s; }
+button.gbtn:active, .btn-flag:active { transform: scale(1.06, .9); transition: transform .12s ease-out; }
 .gbtn.icon { width: 44px; padding: 0; }
 .gbtn.score { min-width: 64px; padding: 0 16px; cursor: default; }
 .gbtn.score.pass { color: var(--success); }
 .gbtn.score.fail { color: var(--danger); }
-.tb-quiz { padding: 0 20px; }
-.tb-progress {
-  grid-column: 1 / -1; display: flex; gap: 2px; height: 4px; margin-top: 8px;
-  border-radius: 999px; overflow: hidden; background: rgba(22,23,25,.1);
+.tb-quiz { min-width: 136px; padding: 0 20px; }
+.tb-quiz .fill { position: absolute; inset: 3px; border-radius: inherit; overflow: hidden; z-index: -1; }
+.tb-quiz .fill i { display: block; float: left; height: 100%; transition: width .6s var(--spring); }
+.tb-quiz .f-ok { background: linear-gradient(rgba(52,199,89,.55), rgba(29,127,56,.45)); box-shadow: inset 0 1px 0 rgba(255,255,255,.55); }
+.tb-quiz .f-bad { background: linear-gradient(rgba(255,69,58,.55), rgba(196,0,26,.45)); box-shadow: inset 0 1px 0 rgba(255,255,255,.55), inset 1px 0 0 rgba(255,255,255,.8); }
+
+/* specular: moving rim highlight + soft glare */
+.glass::before, .glass::after { content: ""; position: absolute; inset: -1px; border-radius: inherit; pointer-events: none; }
+.glass::before {
+  padding: 1.5px;
+  background: radial-gradient(70% 140% at var(--lx, 30%) var(--ly, 0%), rgba(255,255,255,1), rgba(255,255,255,0) 60%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+          mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
 }
-.tb-progress .seg { flex: none; width: 0; height: 100%; transition: width .45s var(--spring); }
-.tb-progress .seg.ok  { background: var(--success); }
-.tb-progress .seg.bad { background: var(--danger); }
-body[data-screen="quiz"] .topbar .tb-progress[data-on~="quiz"] { display: flex !important; }
+.glass::after { background: radial-gradient(60% 90% at var(--lx, 30%) var(--ly, 0%), rgba(255,255,255,.45), rgba(255,255,255,0) 70%); mix-blend-mode: screen; }
+/* refraction (Chromium): clearer glass, lens filter set inline per element */
+.glass.has-lens { background: rgba(255,255,255,.32); }
+/* gel bounces */
+@keyframes jelly { 0% { transform: scale(1); } 30% { transform: scale(1.14, .88); } 50% { transform: scale(.94, 1.06); } 70% { transform: scale(1.04, .97); } 100% { transform: scale(1); } }
+@keyframes pop { 0% { transform: scale(1); } 35% { transform: scale(1.28); } 60% { transform: scale(.9); } 100% { transform: scale(1); } }
+.jelly { animation: jelly .6s var(--spring); }
+.pop { animation: pop .5s var(--spring); }
 
 /* which top bar items each screen shows */
 .topbar [data-on] { display: none !important; }
@@ -135,8 +143,6 @@ body[data-screen="results"]    .topbar [data-on~="results"] { display: inline-fl
 
 /* ── Page & screens ── */
 .page { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; padding: calc(var(--nav-top) + 44px + 28px) 20px 64px; }
-body[data-screen="quiz"] .page { padding-top: calc(var(--nav-top) + 44px + 12px + 28px); }
-body[data-screen="quiz"] .scroll-edge { height: calc(var(--nav-top) + 44px + 12px + 32px); }
 .screen { display: none; }
 
 .card {
@@ -335,6 +341,11 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 .fb-body { flex: 1; min-width: 0; color: var(--ink); }
 .fb .note { color: var(--ink); font-size: 15px; }
 .fb-body > div + .note { margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(22,23,25,.1); }
+.fb .nh { margin: 12px 0 4px; font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
+.fb .nh:first-child { margin-top: 0; }
+.fb ul { list-style: none; margin: 0; padding: 0; }
+.fb li { position: relative; margin: 6px 0; padding-left: 14px; font-size: 15px; line-height: 1.5; }
+.fb li::before { content: ""; position: absolute; left: 2px; top: .62em; width: 5px; height: 5px; border-radius: 50%; background: var(--control); }
 
 .actions { display: flex; gap: 12px; margin-top: 24px; }
 .actions .btn-primary { flex: 1; }
@@ -367,7 +378,6 @@ button:disabled { opacity: .45; cursor: not-allowed; }
   :root { --nav-top: 10px; }
   .topbar { padding: 0 12px; }
   .page { padding-left: 12px; padding-right: 12px; padding-top: calc(var(--nav-top) + 44px + 20px); }
-  body[data-screen="quiz"] .page { padding-top: calc(var(--nav-top) + 44px + 12px + 20px); }
   .quick-btns { grid-template-columns: repeat(2, 1fr); }
   .card { padding: 24px 20px; border-radius: 20px; }
   .exam-list { grid-template-columns: 1fr; }
@@ -388,7 +398,8 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition-duration: .15s !important; transition-timing-function: ease !important; }
   body.nav-min .topbar { transform: none; }
-  button.gbtn:active, .exam-choice:active, .quick-btn:active, .btn-primary:active, .exam-btn:active, .btn-secondary:active, .opt:active, .yn-btn:active { transform: none; }
+  .jelly, .pop { animation: none; }
+  button.gbtn:active, .btn-flag:active, .exam-choice:active, .quick-btn:active, .btn-primary:active, .exam-btn:active, .btn-secondary:active, .opt:active, .yn-btn:active { transform: none; }
 }
 @media (prefers-reduced-transparency: reduce) {
   .glass { background: rgba(255,255,255,.92); -webkit-backdrop-filter: none; backdrop-filter: none; }
@@ -402,6 +413,7 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 <body class="loading" data-screen="examPicker">
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs id="lensDefs"></defs>
   <symbol id="i-back"  viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
   <symbol id="i-next"  viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
   <symbol id="i-close" viewBox="0 0 24 24"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/></symbol>
@@ -411,7 +423,6 @@ button:disabled { opacity: .45; cursor: not-allowed; }
   <symbol id="i-exam"  viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="17" rx="3"/><path d="M9 8.5h6M9 12h6M9 15.5h3.5"/></symbol>
 </svg>
 
-<div class="scroll-edge" aria-hidden="true"></div>
 
 <!-- Top bar -->
 <header class="topbar" id="nav">
@@ -423,13 +434,12 @@ button:disabled { opacity: .45; cursor: not-allowed; }
   <div class="tb-center">
     <span class="tb-title glass" data-on="picker">B-Exam</span>
     <span class="tb-title glass" id="navTitle" data-on="home results"></span>
-    <span class="gbtn glass tb-quiz" data-on="quiz" id="qNum">1 / 58</span>
+    <span class="gbtn glass tb-quiz" data-on="quiz" id="numPill"><span class="fill" aria-hidden="true"><i class="f-ok" id="fOk"></i><i class="f-bad" id="fBad"></i></span><span id="qNum">1 / 58</span></span>
   </div>
   <div class="tb-right">
     <button class="gbtn glass" id="langSwitch" data-on="picker home results" onclick="switchLang()"><svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg><span id="langLbl">JA</span></button>
     <span class="gbtn glass score" data-on="quiz" id="qScore">—</span>
   </div>
-  <div class="tb-progress" data-on="quiz" aria-hidden="true"><i class="seg ok" id="segOk"></i><i class="seg bad" id="segBad"></i></div>
 </header>
 
 <div class="showcase" aria-hidden="true"><i class="blob b1"></i><i class="blob b2"></i><i class="blob b3"></i><i class="blob b4"></i><i class="blob b5"></i></div>
@@ -582,6 +592,7 @@ function applyLocale(){
   setText('pickerTitle',LANG==='ja'?'試験を選択':'Chọn bộ đề');
   const sw=document.getElementById('langSwitch');
   setText('langLbl',LANG==='ja'?(EXAM_CONFIG?t('switchLabel'):'VI'):'JA');
+  if(typeof buildLenses==='function')buildLenses();
   sw.setAttribute('aria-label',EXAM_CONFIG?t('switchAria'):(LANG==='ja'?'Chuyển sang tiếng Việt':'日本語に切り替える'));
 }
 function switchLang(){
@@ -872,7 +883,7 @@ function showFb(q,isOk){
   const fb=document.getElementById('fb');
   fb.className='fb';fb.innerHTML='';
   const sels=[...document.querySelectorAll('.match-sel')];
-  const ans=!isOk&&q.type==='matching'?`<div>${t('incorrect',{answer:'<br>'+q.options.map((s,i)=>sels[i]?.value===q.correct[i]?'':`${s} → <b>${answerLabel(q,q.correct[i])}</b>`).filter(Boolean).join('<br>')})}</div>`:'';
+  const ans=!isOk&&q.type==='matching'?`<div><div class="nh">${t('incorrect',{answer:''}).replace(/[:：]\s*$/,'')}</div><ul>${q.options.map((s,i)=>sels[i]?.value===q.correct[i]?'':`<li>${s} → <b>${answerLabel(q,q.correct[i])}</b></li>`).join('')}</ul></div>`:'';
   if(!q.note&&!ans)return;
   fb.className='fb '+(isOk?'ok':'bad');
   fb.innerHTML=`<div class="fb-body">${ans}${q.note?`<div class="note">${q.note}</div>`:''}</div>`;
@@ -898,8 +909,9 @@ function updateScore(){
   const el=document.getElementById('qScore');
   el.textContent=pct===null?'—':pct+'%';
   el.className='gbtn glass score'+(pct===null?'':pct>=pass?' pass':' fail');
-  document.getElementById('segOk').style.width=`calc(${ok/queue.length*100}% - 1px)`;
-  document.getElementById('segBad').style.width=`calc(${bad/queue.length*100}% - 1px)`;
+  document.getElementById('fOk').style.width=ok/queue.length*100+'%';
+  document.getElementById('fBad').style.width=bad/queue.length*100+'%';
+  buildLenses();
 }
 function updateFlag(){
   const on=!!load().flagged[queue[cur].id];
@@ -908,9 +920,9 @@ function updateFlag(){
 function toggleFlag(){
   const p=load(),id=queue[cur].id;
   if(p.flagged[id])delete p.flagged[id];else p.flagged[id]=true;
-  save(p);updateFlag();
+  save(p);updateFlag();retrigger(document.getElementById('btnFlag'),'pop');
 }
-function next(){cur++;if(cur>=queue.length)showResults();else render();}
+function next(){cur++;if(cur>=queue.length)showResults();else{render();retrigger(document.getElementById('numPill'),'jelly');}}
 function prev(){if(cur>0){cur--;render();}}
 function exitQuiz(){if(confirm(t('exitConfirm')))goHome();}
 
@@ -963,16 +975,53 @@ function startTopic(btn){
   cur=0;ok=0;bad=0;sess=[];MODE='practice';show('quiz');render();
 }
 function goHome(){ show('home'); refresh(); buildTopics(); }
-function show(s){ ['examPicker','home','quiz','results'].forEach(id=>document.getElementById(id).style.display=id===s?'block':'none');document.body.dataset.screen=s; }
+function show(s){ ['examPicker','home','quiz','results'].forEach(id=>document.getElementById(id).style.display=id===s?'block':'none');document.body.dataset.screen=s;buildLenses(); }
 
 let lastY=0,scrollAcc=0;
 addEventListener('scroll',()=>{
   const y=Math.max(0,Math.min(scrollY,document.documentElement.scrollHeight-innerHeight)),d=y-lastY;lastY=y;
-  document.body.classList.toggle('scrolled',y>8);
   if(y<40){scrollAcc=0;document.body.classList.remove('nav-min');return;}
   scrollAcc=Math.sign(d)===Math.sign(scrollAcc)?scrollAcc+d:d;
   if(scrollAcc>24)document.body.classList.add('nav-min');else if(scrollAcc<-24)document.body.classList.remove('nav-min');
 },{passive:true});
+// ── Liquid glass: refraction (Chromium only), moving specular light, gel bounce ──
+const retrigger=(el,cls)=>{el.classList.remove(cls);void el.offsetWidth;el.classList.add(cls);};
+const LENS_OK=!!(window.chrome||navigator.userAgentData?.brands?.some(b=>b.brand==='Chromium'))&&!/Firefox/.test(navigator.userAgent)
+  &&!matchMedia('(prefers-reduced-transparency: reduce), (prefers-contrast: more)').matches;
+const lensCache={};
+function lensMap(w,h){
+  const key=w+'x'+h;if(lensCache[key])return lensCache[key];
+  const r=Math.min(w,h)/2,bezel=Math.min(14,h/2.5),c=document.createElement('canvas');c.width=w;c.height=h;
+  const ctx=c.getContext('2d'),img=ctx.createImageData(w,h);
+  const sdf=(x,y)=>{const qx=Math.abs(x-w/2)-(w/2-r),qy=Math.abs(y-h/2)-(h/2-r);return Math.hypot(Math.max(qx,0),Math.max(qy,0))+Math.min(Math.max(qx,qy),0)-r;};
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++){
+    const d=-sdf(x+.5,y+.5),i=(y*w+x)*4;let dx=0,dy=0;
+    if(d>0&&d<bezel){const gx=sdf(x+1.5,y+.5)-sdf(x-.5,y+.5),gy=sdf(x+.5,y+1.5)-sdf(x+.5,y-.5),len=Math.hypot(gx,gy)||1,m=(1-d/bezel)**2;dx=-gx/len*m;dy=-gy/len*m;}
+    img.data[i]=128+dx*127;img.data[i+1]=128+dy*127;img.data[i+2]=128;img.data[i+3]=255;
+  }
+  ctx.putImageData(img,0,0);return lensCache[key]=c.toDataURL();
+}
+function buildLenses(){
+  if(!LENS_OK)return;
+  const defs=document.getElementById('lensDefs');defs.innerHTML='';
+  document.querySelectorAll('.topbar .glass').forEach((el,n)=>{
+    const w=Math.round(el.offsetWidth),h=Math.round(el.offsetHeight);
+    if(!w||!h){el.classList.remove('has-lens');el.style.backdropFilter='';return;}
+    defs.insertAdjacentHTML('beforeend',`<filter id="lens${n}" x="0" y="0" width="${w}" height="${h}" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feImage href="${lensMap(w,h)}" x="0" y="0" width="${w}" height="${h}" result="map"/><feDisplacementMap in="SourceGraphic" in2="map" scale="16" xChannelSelector="R" yChannelSelector="G"/></filter>`);
+    el.style.backdropFilter=`url(#lens${n}) blur(2.5px) saturate(180%) brightness(1.08)`;el.classList.add('has-lens');
+  });
+}
+function setLight(px,py){
+  document.querySelectorAll('.topbar .glass').forEach(el=>{
+    const r=el.getBoundingClientRect();if(!r.width)return;
+    el.style.setProperty('--lx',`${Math.max(-20,Math.min(120,(px-r.left)/r.width*100))}%`);
+    el.style.setProperty('--ly',`${Math.max(-60,Math.min(160,(py-r.top)/r.height*100))}%`);
+  });
+}
+addEventListener('pointermove',e=>{if(e.pointerType==='mouse')setLight(e.clientX,e.clientY);});
+addEventListener('scroll',()=>{if(matchMedia('(pointer: coarse)').matches){const k=(scrollY%600)/600;setLight(innerWidth*(.15+.7*k),0);}},{passive:true});
+addEventListener('resize',buildLenses);
+setLight(innerWidth*.3,0);
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 function resetProgress(){if(confirm(t('resetConfirm'))){localStorage.removeItem(KEY);refresh();buildTopics();}}
 </script>
