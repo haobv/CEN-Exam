@@ -10,6 +10,8 @@
     "all": "すべて",
     "unseen": "未回答",
     "wrong": "不正解",
+    "flagged": "ブックマーク",
+    "flag": "この問題をブックマーク",
     "mockExam": "模擬試験",
     "mockExamSub": "{count} 問 · ランダム出題",
     "studyByTopic": "トピック別に学習",

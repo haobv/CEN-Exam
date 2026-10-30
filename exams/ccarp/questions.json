@@ -19,7 +19,8 @@
       ],
       "correct": [
         1
-      ]
+      ],
+      "note": "Theo nguyên tắc least privilege, chỉ cấp đúng các công cụ mà vai trò cần (đọc knowledge base, ghi draft queue) và áp quyền ở tầng orchestration, không phụ thuộc vào việc model tự giác. A cấp quyền đọc toàn hệ thống, thừa quyền. C dựa vào model tự từ chối, không phải kiểm soát thật. D tắt hết công cụ thì assistant không làm được việc được giao."
     },
     {
       "id": 2,
@@ -35,7 +36,8 @@
       ],
       "correct": [
         1
-      ]
+      ],
+      "note": "Mỗi MCP server nạp định nghĩa tool của nó vào context; khi cấu hình nhiều server mà không bật Tool Search, toàn bộ định nghĩa được nạp ngay từ đầu nên tốn hàng chục nghìn token trước cả tin nhắn đầu tiên (B). A và D gán nguyên nhân cho bàn phím hay hiển thị IDE, những thứ không hề sinh token. C cho rằng model có 'sở thích riêng' ngầm chiếm context, không có cơ sở kỹ thuật."
     },
     {
       "id": 3,
@@ -51,7 +53,8 @@
       ],
       "correct": [
         0
-      ]
+      ],
+      "note": "Yêu cầu là có AI hỗ trợ review nhưng vẫn giữ quyền duyệt của con người. Claude Code đăng phân tích có cấu trúc dưới dạng comment, còn reviewer vẫn quyết định theo branch-protection hiện có (A). B tự merge và C tắt branch protection đều loại bỏ bước duyệt của con người. D âm thầm xóa PR mà không báo tác giả, vừa mất minh bạch vừa vượt quá vai trò review."
     },
     {
       "id": 4,
@@ -67,7 +70,8 @@
       ],
       "correct": [
         3
-      ]
+      ],
+      "note": "Skill phù hợp nhất với kiến thức dạng quy trình (hướng dẫn, ví dụ mẫu) không cần gọi hệ thống bên ngoài theo thời gian thực, và dễ dùng lại trên claude.ai, API lẫn Claude Code (D). A cần truy vấn database live và C cần xác thực với identity provider, đó là lý do để chọn MCP server. B (gọi được từ CLI) không phân biệt hai lựa chọn vì cả hai đều dùng được trong Claude Code."
     },
     {
       "id": 5,
@@ -85,7 +89,8 @@
       "correct": [
         0,
         4
-      ]
+      ],
+      "note": "Trước khi viết từng phần cần biết viết cho ai và họ cần trả lời câu hỏi gì (A), cùng một dàn ý các phần của tài liệu (E). C (validate với team triển khai) làm sau khi đã có bản nháp. D (version control, lịch review) là quản lý tài liệu, không phải bước lên kế hoạch nội dung. B dịch trước khi viết là sai thứ tự."
     },
     {
       "id": 6,
@@ -101,7 +106,8 @@
       ],
       "correct": [
         0
-      ]
+      ],
+      "note": "Ghép đúng từng phát biểu: xử lý nhiều đơn hơn trên mỗi analyst thuộc Efficiency; bỏ hẳn một vai trò và chuyển nhân sự sang việc giá trị cao hơn là Transformation; chi phí API vượt ngân sách là Solution Cost; độ trễ 11 giây so với cam kết 5 giây là Performance SLA (A). B và C gán sai phát biểu 2 (đó là thay đổi cách vận hành, không chỉ tăng năng suất). D đảo ngược Solution Cost và Performance SLA."
     },
     {
       "id": 7,
@@ -119,7 +125,8 @@
       "correct": [
         3,
         4
-      ]
+      ],
+      "note": "Một quy trình alignment tốt cần nhịp định kỳ để rà lại kỳ vọng và giả định khi điều kiện thay đổi (D), và cần xử lý dứt điểm các quan điểm khác nhau thay vì che đi cho êm (E). A (ghi hình) và C (luân phiên điều phối) chỉ là chi tiết vận hành, không đảm bảo alignment. B đẩy mọi bất đồng lên executive sponsor, bỏ qua việc các bên tự đối thoại và hòa giải."
     },
     {
       "id": 8,
@@ -135,7 +142,8 @@
       ],
       "correct": [
         3
-      ]
+      ],
+      "note": "Yêu cầu còn quá mơ hồ: chưa rõ hành trình nào đang lỗi, metric nào phản ánh vấn đề, AI hỗ trợ quyết định nào. Bước đầu tiên là dẫn dắt một buổi discovery có cấu trúc để xác định quyết định cần cải thiện và metric mục tiêu (D). A đẩy việc lại cho sponsor mà không giúp gì. B làm prototype chung chung khi chưa có mục tiêu. C tự chốt scope dựa trên giả định của mình, dễ làm sai hướng."
     },
     {
       "id": 9,
@@ -151,7 +159,8 @@
       ],
       "correct": [
         2
-      ]
+      ],
+      "note": "Cách tốt nhất là ghi nhận yêu cầu, nói rõ tác động đến scope và timeline, rồi đưa ra các lựa chọn (hoãn, cắt bớt phần khác, hoặc kéo dài timeline) để stakeholder quyết định (C). A giấu yêu cầu khỏi team, làm mất minh bạch. B từ chối thẳng mà không quan tâm đến nhu cầu thật. D nhận thêm việc mà không nói rõ hệ quả, sớm muộn cũng thành trễ hạn."
     },
     {
       "id": 10,
@@ -174,7 +183,8 @@
         "Long Structured Documents",
         "Heterogeneous Short Records",
         "Long Structured Documents"
-      ]
+      ],
+      "note": "<b>Code / đặc tả phân cấp:</b> chia theo hàm/mục hoặc đi theo cây cấu trúc để mỗi chunk là một đơn vị trọn nghĩa. <b>Bản ghi ngắn, không đồng nhất:</b> mỗi bản ghi là một chunk; nếu các bản ghi ngắn và dài tương đương thì dùng fixed-size có overlap. <b>Tài liệu dài có cấu trúc:</b> chia theo ngữ nghĩa (đoạn, điều khoản) hoặc phân cấp theo mục lục để giữ ngữ cảnh."
     },
     {
       "id": 11,
@@ -192,7 +202,8 @@
       "correct": [
         2,
         4
-      ]
+      ],
+      "note": "Muốn đánh giá likelihood và impact của mối đe dọa lên tài sản thì trước hết phải biết có những tài sản nào và mức độ nhạy cảm của chúng (C), cùng các threat actor và attack vector liên quan (E). A (lập báo cáo trình risk committee), B và D (đề xuất mitigation, chấp nhận residual risk) đều là bước sau khi đã đánh giá xong."
     },
     {
       "id": 12,
@@ -208,7 +219,8 @@
       ],
       "correct": [
         1
-      ]
+      ],
+      "note": "Runbook phải đủ để kỹ sư on-call xử lý sự cố từ đầu đến cuối: các alert thường gặp kèm bước triage, đường escalation, quy trình rollback và đường dẫn tới dashboard, log liên quan (B). A, C và D mỗi phương án chỉ có một phần, thiếu những bước quan trọng như triage, escalation hay rollback nên không dùng được khi có sự cố thật."
     },
     {
       "id": 13,
@@ -224,7 +236,8 @@
       ],
       "correct": [
         1
-      ]
+      ],
+      "note": "Giảm retrieval xuống top-k đoạn thường đã đủ trả lời giúp prompt ngắn hơn, còn cache phần system prompt ổn định bằng prompt caching giúp giảm độ trễ xử lý (B); chất lượng hầu như không đổi. A tắt prompt caching làm latency tăng chứ không giảm. C tăng retrieval tối đa làm chậm hơn. D dùng model nặng nhất cho mọi lượt, chính đề bài đã nói làm xấu SLO."
     },
     {
       "id": 14,
@@ -240,7 +253,8 @@
       ],
       "correct": [
         2
-      ]
+      ],
+      "note": "Khi bị từ chối quyền ngoài dự kiến, cần kiểm tra các permission rule đang có hiệu lực ở mọi scope (managed, command-line, local, project, user) để tìm rule nào đang chặn, rồi quyết định nên sửa hay giữ nguyên (C). A thử lại mãi mà không tìm nguyên nhân. B tắt toàn bộ hệ thống quyền và D cấp Bash không giới hạn, cả hai đều phá vỡ kiểm soát thay vì chỉ sửa đúng rule."
     },
     {
       "id": 15,
@@ -258,7 +272,8 @@
       "correct": [
         2,
         3
-      ]
+      ],
+      "note": "Trước khi chạy thử một mẫu đại diện, phải định nghĩa quality bar, độ trễ chấp nhận được và lưu lượng dự kiến (D), rồi dựa vào đó chọn model ứng viên (C). A (chọn model nhẹ nhất đạt chuẩn) chỉ làm được sau khi đã có kết quả thử. B (test lại khi có version mới) và E (ký duyệt kế hoạch rollout) đều thuộc giai đoạn sau."
     },
     {
       "id": 16,
@@ -276,7 +291,8 @@
       "correct": [
         1,
         2
-      ]
+      ],
+      "note": "Checklist đạo đức cần kiểm tra output không dựa trên những khái quát hóa về con người mà dữ liệu không chứng minh được (B), và các quyết định quan trọng vẫn có người chịu trách nhiệm thay vì đổ cho model (C). A (giấy phép vendor) là vấn đề pháp lý. E (latency, throughput) là vấn đề hiệu năng. D chỉ review khi vượt ngưỡng confidence, bỏ sót đúng những trường hợp rủi ro."
     },
     {
       "id": 17,
@@ -294,7 +310,8 @@
       "correct": [
         2,
         4
-      ]
+      ],
+      "note": "Control A (allowlist tool gọi ra ngoài, giới hạn đích đến, review từng call) nhắm vào rủi ro data exfiltration qua tool call (C). Control B (chấm điểm trên bộ eval adversarial cố định sau mỗi lần đổi model) phát hiện quality drift âm thầm khi nâng version (E). A sai vì prompt injection từ dữ liệu retrieve cần xử lý ở tầng input. B và D gán ngược chức năng của hai control."
     },
     {
       "id": 18,
@@ -310,7 +327,8 @@
       ],
       "correct": [
         1
-      ]
+      ],
+      "note": "RBAC phải được áp ở retrieval layer, để tài liệu không được phép không bao giờ lọt vào prompt hay đến model (B). A chỉ là lời dặn trong system prompt, không phải kiểm soát thật và dễ bị vượt qua. C hoàn toàn dựa vào model tự từ chối. D lọc sau khi đã sinh câu trả lời thì quá muộn, vì dữ liệu hạn chế đã vào context và có thể lộ gián tiếp."
     },
     {
       "id": 19,
@@ -328,7 +346,8 @@
       "correct": [
         2,
         4
-      ]
+      ],
+      "note": "Retrieval không đổi mà output lại mâu thuẫn với nguồn thì cần kiểm tra lỗi có lặp lại trên model version cũ không, để xác định có phải do đổi model (C), và xem các chỉ dẫn grounding, ràng buộc citation trong system prompt còn nguyên không (E). A, B và D là thay đổi cấu hình (context window, embedding, temperature) chứ không phải bước chẩn đoán, lại nhắm vào những phần không thay đổi."
     },
     {
       "id": 20,
@@ -344,7 +363,8 @@
       ],
       "correct": [
         0
-      ]
+      ],
+      "note": "Q&A về compliance cần câu trả lời có citation từ nguồn chính thống, nhanh, rẻ và dễ audit, nên augmented LLM kết hợp RAG trên corpus đã index và hiển thị citation là phù hợp nhất (A). B dùng multi-agent cho mọi câu hỏi, quá phức tạp và tốn kém. C duyệt web mở, không bám vào nguồn chính thống. D nhồi toàn bộ corpus vào mỗi request, tốn chi phí, tăng latency và khó trích dẫn chính xác."
     },
     {
       "id": 21,
@@ -360,7 +380,8 @@
       ],
       "correct": [
         1
-      ]
+      ],
+      "note": "Risk-stratified sampling review toàn bộ output có confidence thấp hoặc tác động lớn, cộng thêm một mẫu ngẫu nhiên nhỏ ở nhóm thông thường, vừa giữ được throughput vừa giám sát đúng chỗ (B). A chờ người dùng phàn nàn thì phát hiện quá muộn. C ngược logic khi bỏ qua đúng nhóm rủi ro nhất. D review tất cả thì không khả thi với khối lượng lớn."
     },
     {
       "id": 22,
@@ -378,7 +399,8 @@
       "correct": [
         1,
         2
-      ]
+      ],
+      "note": "Đặt credential vào prompt context có thể khiến chúng lộ ra qua log và trace (B), và chỉ áp RBAC ở tầng hiển thị sau khi model đã đọc dữ liệu hạn chế là quá muộn (C). Cả hai đều là lỗ hổng thật. A (service principal theo least privilege), D (OAuth token theo từng user, giới hạn scope) và E (mã hóa TLS khi truyền) đều là thực hành bảo mật tốt, không phải lỗ hổng."
     },
     {
       "id": 23,
@@ -399,7 +421,8 @@
         "Yes",
         "No",
         "Yes"
-      ]
+      ],
+      "note": "Nhiệm vụ của agent là soạn yêu cầu mua để review. <b>Giữ:</b> tra catalog chỉ đọc, ghi bản nháp vào hàng chờ review, đọc chính sách mua hàng; đều phục vụ đúng nhiệm vụ. <b>Bỏ:</b> gửi email thẳng cho vendor (bỏ qua bước review, vượt quá nhiệm vụ) và quyền admin database production (không liên quan, rủi ro cao)."
     },
     {
       "id": 24,
@@ -420,7 +443,8 @@
         "Yes",
         "No",
         "Yes"
-      ]
+      ],
+      "note": "Claude mạnh ở việc hiểu và sinh ngôn ngữ, suy luận trên văn bản. <b>Yes:</b> soạn bản nháp báo cáo điều tra từ log bán cấu trúc để analyst review, review hợp đồng dài kèm trích xuất điều khoản và đánh dấu sai lệch, phân loại ticket vào 30 nhóm kèm lý do. <b>No:</b> chấm điểm gian lận real-time dưới 50 ms (cần model ML chuyên dụng độ trễ thấp) và thay thế vector index cho hàng triệu tài liệu (đó là việc của hạ tầng retrieval, không phải LLM)."
     },
     {
       "id": 25,
@@ -438,7 +462,8 @@
       "correct": [
         0,
         2
-      ]
+      ],
+      "note": "Theo Diligence, cần lấy mẫu các bản tóm tắt gần đây để ước lượng tần suất bịa citation trên diện rộng (A), và kiểm tra pipeline hiện có control nào bảo đảm citation-grounding hay không (C). B tắt ngay hệ thống khi chưa chẩn đoán là phản ứng thái quá. D khẳng định 'không bao giờ bịa' là sai sự thật. E coi đây là trường hợp lẻ mà bỏ qua là thiếu trách nhiệm."
     },
     {
       "id": 26,
@@ -454,7 +479,8 @@
       ],
       "correct": [
         3
-      ]
+      ],
+      "note": "Non-functional requirement mô tả hệ thống phải hoạt động tốt đến mức nào (hiệu năng, độ tin cậy, bảo mật), chẳng hạn p95 latency dưới 800 ms ở lưu lượng dự kiến (D). A (trích xuất trường từ hóa đơn), B (tạo bản nháp cho người duyệt sửa) và C (phân loại ticket) đều mô tả hệ thống làm gì, tức là functional requirement."
     },
     {
       "id": 27,
@@ -470,7 +496,8 @@
       ],
       "correct": [
         1
-      ]
+      ],
+      "note": "Với khán giả hỗn hợp, nên mở đầu bằng quyết định, kết quả kinh doanh mà nó phục vụ và các trade-off chấp nhận để executive nắm nhanh, sau đó mới đi vào lý do kỹ thuật, các phương án thay thế và tác động triển khai cho engineering (B). A chỉ có chi tiết kỹ thuật, bỏ quên sponsor. C chỉ thông báo quyết định mà không có bối cảnh. D trình bày dàn đều, không phục vụ tốt nhóm nào."
     },
     {
       "id": 28,
@@ -488,7 +515,8 @@
       "correct": [
         1,
         4
-      ]
+      ],
+      "note": "Guardrail vững chắc cần được thực thi về mặt kỹ thuật và được kiểm chứng liên tục: allow-list tool theo vai trò áp ở tầng orchestration trước mỗi tool call (B), và eval set có input adversarial kèm theo dõi regression của guardrail (E). A (lưu log, review mỗi quý) và C (kênh phản hồi người dùng) chỉ là giám sát sau sự việc. D sửa câu chữ system prompt không tạo ra kiểm soát thật."
     },
     {
       "id": 29,
@@ -504,7 +532,8 @@
       ],
       "correct": [
         1
-      ]
+      ],
+      "note": "Chống giả mạo quyền admin cần phòng thủ nhiều lớp: chỉ dẫn coi nội dung người dùng là dữ liệu không tin cậy, runtime classifier phát hiện cố gắng override, quyền tool giới hạn mà nội dung người dùng không thể nâng lên, và audit log các lần thử (B). A tin model tự nhận ra mọi tấn công. C bỏ hết guardrail. D cấp bất kỳ quyền nào người dùng tự khai mà không xác minh."
     },
     {
       "id": 30,
@@ -522,7 +551,8 @@
       "correct": [
         1,
         4
-      ]
+      ],
+      "note": "Lỗi xuất hiện sau maintenance nên cần so sánh system prompt và cấu hình output schema hiện tại với bản ổn định gần nhất trước đó (B), và replay các request cũ trên cấu hình hiện tại, xem raw output trước khi parse để biết lỗi nằm ở model hay ở downstream (E). A xóa cache và C đổi model tier là hành động thay đổi chứ không cô lập nguyên nhân. D chỉ thử một giả thuyết (truncation) mà chưa có dấu hiệu nào ủng hộ."
     },
     {
       "id": 31,
@@ -538,7 +568,8 @@
       ],
       "correct": [
         0
-      ]
+      ],
+      "note": "Lỗi chỉ xảy ra ở lần chạy đầu, đúng lúc hộp thoại cấp quyền hệ thống xuất hiện, nên nguyên nhân là bước cấp quyền một lần. Cách đúng là ghi nhận điều đó, đưa vào hướng dẫn onboarding và xác nhận các lần chạy sau thành công (A). B cài lại hệ điều hành là thái quá. C tắt hộp thoại quyền làm tăng rủi ro bảo mật. D thay MCP server mà không kiểm chứng."
     },
     {
       "id": 32,
@@ -554,7 +585,8 @@
       ],
       "correct": [
         3
-      ]
+      ],
+      "note": "Yêu cầu của security officer về network boundary là ràng buộc bắt buộc: nếu managed agents không xử lý dữ liệu tài chính trong ranh giới được duyệt thì không thể chọn, dù lợi ích vận hành lớn đến đâu (D). A và C là chi tiết kỹ thuật có thể điều chỉnh khi migrate. B (chi phí token) không phải mục tiêu CFO đặt ra là lấy lại năng lực engineering, và cũng không vượt qua được ràng buộc bảo mật."
     },
     {
       "id": 33,
@@ -570,7 +602,8 @@
       ],
       "correct": [
         2
-      ]
+      ],
+      "note": "Cấp Bash không giới hạn cho mọi dev trên mọi project vi phạm least privilege. Cách đúng là thu hẹp thành các tool pattern chỉ cho phép đúng lệnh mà workflow cần, kèm deny rule rõ ràng cho thao tác nhạy cảm (C). A mở rộng thêm attack surface chỉ vì 'nhất quán'. B chấp nhận rủi ro toàn phần để tránh chút cấu hình. D bỏ hết permission rule, còn tệ hơn hiện trạng."
     },
     {
       "id": 34,
@@ -588,7 +621,8 @@
       "correct": [
         2,
         3
-      ]
+      ],
+      "note": "Guardrail hiệu quả cần nhiều lớp: validate output theo schema trước khi thực hiện hành động downstream (C), và kết hợp guardrail ở tầng prompt với runtime content check thay vì chỉ dựa vào một lớp (D). A tạo cửa sau để bypass guardrail. B giảm temperature không loại bỏ được nội dung không an toàn và không phải guardrail. E chỉ dựa vào một system prompt là single point of failure."
     },
     {
       "id": 35,
@@ -604,7 +638,8 @@
       ],
       "correct": [
         1
-      ]
+      ],
+      "note": "Phân loại moderation với nhãn rõ ràng, volume cao và latency budget chặt là workload điển hình cho Haiku: nhanh, rẻ, đủ năng lực cho tác vụ cần ít suy luận (B). A dùng Opus cho mọi quyết định là lãng phí và chậm. C cho rằng model lớn luôn tốt hơn, bỏ qua yêu cầu latency. D bật extended thinking cho mọi request làm tăng latency và chi phí không cần thiết."
     },
     {
       "id": 36,
@@ -627,7 +662,8 @@
         "Model Stage",
         "Pre-Processing",
         "Pre-Processing"
-      ]
+      ],
+      "note": "<b>Pre-Processing:</b> OCR trên ảnh hóa đơn scan và PII redaction trên text trước khi gọi model; đều chuẩn bị đầu vào sạch, an toàn cho Claude. <b>Model Stage:</b> Claude phân loại loại hóa đơn và Claude trích xuất các trường có cấu trúc; đây là phần cần năng lực hiểu ngôn ngữ của model. <b>Post-Processing:</b> schema validation các trường đã trích xuất, rồi lưu bản ghi đã validate vào system of record."
     },
     {
       "id": 37,
@@ -648,7 +684,8 @@
         "Yes",
         "No",
         "No"
-      ]
+      ],
+      "note": "<b>Yes:</b> dense vector retrieval mạnh ở việc bắt ý diễn đạt khác (paraphrase) trên văn bản phi cấu trúc; sparse term-matching (như BM25) bắt chính xác identifier và token hiếm tốt hơn dense; structured query phù hợp cho filter-and-aggregate trên relational store có schema và index. <b>No:</b> hybrid retrieval kết hợp dense và sparse nên recall khác (thường tốt hơn) dense-only; random sampling không phải chiến lược retrieval hợp lệ cho Q&A production."
     },
     {
       "id": 38,
@@ -664,7 +701,8 @@
       ],
       "correct": [
         0
-      ]
+      ],
+      "note": "Bật Tool Search để defer tool definition và chỉ nạp khi cần, nhờ đó giải phóng context mà vẫn giữ nguyên khả năng truy cập toàn bộ MCP tool (A). B tắt toàn bộ MCP server thì mất hết năng lực. C làm prompt dài hơn, càng tốn context. D thêm MCP server làm tăng số tool definition, đi ngược mục tiêu."
     },
     {
       "id": 39,
@@ -680,7 +718,8 @@
       ],
       "correct": [
         2
-      ]
+      ],
+      "note": "Commit .mcp.json và .claude/settings.json ở project scope vào repository giúp mọi engineer clone repo đều nhận cùng cấu hình MCP, được version control và không cần đồng bộ tay (C). A là managed configuration ở cấp tổ chức, phù hợp cho chính sách toàn công ty hơn là cấu hình riêng của một repo. B và D đều phải thiết lập trên từng máy, dễ lệch nhau."
     },
     {
       "id": 40,
@@ -698,7 +737,8 @@
       "correct": [
         0,
         1
-      ]
+      ],
+      "note": "Prompt caching trên prefix system prompt tĩnh giảm số input token tính phí và giảm thời gian xử lý ở các lần gọi lặp lại (A). Routing query đơn giản sang model nhỏ, nhanh hơn giảm cả chi phí lẫn latency mà vẫn giữ model lớn cho ca phức tạp (B). C tăng max_tokens không giảm chi phí hay latency. D nạp toàn bộ corpus và E thêm few-shot đều làm tăng token, tăng cả chi phí lẫn latency."
     },
     {
       "id": 41,
@@ -719,7 +759,8 @@
         "No",
         "Yes",
         "No"
-      ]
+      ],
+      "note": "<b>Yes:</b> model suy luận nặng hơn thường chậm hơn và tiêu tốn rate limit nhiều hơn trên cùng input; eval trên mẫu đại diện của workload thật là cơ sở đúng để xác nhận lựa chọn model; tiered routing dùng model nhẹ cho traffic thường và model nặng cho phần cần năng lực cao. <b>No:</b> model mạnh nhất không phải lúc nào cũng đúng vì còn chi phí và latency; chọn theo phiên bản mới công bố nhất không phải cơ sở cho quyết định production."
     },
     {
       "id": 42,
@@ -737,7 +778,8 @@
       "correct": [
         0,
         3
-      ]
+      ],
+      "note": "Đề bài yêu cầu hai mục tiêu: an toàn khi bị tấn công thì cần adversarial test với prompt injection và input lỗi định dạng (A); đúng đắn giữa các thành phần thì cần integration test kiểm tra hành vi end-to-end của pipeline (D). B regression test và C smoke test có giá trị nhưng không nhắm trực tiếp vào tấn công hay tương tác liên thành phần. E chỉ test render template, phạm vi quá hẹp."
     },
     {
       "id": 43,
@@ -755,7 +797,8 @@
       "correct": [
         2,
         4
-      ]
+      ],
+      "note": "Hai ưu tiên đầu là cache những thứ lặp lại mà không đổi nội dung: prompt caching cho policy preamble tĩnh, vốn chiếm 45% chi phí (C), và cache các sales chunk được truy xuất thường xuyên (E); cả hai giảm chi phí mà đầu vào model vẫn y nguyên nên accuracy không đổi. A giảm số chunk và B cắt preamble đều thay đổi context, có thể ảnh hưởng accuracy. D đổi sang model nhỏ hơn có rủi ro giảm chất lượng projection."
     },
     {
       "id": 44,
@@ -771,7 +814,8 @@
       ],
       "correct": [
         2
-      ]
+      ],
+      "note": "Để tài liệu bám sát code thật, subagent phải đọc code qua công cụ filesystem và code-search, sinh tài liệu, rồi đưa thay đổi qua quy trình review thông thường của team (C). A dựa vào trí nhớ từ training data nên không phản ánh implementation hiện tại. B publish thẳng lên site public, bỏ qua human review. D tắt công cụ đọc code nên tài liệu tách rời hoàn toàn khỏi implementation."
     },
     {
       "id": 45,
@@ -789,7 +833,8 @@
       "correct": [
         1,
         4
-      ]
+      ],
+      "note": "Ràng buộc 'không bao giờ đưa khuyến nghị đầu tư' cần guardrail chủ động ở cả đầu vào lẫn đầu ra: output classifier phát hiện và chặn nội dung khuyến nghị đầu tư (B), và system prompt định nghĩa rõ phạm vi bị loại trừ kèm câu từ chối cố định (E). A tăng temperature làm hành vi khó đoán hơn chứ không ngăn được. C giới hạn session không liên quan nội dung. D log vào SIEM chỉ giúp phát hiện sau sự việc, không ngăn chặn."
     },
     {
       "id": 46,
@@ -805,7 +850,8 @@
       ],
       "correct": [
         3
-      ]
+      ],
+      "note": "Để phát hiện quality drift âm thầm sau khi nâng cấp model, cần một adversarial eval set cố định với điểm số gắn theo phiên bản, đo mỗi bản nâng cấp trên cùng bộ trước khi promote (D). A và C bỏ eval, để drift lọt ra production. B xoay vòng input ngẫu nhiên khiến các phiên bản không so sánh được với nhau, không phát hiện được drift."
     },
     {
       "id": 47,
@@ -821,7 +867,8 @@
       ],
       "correct": [
         2
-      ]
+      ],
+      "note": "Handoff sạch cần đủ bộ tài liệu để đội triển khai vận hành độc lập: architecture overview, ADR, component contract, evaluation framework kèm reference set, runbook, on-call playbook và danh sách known limitations (C). A chỉ có slide thiết kế, B chỉ trao đổi miệng, D chỉ có source code; tất cả đều thiếu contract, eval và tài liệu vận hành nên dễ mất kiến thức khi chuyển giao."
     },
     {
       "id": 48,
@@ -837,7 +884,8 @@
       ],
       "correct": [
         1
-      ]
+      ],
+      "note": "Mỗi filing 80K token được hỏi trung bình 14 lần nên prompt caching filing làm prefix giảm mạnh chi phí input mà vẫn giữ nguyên toàn bộ ngữ cảnh, bảo toàn chất lượng; cache là tạm thời, không phải lưu trữ dữ liệu lâu dài bên ngoài (B). A chạy trên bản tóm tắt làm mất chi tiết pháp lý. C retrieval từng đoạn có thể bỏ sót ngữ cảnh và thêm một kho lưu trữ mới cần kiểm soát. D model nhỏ có rủi ro giảm chất lượng."
     },
     {
       "id": 49,
@@ -853,7 +901,8 @@
       ],
       "correct": [
         3
-      ]
+      ],
+      "note": "Giai đoạn iteration xoay quanh vòng phản hồi: xem production telemetry, đánh giá output được lấy mẫu và feedback của stakeholder để chọn thay đổi có tác động lớn nhất, rồi lập kế hoạch thay đổi dựa trên evaluation framework (D). A xây lại từ đầu mỗi chu kỳ là lãng phí, bỏ qua dữ liệu. B ngừng đo sau go-live và C bỏ eval framework khiến các lần iteration không còn cơ sở đo lường."
     },
     {
       "id": 50,
@@ -871,7 +920,8 @@
       "correct": [
         0,
         2
-      ]
+      ],
+      "note": "Trước khi chạy thí nghiệm phải xác định hypothesis và primary success metric (C), cùng minimum detectable effect và sample size đủ power (A); nếu không, kết quả dễ bị diễn giải theo ý muốn hoặc thiếu ý nghĩa thống kê. D phân tích kết quả, B quyết định promote/reject/iterate và E ghi lại khuyến nghị đều là các bước diễn ra sau khi thí nghiệm đã chạy xong."
     },
     {
       "id": 51,
@@ -889,7 +939,8 @@
       "correct": [
         0,
         4
-      ]
+      ],
+      "note": "Căn chỉnh kỳ vọng cần dữ liệu thật: p50/p95 so với SLA đã thống nhất (A), và cùng stakeholder điều chỉnh SLA nếu mục tiêu không khả thi trong điều kiện production (E). B dừng toàn bộ phát triển là phản ứng thái quá. C gạt đi mối lo, làm mất niềm tin. D đổi model để 'tỏ ra phản hồi' không giải quyết gốc rễ và chưa có dữ liệu chứng minh."
     },
     {
       "id": 52,
@@ -907,7 +958,8 @@
       "correct": [
         2,
         4
-      ]
+      ],
+      "note": "Lỗi đặc thù của LLM gồm over-refusal, tức model từ chối truy vấn hợp lệ vì đặc điểm bề mặt kích hoạt safety pattern quá rộng (C), và hallucination, tức sinh câu trả lời nghe hợp lý nhưng không có tài liệu nào hỗ trợ (E). A (TLS hết hạn), B (database timeout) và D (load balancer cấu hình sai) đều là lỗi hạ tầng phần mềm thông thường, xảy ra với bất kỳ hệ thống nào."
     },
     {
       "id": 53,
@@ -928,7 +980,8 @@
         "No",
         "Yes",
         "No"
-      ]
+      ],
+      "note": "<b>Yes:</b> zero-shot là điểm khởi đầu hợp lý cho phân loại closed-set khi đã mô tả rõ các nhãn; few-shot với đúng tên field giúp neo định dạng output cho tác vụ extraction; để giảm thiên lệch do câu hỏi dẫn dắt, nên yêu cầu so sánh cân bằng theo tiêu chí nêu rõ. <b>No:</b> chain-of-thought không nên mặc định cho mọi tác vụ vì tốn token và latency khi không cần; hành vi khác nhau giữa các phiên bản model cần được kiểm tra lại, không thể bỏ qua."
     },
     {
       "id": 54,
@@ -944,7 +997,8 @@
       ],
       "correct": [
         3
-      ]
+      ],
+      "note": "Mô hình federated cho phép 14 team tự viết Skill theo chuyên môn của mình, còn cổng review và publish tập trung đảm bảo chất lượng và độ tin cậy, tránh nghẽn ở một team (D). A cho từng dev tự viết, không phối hợp, dễ trùng lặp và thiếu kiểm soát. B tập trung toàn bộ vào một platform team gây bottleneck. C phi tập trung không review thì Skill không đáng tin cậy."
     },
     {
       "id": 55,
@@ -962,7 +1016,8 @@
       "correct": [
         3,
         4
-      ]
+      ],
+      "note": "Hai phát hiện cần xử lý trực tiếp: shared API key được thay bằng OAuth token theo từng user với scope giới hạn (E), và tool call không ghi người khởi tạo được khắc phục bằng actor attribution trong log (D). A schema validation, B RBAC ở retrieval layer và C chuyển credential sang secret store đều là thực hành tốt nhưng không giải quyết đúng hai phát hiện của audit."
     },
     {
       "id": 56,
@@ -980,7 +1035,8 @@
       "correct": [
         2,
         3
-      ]
+      ],
+      "note": "Dù không train trên dữ liệu công ty, model vẫn có thể mang demographic bias từ pretraining và thể hiện trong kết quả sàng lọc (C), nên cần đánh giá outcome disparity giữa các nhóm được bảo vệ trước khi deploy (D). A chỉ công bố có dùng AI không thay thế được việc đánh giá. B sai vì bias không phụ thuộc việc dataset có nhãn protected class. E chính sách responsible-use của nhà cung cấp không thay cho eval trên use case cụ thể."
     },
     {
       "id": 57,
@@ -998,7 +1054,8 @@
       "correct": [
         2,
         3
-      ]
+      ],
+      "note": "Về Discernment, cần chỉ ra rằng acceptance ban đầu không chứng minh khuyến nghị vẫn đúng sau khi chuyên viên xem xét kỹ (D), và các tiêu chí assistant chưa đánh giá là khoảng trống phạm vi trong input của nó (C). A ngược lại hoàn toàn với dữ liệu override. B và E là nghi ngại suy đoán về phương pháp khảo sát và thời gian pilot, không đi vào bản chất vấn đề chất lượng khuyến nghị."
     },
     {
       "id": 58,
@@ -1016,7 +1073,8 @@
       "correct": [
         1,
         2
-      ]
+      ],
+      "note": "Proposal A đưa AI vào ngay nơi dev làm việc, giảm context switching (C), còn Proposal B buộc dev rời IDE sang Slack, tạo friction và đi ngược mục tiêu năng suất (B). A cho rằng audit log khiến B tốt hơn, nhưng audit không phải mục tiêu workflow và có thể đạt bằng cách khác. D hàng chờ bất đồng bộ làm chậm chứ không tăng tốc. E bỏ qua việc điểm tích hợp ảnh hưởng lớn đến trải nghiệm và hiệu quả."
     },
     {
       "id": 59,
@@ -1034,7 +1092,8 @@
       "correct": [
         1,
         4
-      ]
+      ],
+      "note": "Trước khi map data flow vào từng điều khoản, phải xác định regulation có áp dụng không dựa trên loại dữ liệu, jurisdiction và đối tượng (B), và kiểm kê công cụ compliance của vendor cùng các affordance đang có (E) để biết nền tảng hiện tại. A so sánh control với yêu cầu, D ghi lại gap và C lên lịch remediation đều là các bước diễn ra sau khi đã mapping."
     },
     {
       "id": 60,
@@ -1050,7 +1109,8 @@
       ],
       "correct": [
         1
-      ]
+      ],
+      "note": "Một buổi feedback hiệu quả cần agenda tập trung, gửi tài liệu trước để stakeholder chuẩn bị, ghi lại quyết định và follow-up bằng văn bản, kèm người phụ trách và hạn chót (B). A và D dựa vào trí nhớ người tham dự nên quyết định dễ bị thất lạc. C phát tài liệu ngay đầu buổi khiến mọi người không kịp đọc, góp ý sẽ hời hợt."
     },
     {
       "id": 61,
@@ -1069,7 +1129,8 @@
         "Yes",
         "No",
         "No"
-      ]
+      ],
+      "note": "<b>Yes:</b> chạy authentication/authorization trước retrieval để có thể lọc tài liệu theo danh tính người dùng; dùng hàng đợi bất đồng bộ để hấp thụ traffic tăng đột biến trước tầng gọi model, đúng cách scale cho hàng nghìn người dùng đồng thời. <b>No:</b> viết logic tính thuế vào system prompt (tính toán xác định phải nằm trong code để chính xác và kiểm thử được); log chứa số định danh chính phủ chưa che (vi phạm data minimization và quyền riêng tư)."
     },
     {
       "id": 62,
@@ -1085,7 +1146,8 @@
       ],
       "correct": [
         2
-      ]
+      ],
+      "note": "Đây là kịch bản prompt injection gián tiếp điển hình: nội dung độc hại trong tài liệu retrieve ra ra lệnh cho model dùng tool HTTP gửi dữ liệu nhạy cảm tới URL của kẻ tấn công (C). A là lời gọi hợp lệ tới domain trong allow-list theo yêu cầu của người dùng. B là tương tác bình thường. D là truy cập tài liệu người dùng có quyền xem, không có gì bất thường."
     },
     {
       "id": 63,
@@ -1103,7 +1165,8 @@
       "correct": [
         0,
         1
-      ]
+      ],
+      "note": "Năng lực Discernment là nhận ra bằng chứng chưa đủ. Approval rate ngang nhau giữa các nhóm chưa có nghĩa error rate (false positive/negative) cũng ngang nhau (A). Khớp 94% với underwriter chỉ cho thấy model sao chép quyết định của con người, kể cả thiên kiến của họ (B). C đánh đồng độ khớp với fairness. D cáo buộc thiếu căn cứ. E nói về cỡ mẫu nhưng không chỉ ra lỗ hổng lập luận cốt lõi."
     },
     {
       "id": 64,
@@ -1120,7 +1183,8 @@
       "correct": [
         0,
         1
-      ]
+      ],
+      "note": "Để team triển khai tự làm được, tài liệu phải có integration contract, configuration schema và hình dạng input/output của từng component (A), cùng decision log ghi lý do và các phương án đã loại (B) để họ tự xử lý tình huống phát sinh mà không phải hỏi lại. C chỉ mô tả high-level, thiếu chi tiết để build. D để thông tin liên hệ nghĩa là vẫn phụ thuộc vào architect."
     },
     {
       "id": 65,
@@ -1136,7 +1200,8 @@
       ],
       "correct": [
         1
-      ]
+      ],
+      "note": "Chỉ dẫn mâu thuẫn trong prompt cần được xử lý từ gốc: bỏ hoặc viết lại chỉ dẫn 'tự tin điền vào chỗ trống' để prompt nhất quán chỉ dùng nội dung có trong nguồn (B), giảm hallucination. A và D để model tự chọn chỉ dẫn mỗi lần, khiến hành vi không ổn định và khó dự đoán. C tăng temperature chỉ thêm ngẫu nhiên, không giải quyết mâu thuẫn."
     },
     {
       "id": 66,
@@ -1152,7 +1217,8 @@
       ],
       "correct": [
         3
-      ]
+      ],
+      "note": "Các bước cố định, dự đoán được (extract, classify, summarize, persist) phù hợp với workflow pattern, vì cho chi phí token mỗi request ổn định và dễ kiểm soát hơn sự linh hoạt không cần thiết (D). A sai vì agent hoàn toàn dùng được tool. B và C sai vì agent không mặc định chính xác hay nhất quán hơn; với tác vụ cố định, agentic còn thêm biến động và chi phí."
     },
     {
       "id": 67,
@@ -1170,7 +1236,8 @@
       "correct": [
         0,
         2
-      ]
+      ],
+      "note": "Lý do để tách capability là bản chất bài toán: mô tả tool chồng chéo giữa các loại claim khiến model chọn nhầm (A), và 34 tool thực ra thuộc bốn domain workflow riêng biệt (C), nên tách thành các agent chuyên biệt là hợp lý. B chỉ gợi ý dọn tool không dùng, không chứng minh cần decomposition. D chỉ là có tài liệu, không phải lý do kỹ thuật. E là nhược điểm của router nhưng không trực tiếp biện minh cho việc tách capability."
     },
     {
       "id": 68,
@@ -1186,7 +1253,8 @@
       ],
       "correct": [
         2
-      ]
+      ],
+      "note": "Managed configuration được áp tập trung và đánh dấu không thể override là cách duy nhất bảo đảm không engineer nào tắt được flag bảo mật (C). A user scope nằm trên máy cá nhân, engineer tự sửa được. B biến môi trường trong CI/CD không ảnh hưởng tới máy local. D project scope trong repo có thể bị sửa qua commit hoặc bị ghi đè bởi cấu hình cục bộ."
     },
     {
       "id": 69,
@@ -1204,7 +1272,8 @@
       "correct": [
         0,
         1
-      ]
+      ],
+      "note": "User scope dành cho tùy chọn cá nhân đi theo engineer qua mọi project, như theme editor (A) hay ngôn ngữ phản hồi ưa thích của Claude (B). C là chính sách toàn công ty, phải dùng managed configuration. D là MCP server dùng chung cho một repo, thuộc project scope. E là chuyện quản lý secret (local scope, biến môi trường hoặc secret manager), không phải ví dụ điển hình của user scope."
     },
     {
       "id": 70,
@@ -1222,7 +1291,8 @@
       "correct": [
         3,
         4
-      ]
+      ],
+      "note": "Yếu tố quyết định giữa MCP, direct API và agent-to-agent handoff là đặc tính của tích hợp: có cần dùng được trên nhiều AI client không, vốn là thế mạnh của MCP (D), và tương tác là stateless, nhạy latency hay stateful, chạy lâu (E). A và B là yếu tố phụ về tài liệu và kinh nghiệm của team. C là yêu cầu bắt buộc chung cho mọi phương án nên không giúp phân biệt."
     },
     {
       "id": 71,
@@ -1238,7 +1308,8 @@
       ],
       "correct": [
         0
-      ]
+      ],
+      "note": "Một lời gọi đơn lẻ, stateless, cần latency thấp tới service đã có HTTP API ổn định thì gọi trực tiếp API với credential đúng phạm vi là đơn giản và nhanh nhất (A). B dùng session stateful cho tương tác stateless là thừa. C tự chế protocol streaming trên message bus không liên quan, quá phức tạp. D chèn thêm một agent làm tăng latency và chi phí không cần thiết."
     },
     {
       "id": 72,
@@ -1254,7 +1325,8 @@
       ],
       "correct": [
         0
-      ]
+      ],
+      "note": "Lỗi ở đây là câu trả lời chứa thông tin không có trong nguồn (thiếu grounding). Cách nhắm thẳng vào lỗi này là giới hạn câu trả lời vào nội dung có trong nguồn, bắt buộc citation và thêm bước verification (A). B là eval để phát hiện, không trực tiếp giảm lỗi. C là kiểm soát truy cập, không liên quan. D chống prompt injection, không phải hallucination."
     },
     {
       "id": 73,
@@ -1270,7 +1342,8 @@
       ],
       "correct": [
         3
-      ]
+      ],
+      "note": "Escalation nhất quán cần tiêu chí rõ ràng, đo được: confidence dưới ngưỡng đã định, quyết định thuộc nhóm tác động cao, cờ ambiguity từ classifier và khi người dùng yêu cầu review (D). A để model tự quyết, không có ngưỡng nên thiếu nhất quán. B chỉ escalate khi khách đã phàn nàn, quá muộn. C phụ thuộc người đang rảnh, tùy tiện."
     },
     {
       "id": 74,
@@ -1286,7 +1359,8 @@
       ],
       "correct": [
         2
-      ]
+      ],
+      "note": "Test case trước đây pass nay fail sau khi đổi prompt template chính là regression, và regression test chấm theo một bộ tham chiếu ổn định về hành vi đúng được thiết kế để bắt lỗi này (C). A kiểm tra luồng end-to-end giữa các component. B dò lỗ hổng an toàn và injection. D chỉ xác nhận các luồng chính còn chạy được, không so sánh chất lượng output."
     },
     {
       "id": 75,
@@ -1304,7 +1378,8 @@
       "correct": [
         1,
         3
-      ]
+      ],
+      "note": "Hai yêu cầu là trần chi phí mỗi query và không lộ dữ liệu bệnh nhân cho role không được phép. Đo chi phí token mỗi query so với trần (D) và tỷ lệ RBAC được thực thi đúng trên bộ red-team (B) đáp ứng trực tiếp. A đo chất lượng tóm tắt. C đo throughput. E đo latency p95; cả ba đều hữu ích nhưng không gắn với hai yêu cầu này."
     },
     {
       "id": 76,
@@ -1320,7 +1395,8 @@
       ],
       "correct": [
         0
-      ]
+      ],
+      "note": "Team triển khai cần đủ thông tin để build và vận hành: trách nhiệm từng component, contract giữa các component, sequence diagram cho các luồng chính, tham số cấu hình kèm giá trị mặc định và runbook vận hành (A). B, C, D đều thiếu những phần quan trọng như sequence diagram, interface contract, bảng cấu hình hoặc runbook, buộc team phải tự đoán hoặc hỏi lại."
     },
     {
       "id": 77,
@@ -1336,7 +1412,8 @@
       ],
       "correct": [
         2
-      ]
+      ],
+      "note": "Chi phí đến chủ yếu từ system prompt dài lặp lại và context retrieve lớn, nên giải pháp trúng nhất là đưa system prompt vào prefix dùng prompt caching và cắt context chỉ còn đoạn liên quan tới query (C). A tăng độ sâu retrieval làm phình context. B thêm nội dung lặp lại vào system prompt. D dùng model nặng nhất làm chi phí tăng thêm thay vì giảm."
     },
     {
       "id": 78,
@@ -1352,7 +1429,8 @@
       ],
       "correct": [
         2
-      ]
+      ],
+      "note": "Minh bạch có trách nhiệm là công khai việc AI tham gia cho người dùng cuối theo chính sách của tổ chức và có đường rõ ràng để gặp người thật khi cần (C). A cố ý che giấu vai trò AI, làm mất informed consent. B từ chối trả lời mọi câu hỏi về vai trò AI, đi ngược tinh thần minh bạch. D chỉ báo cho nội bộ, trong khi người bị ảnh hưởng là người dùng cuối."
     },
     {
       "id": 79,
@@ -1370,7 +1448,8 @@
       "correct": [
         0,
         4
-      ]
+      ],
+      "note": "Theo năng lực Diligence, output của AI cần được kiểm chứng: bỏ code review là bỏ luôn cơ chế verification (A), và số dòng code là thước đo rủi ro tồi vì một thay đổi nhỏ vẫn có thể gây lỗi bảo mật nghiêm trọng (E). B mở rộng review cho mọi thay đổi không phải là phản biện trực tiếp. C nâng ngưỡng làm rủi ro tăng thêm. D từ chối mọi PR do AI tạo là phản ứng thái quá."
     },
     {
       "id": 80,
@@ -1386,7 +1465,8 @@
       ],
       "correct": [
         1
-      ]
+      ],
+      "note": "SLA có ý nghĩa vận hành phải đo được, gồm metric, threshold, cửa sổ đánh giá và hệ quả khi vi phạm, ví dụ p95 latency dưới 800 ms trong 28 ngày (B). A dựa vào cảm nhận, không đo khách quan được. C chỉ là cam kết định tính chung chung. D có metric và threshold nhưng thiếu cửa sổ đánh giá và hệ quả vi phạm nên không thực thi được."
     },
     {
       "id": 81,
@@ -1404,7 +1484,8 @@
       "correct": [
         2,
         3
-      ]
+      ],
+      "note": "HIPAA yêu cầu bảo vệ PHI: chỉ người có thẩm quyền mới truy cập được qua role-based access control (C), và dữ liệu bệnh nhân không được gửi cho bên thứ ba như nhà cung cấp model khi chưa có BAA (D). A giảm max_tokens, B chọn model mạnh nhất và E dùng streaming đều là quyết định về chi phí, chất lượng hoặc trải nghiệm, không liên quan tới tuân thủ."
     },
     {
       "id": 82,
@@ -1422,7 +1503,8 @@
       "correct": [
         0,
         4
-      ]
+      ],
+      "note": "Trước khi pilot, phải xác định điểm quyết định nào cần con người giám sát dựa trên mức tác động và khả năng đảo ngược (E), rồi định nghĩa chiến lược sampling và tiêu chí escalation tại từng điểm đó (A); đây là nền tảng của thiết kế. B là việc làm sau pilot, dựa trên kết quả quan sát được. C và D là bước hoàn thiện, vận hành có thể tinh chỉnh song song hoặc sau khi thiết kế cốt lõi đã chốt."
     },
     {
       "id": 83,
@@ -1440,7 +1522,8 @@
       "correct": [
         0,
         1
-      ]
+      ],
+      "note": "MCP server và permission rule dùng chung cho team nên đặt ở project scope, đưa vào version control (A). Thiết lập bảo mật quan trọng không được override thì dùng managed configuration áp tập trung (B). C để mỗi engineer tự sửa rule bảo mật ở local scope, mất kiểm soát. D đặt cấu hình dùng chung ở user scope, khó đồng bộ. E đưa tùy chọn cá nhân vào project scope, áp lên cả team."
     },
     {
       "id": 84,
@@ -1456,7 +1539,8 @@
       ],
       "correct": [
         2
-      ]
+      ],
+      "note": "Theo least privilege, chỉ giữ các tool cần cho tác vụ đã định (nhóm 1) và tool dùng thường xuyên giúp giảm handoff (nhóm 2) (C). A ưu tiên tool cho việc không liên quan. B giữ tool chỉ vì có thể hữu ích trong tương lai. D cấp mọi tool, vừa tăng bề mặt tấn công vừa làm model dễ chọn nhầm tool."
     },
     {
       "id": 85,
@@ -1472,7 +1556,8 @@
       ],
       "correct": [
         2
-      ]
+      ],
+      "note": "Architecture Decision Record ghi rõ bối cảnh, quyết định, các phương án đã cân nhắc, hệ quả, ngày và tác giả, nên là tài liệu tốt nhất cho audit và onboarding (C). A là slide không có lý do bằng văn bản. B là comment ý kiến cá nhân nằm rải rác trong một file. D là trao đổi miệng, không để lại dấu vết."
     },
     {
       "id": 86,
@@ -1488,7 +1573,8 @@
       ],
       "correct": [
         0
-      ]
+      ],
+      "note": "Mối đe dọa là prompt injection gián tiếp qua tài liệu retrieve. Biện pháp trực tiếp nhất là coi mọi nội dung retrieve là untrusted input, dùng input classifier để phát hiện chỉ dẫn độc hại và validate output (A). B nhắm vào hallucination, không phải injection. C chỉ hạn chế hậu quả (exfiltration), không ngăn model bị thao túng. D là eval để phát hiện, không phải biện pháp giảm thiểu."
     },
     {
       "id": 87,
@@ -1504,7 +1590,8 @@
       ],
       "correct": [
         1
-      ]
+      ],
+      "note": "Eval set chỉ lấy từ một khu vực và một nhóm thâm niên nên không đại diện cho người dùng thật; cần mở rộng cho đủ các khu vực và nhóm thâm niên mà tool sẽ phục vụ, rồi chấm lại trước khi mở rộng triển khai (B). A bỏ đánh giá định lượng, thay bằng cảm nhận từ một nhóm thiếu đại diện. C còn thu hẹp thêm. D tin vào điểm cao trên một tập lệch, che mất rủi ro bias với nhóm chưa được kiểm tra."
     },
     {
       "id": 88,
@@ -1520,7 +1607,8 @@
       ],
       "correct": [
         3
-      ]
+      ],
+      "note": "Hội đồng gồm nhiều stakeholder nên cần nêu quyết định kiến trúc ngay từ đầu, sau đó trả lời trực tiếp mối quan tâm chính của từng người: chi phí cho CFO, rủi ro pháp lý cho general counsel, tích hợp và vận hành cho CIO (D). A mở đầu bằng sơ đồ kỹ thuật chỉ hợp với CIO. B mở đầu bằng chi phí chỉ hợp với CFO. C viết một mạch dày đặc cho tất cả, không phân hóa theo người đọc."
     },
     {
       "id": 89,
@@ -1538,7 +1626,8 @@
       "correct": [
         2,
         4
-      ]
+      ],
+      "note": "Chẩn đoán tốt bắt đầu bằng thu thập bằng chứng: dựng minimal reproduction và thay đổi từng biến một để khoanh vùng nguyên nhân (C), và liệt kê các MCP server đã cấu hình, kiểm tra trạng thái để phát hiện lỗi kết nối (E). A tăng temperature làm kết quả thêm nhiễu, không giúp chẩn đoán. B mở ticket khi chưa có bằng chứng thì nhà cung cấp khó xử lý. D rollback ngay khi chưa tái hiện được lỗi là hành động vội vàng."
     },
     {
       "id": 90,
@@ -1554,7 +1643,8 @@
       ],
       "correct": [
         3
-      ]
+      ],
+      "note": "Phân tích đúng phải tách từng pillar: thời gian giảm từ 47 xuống 6 phút là efficiency gain; billable output không đổi cho thấy productivity chưa thành hiện thực; chi phí hạ tầng tăng do retry thừa là vấn đề solution cost; 8 phút sửa thêm là efficiency loss bù trừ một phần cho quan sát 1 (D). A gộp quan sát 2 thành efficiency gain. B, C gán sai pillar, ví dụ coi chi phí retry là SLA hoặc over-engineering."
     },
     {
       "id": 91,
@@ -1570,7 +1660,8 @@
       ],
       "correct": [
         2
-      ]
+      ],
+      "note": "Bước đầu tiên nên nhắm đúng vấn đề và ít xáo trộn nhất: dùng lệnh liệt kê để xác nhận MCP server đã được đăng ký, rồi khởi động lại session vì thay đổi cấu hình thường chỉ có hiệu lực sau restart (C). A tắt mọi MCP server làm mất toàn bộ tool access mà không kiểm tra server mới. B đổi sang sản phẩm khác là bỏ chạy chứ không chẩn đoán. D cài lại hệ điều hành là phản ứng quá đà, phá hủy cấu hình."
     },
     {
       "id": 92,
@@ -1586,7 +1677,8 @@
       ],
       "correct": [
         0
-      ]
+      ],
+      "note": "Progressive tool discovery chỉ đưa ra một tập tool ban đầu đã chọn lọc, rồi nạp thêm tool khi task cần, nên vừa giảm token và thời gian phản hồi đầu tiên vừa giữ đủ năng lực (A). B tốn thêm một lượt gọi model mỗi turn và mất chi tiết định nghĩa tool. C chấp nhận nguyên vấn đề chi phí và latency. D cố định năm tool bất kể có liên quan hay không, làm mất capability."
     },
     {
       "id": 93,
@@ -1604,7 +1696,8 @@
       "correct": [
         0,
         1
-      ]
+      ],
+      "note": "Skill lo phần nội dung (disclaimer, danh sách từ cấm, văn phong), còn các kiểm soát mang tính hệ thống phải nằm ở tầng ứng dụng: ghi mọi bản tóm tắt vào audit trail để lưu trữ (A) và kiểm tra người dùng có quyền tạo bản tóm tắt hay không (B). Model không tự đảm bảo được authorization hay việc lưu log. C, D, E là quy tắc về nội dung và định dạng, phù hợp để đóng gói trong Skill mà compliance đã duyệt."
     },
     {
       "id": 94,
@@ -1620,7 +1713,8 @@
       ],
       "correct": [
         0
-      ]
+      ],
+      "note": "Tư thế GDPR vững cần kết hợp nhiều biện pháp: deployment hạng enterprise có Data Processing Addendum đã ký, cấu hình data retention rõ ràng, redact dữ liệu cá nhân không cần cho task (data minimization) và có quy trình xử lý quyền của chủ thể dữ liệu (A). B tắt mọi kiểm soát. C dùng tài khoản cá nhân, không có DPA. D đưa toàn bộ dữ liệu cá nhân vào prompt, vi phạm purpose limitation và data minimization."
     },
     {
       "id": 95,
@@ -1638,7 +1732,8 @@
       "correct": [
         3,
         4
-      ]
+      ],
+      "note": "Lỗ hổng observability thật là thiếu thông tin cần để truy vết: không ghi model identity và version theo từng turn nên không biết kết quả do model nào tạo ra (D), và correlation ID không được truyền qua các lần gọi agent và tool nên không nối được trace end-to-end (E). A, B, C mô tả các thực hành đúng (export trace span, phát latency và token usage, log tool call có redact), không phải lỗ hổng."
     },
     {
       "id": 96,
@@ -1654,7 +1749,8 @@
       ],
       "correct": [
         2
-      ]
+      ],
+      "note": "Người review bảo mật và compliance quan tâm đến rủi ro và khả năng chứng minh tuân thủ: threat model, mapping control, tiêu chí chấp nhận residual risk và audit traceability (C). A là nội dung dành cho product manager. B dành cho đội engineering. D là bản tóm tắt cấp cao cho lãnh đạo, chưa đủ chi tiết kiểm soát để reviewer đánh giá."
     },
     {
       "id": 97,
@@ -1670,7 +1766,8 @@
       ],
       "correct": [
         0
-      ]
+      ],
+      "note": "Subagent chuyên dụng xứng đáng khi có task chuyên biệt lặp lại nhiều lần, như review database schema, cần system prompt riêng, quyền tool hẹp và chọn model riêng qua nhiều session (A). B là câu hỏi một lần, không lặp lại. C không có task chuyên biệt định kỳ. D muốn mọi tương tác dùng chung một prompt chung chung, đi ngược với mục đích chuyên biệt hóa của subagent."
     },
     {
       "id": 98,
@@ -1686,7 +1783,8 @@
       ],
       "correct": [
         3
-      ]
+      ],
+      "note": "Cần quay lại thiết kế khi kiến trúc hiện tại không thể đáp ứng yêu cầu mới nếu không thay đổi trách nhiệm của component hoặc contract cốt lõi (D). A (sửa câu chữ trên UI), B (chỉnh ngưỡng alert) và C (làm rõ bước trong runbook) đều là thay đổi cục bộ về nội dung, cấu hình hoặc tài liệu, có thể xử lý trong vòng lặp hiện tại mà không cần chu kỳ thiết kế mới."
     },
     {
       "id": 99,
@@ -1704,7 +1802,8 @@
       "correct": [
         0,
         2
-      ]
+      ],
+      "note": "Trước khi instrument, phải đặc tả cần đo gì và đo để làm gì: định nghĩa metric và các slice sẽ theo dõi trên traffic bình thường lẫn adversarial (A), và định nghĩa SLO cùng error budget mà deployment phải đáp ứng (C). B tune ngưỡng alert cần dữ liệu quan sát được sau khi instrument. D xây dashboard và E viết tài liệu dashboard, alert, runbook đều phụ thuộc vào metric đã được phát ra."
     },
     {
       "id": 100,
@@ -1722,7 +1821,8 @@
       "correct": [
         1,
         4
-      ]
+      ],
+      "note": "Trước khi pilot cần thiết kế và cấu hình xong: xác định bước nào trong workflow AI thêm giá trị và chỗ nào con người phải giữ quyền quyết định (B), rồi cấu hình MCP server, permission, subagent và project context ở project scope (E). A tài liệu hóa đầy đủ kèm runbook nên làm sau khi workflow đã ổn định. C đòi sign-off chính thức từ từng manager là quá nặng cho giai đoạn pilot nhỏ. D lặp lại dựa trên kết quả pilot thì đương nhiên diễn ra sau pilot."
     },
     {
       "id": 101,
@@ -1738,7 +1838,8 @@
       ],
       "correct": [
         1
-      ]
+      ],
+      "note": "Tuân thủ HIPAA cần ký Business Associate Agreement với nhà cung cấp, bật Zero Data Retention để giảm lưu trữ PHI và cấu hình audit logging phục vụ theo dõi tuân thủ, trên hạng Enterprise (B). A sai vì sản phẩm consumer không tự đáp ứng HIPAA và không có BAA. C tắt audit logging, trong khi HIPAA yêu cầu khả năng audit, và vẫn thiếu BAA. D dùng tài khoản cá nhân, không có kiểm soát nào."
     },
     {
       "id": 102,
@@ -1756,7 +1857,8 @@
       "correct": [
         0,
         3
-      ]
+      ],
+      "note": "Truyền đạt quyết định kiến trúc tốt cần ghi rõ người chịu trách nhiệm và lịch review lại khi điều kiện hay giả định thay đổi (A), cùng các phương án đã cân nhắc và tiêu chí dùng để đánh giá từng phương án (D). B bắt buộc lãnh đạo dự họp là thủ tục, không làm quyết định rõ hơn. C bỏ phương án bị loại làm mất lý do của quyết định. E template thống nhất chỉ chuẩn hóa hình thức, không phải yếu tố cốt lõi."
     },
     {
       "id": 103,
@@ -1772,7 +1874,8 @@
       ],
       "correct": [
         3
-      ]
+      ],
+      "note": "Với production database, guardrail chặt nhất là mặc định dùng read-only credential cho MCP server, giới hạn tool list của subagent ở thao tác đọc và bắt buộc con người xác nhận trước mọi thao tác sửa dữ liệu (D), đúng nguyên tắc least privilege. A cho ghi thẳng mà không có kiểm soát. B cấp credential toàn quyền và không cần xác nhận. C tắt log và audit, mất khả năng phát hiện thay đổi ngoài ý muốn."
     },
     {
       "id": 104,
@@ -1790,7 +1893,8 @@
       "correct": [
         1,
         3
-      ]
+      ],
+      "note": "Trước khi chạy deployment trên eval dataset, phải định nghĩa metric và slice trên các ca representative, edge và adversarial (D), rồi curate và gán nhãn dataset khớp với các slice đó (B). E chấm output và tính metric, A publish dashboard và gate release đều là bước sau khi chạy. C review ca lỗi với chuyên gia để tinh chỉnh rubric cần có kết quả chạy trước."
     },
     {
       "id": 105,
@@ -1808,7 +1912,8 @@
       "correct": [
         0,
         3
-      ]
+      ],
+      "note": "Trước pilot cần lập kế hoạch: xác định workflow của team, ranh giới bảo mật và quyết định nào thuộc managed configuration hay project scope (D), rồi định nghĩa baseline ở project scope gồm MCP server, permission rule và subagent (A). B bắt toàn tổ chức đào tạo trước khi pilot là quá sớm và quá rộng. C rollout sang team khác và E iterate theo kết quả pilot đều diễn ra sau pilot."
     },
     {
       "id": 106,
@@ -1824,7 +1929,8 @@
       ],
       "correct": [
         2
-      ]
+      ],
+      "note": "SLA dưới 3 giây là ràng buộc cứng nên loại Architecture X (4,2 giây) trước, rồi đánh giá Y theo pillar efficiency và solution cost: tính chênh lệch chi phí năm (0,09 USD x 2 triệu phiên) và xem mức chênh chất lượng có ảnh hưởng đáng kể đến năng suất lâm sàng không (C). A chỉ nhìn một pillar chi phí. B bỏ qua vi phạm SLA. D đề xuất hybrid mà không phân tích, trong khi X vẫn vi phạm SLA."
     },
     {
       "id": 107,
@@ -1840,7 +1946,8 @@
       ],
       "correct": [
         2
-      ]
+      ],
+      "note": "Trong Claude Code, managed settings có ưu tiên cao nhất vì do tổ chức áp đặt và không ghi đè được; tiếp theo là command-line arguments cho phiên hiện tại, rồi local project settings (cá nhân, không commit), project settings dùng chung, và thấp nhất là user settings (C). A, B, D sắp sai thứ tự, đặc biệt đều không đặt managed ở vị trí cao nhất."
     },
     {
       "id": 108,
@@ -1858,7 +1965,8 @@
       "correct": [
         0,
         3
-      ]
+      ],
+      "note": "Discovery có cấu trúc gồm tổ chức workshop với stakeholder để làm rõ ràng buộc về latency, độ chính xác và compliance trước khi chốt phạm vi (A), và ghi lại success criteria cùng ngưỡng thất bại dùng để gate việc lên production (D). B chọn model tier theo kinh nghiệm cũ trước khi có input. C bỏ qua yêu cầu viết, chỉ dựa vào prototype. E hoãn ghi nhận ràng buộc dẫn đến phát hiện muộn và phải làm lại."
     },
     {
       "id": 109,
@@ -1881,7 +1989,8 @@
         "Output Handling",
         "Prompt Construction",
         "Input Preparation"
-      ]
+      ],
+      "note": "<b>Input Preparation:</b> tóm tắt lịch sử hội thoại khi không còn cần bản đầy đủ, và cắt các đoạn retrieved chỉ giữ phần liên quan đến câu hỏi; cả hai giảm lượng dữ liệu trước khi đưa vào prompt. <b>Prompt Construction:</b> sắp xếp các phần để nội dung cache được nằm trước nội dung riêng của từng request, và đưa nội dung lặp lại ổn định vào prefix đầu prompt để tận dụng prompt caching. <b>Output Handling:</b> validate structured output theo schema, và lưu output đã validate cho downstream và audit."
     },
     {
       "id": 110,
@@ -1897,7 +2006,8 @@
       ],
       "correct": [
         1
-      ]
+      ],
+      "note": "Phạm vi delegation phải dựa vào loại rủi ro chứ không chỉ quy mô giao dịch (B): refund nhỏ vẫn có thể bị lạm dụng hàng loạt, gian lận hoặc vi phạm chính sách, nên cần xét rủi ro thực tế và kiểm soát tương ứng. A bắt review mọi quyết định là cứng nhắc, triệt tiêu lợi ích. C đặt efficiency lên trên hết, bỏ qua rủi ro. D cấm hoàn toàn delegation ở mọi giao dịch tài chính là quá mức."
     },
     {
       "id": 111,
@@ -1913,7 +2023,8 @@
       ],
       "correct": [
         1
-      ]
+      ],
+      "note": "Ghi quy ước và kiến trúc dự án vào một file CLAUDE.md ở project scope và commit vào repository, mỗi session sẽ tự nạp, nên không ai phải giải thích lại (B). A cấm dùng Claude Code, mất luôn năng suất. C chỉ gõ nhanh hơn, vẫn lặp lại thủ công. D xóa các chuẩn đã ghi lại, làm mất tính nhất quán của codebase."
     },
     {
       "id": 112,
@@ -1931,7 +2042,8 @@
       "correct": [
         0,
         4
-      ]
+      ],
+      "note": "Để quy trình được áp dụng giống hệt ở mọi workflow, nên đóng gói nó thành một Claude Skill do chính team compliance sở hữu và cập nhật (A), rồi cả ba workflow cùng tham chiếu đến Skill đó (E), tạo nguồn sự thật duy nhất. B nhúng text vào system prompt từng workflow sẽ bị lệch phiên bản khi cập nhật. C retrieval corpus không đảm bảo quy trình được áp dụng đầy đủ và nhất quán. D để mỗi team tự viết lại sẽ dẫn đến sai khác."
     },
     {
       "id": 113,
@@ -1949,7 +2061,8 @@
       "correct": [
         1,
         3
-      ]
+      ],
+      "note": "Tính liên tục xuyên suốt vòng đời đến từ việc mang eval framework và reference set sang các vòng lặp sau thay vì làm lại mỗi lần, giúp so sánh được theo thời gian (B), và ghi lessons learned cuối mỗi giai đoạn làm input cho giai đoạn kế tiếp (D). A thông báo mọi bên ở mỗi lần chuyển giai đoạn là thủ tục. C lưu trữ deliverable chỉ giữ hồ sơ, không chuyển tri thức. E khóa quyết định sớm cản trở việc điều chỉnh khi có thông tin mới."
     }
   ]
 }
